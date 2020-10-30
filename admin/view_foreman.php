@@ -15,7 +15,7 @@ include('./header.php');
     <!-- Sidebar -->
     <?php
       include('./navigation.php');
-      navigationList('view_equipment');
+      navigationList('view_foreman');
     ?>
     <!-- End of Sidebar -->
 
@@ -31,7 +31,7 @@ include('./header.php');
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <h1 class="h3 mb-4 text-gray-800">Equipments</h1>
+          <h1 class="h3 mb-4 text-gray-800">Foreman</h1>
           <!-- <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below. For more information about DataTables, please visit the <a target="_blank" href="https://datatables.net">official DataTables documentation</a>.</p> -->
             
             <div class="row">
@@ -41,46 +41,48 @@ include('./header.php');
                 <!-- Basic Card Example -->
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Equipment Form</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Foreman Form</h6>
                     </div>
                     <div class="card-body">
-                    <form id="add-equipment-form" method="post">
-				              <input type="hidden" name="function-type" value="add-equipment">
+                    <form id="add-foreman-form" method="post">
+                        <input type="hidden" name="function-type" value="add-foreman">
                       <div class="form-group row">
                         <div class="col-sm-6 mb-3 mb-sm-0">
-                          <input type="text" class="form-control form-control-user"  name="equipment-name" id="equipmentRequired1" placeholder="Equipment name*" >
+                          <input type="text" class="form-control form-control-user"  name="foreman-firstname" id="foremanRequired1" placeholder="foreman firstname*" >
                         </div>
                         <div class="col-sm-6">
-                          <input type="text" class="form-control form-control-user"  name="equipment-description" placeholder="Equipment uses / description" >
+                          <input type="text" class="form-control form-control-user"  name="foreman-middlename" placeholder="foreman middlename*" id="foremanRequired7" >
                         </div>
                       </div>
                       <div class="form-group row">
                         <div class="col-sm-6 mb-3 mb-sm-0">
-                          <select class="custom-select"  class="form-control form-control-user"  name="equipment-category" placeholder="Equipment category" id="equipmentRequired2">
-                            <option selected value="">Select Equipment Category *</option>
-                            <?php
-                              include('./connection.php');
-                              $sql = "SELECT * FROM tbl_equipment_categories";
-                              $result = mysqli_query($conn, $sql);
-                              if (mysqli_num_rows($result) != 0){
-                                while($row = mysqli_fetch_assoc($result)) { 
-                            ?>
-                              <option value="<?php echo $row['equipment_category_id']?>"><?php echo $row['equipment_category_name'] ?></option>
-                            <?php
-                                }
-                              }
-                            ?>
-                          </select>
+                          <input type="text" class="form-control form-control-user"  name="foreman-lastname" placeholder="foreman lastname*"  id="foremanRequired8">
                         </div>
                         <div class="col-sm-6 mb-3">
-                          <input type="number" class="form-control form-control-user"  name="equipment-count" placeholder="Equipment count *" id="equipmentRequired3">
+                          <input type="number" class="form-control form-control-user"  name="foreman-age" placeholder="foreman age*" id="foremanRequired2">
                         </div>
-                        
+                        <div class="col-sm-6 mb-3 mb-sm-0">
+                        <input type="date" class="form-control form-control-user"  name="foreman-birthdate" placeholder="foreman birthdate*" id="foremanRequired3">
+                        </div>
+                        <div class="col-sm-6 mb-3">
+                          <input type="text" class="form-control form-control-user"  name="foreman-email" placeholder="foreman email*" id="foremanRequired4">
+                        </div>
+                        <div class="col-sm-6 mb-3 mb-sm-0">
+                          <input type="number" class="form-control form-control-user"  name="foreman-contact" placeholder="foreman Contact #*" id="foremanRequired5">
+                        </div>
+                          <div class="col-sm-6 mb-3">
+                          <select class="custom-select"  class="form-control form-control-user"  name="foreman-gender" placeholder="foreman gender" id="foremanRequired6">
+                              <option selected value="">Select Gender *</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+                          </div>
                       </div>
+                      
 
                       <div class="form-group row d-flex justify-content-center">
                         <div class="col-lg-3">
-                          <button id="submit-equipment-form" class="btn btn-primary btn-user btn-block">
+                          <button id="submit-foreman-form" class="btn btn-primary btn-user btn-block">
                             Submit
                           </button>
                         </div>
@@ -101,15 +103,19 @@ include('./header.php');
               <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
             </div>
             <div class="card-body">
-              <div class="table-responsive" id="equipmentTable">
-                <table class="table table-bordered" id="equipmentDataTable" width="100%" cellspacing="0">
+              <div class="table-responsive" id="foremanTable">
+                <table class="table table-bordered" id="foremanDataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
                       <th>ID</th>
-                      <th>Name</th>
-                      <th>Uses / Description</th>
-                      <th>Category</th>
-                      <th>Count</th>
+                      <th>Firstname</th>
+                      <th>Middlane</th>
+                      <th>Lastname</th>
+                      <th>Age</th>
+                      <th>Birthdate</th>
+                      <th>Email</th>
+                      <th>Contact #</th>
+                      <th>Gender</th>
                       <th>Options</th>
                     </tr>
                     </thead>
@@ -118,10 +124,14 @@ include('./header.php');
                     <tfoot>
                     <tr>
                       <th>ID</th>
-                      <th>Name</th>
-                      <th>Uses / Description</th>
-                      <th>Category</th>
-                      <th>Count</th>
+                      <th>Firstname</th>
+                      <th>Middlane</th>
+                      <th>Lastname</th>
+                      <th>Age</th>
+                      <th>Birthdate</th>
+                      <th>Email</th>
+                      <th>Contact #</th>
+                      <th>Gender</th>
                       <th>Options</th>
                     </tr>
                   </tfoot>
@@ -157,7 +167,7 @@ include('./header.php');
   <!-- Page level custom scripts -->
   <script src="js/demo/datatables-demo.js"></script>
 
-  <script src="./js/script-equipment.js"></script>
+  <script src="./js/script-foreman.js"></script>
 
   </body>
 </html>
