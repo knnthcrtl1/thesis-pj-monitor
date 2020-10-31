@@ -58,7 +58,10 @@ $(document).ready(function() {
             url: "./functions/function-foreman.php",
             data: foremanFormData + "&ajax=true",
             success:function(data){
-                alert(data);
+                if(data == 1){
+                    alert('email already exists, please use other email');
+                    return false;
+                }
                 alert("Edited Successfully!");
             }
         });
@@ -80,10 +83,10 @@ $(document).ready(function() {
         var foremanRequired7 = $("#foremanRequired7").val();
         var foremanRequired8 = $("#foremanRequired8").val();
         
-        // if (foremanRequired1 == "" || foremanRequired2 == "" || foremanRequired3 == ""  || foremanRequired4 == "" || foremanRequired5 == "" || foremanRequired6 == "" || foremanRequired7 == "" || foremanRequired8 == ""){
-        //     alert("Fill all the required fields!");
-        //     return false;
-        // }
+        if (foremanRequired1 == "" || foremanRequired2 == "" || foremanRequired3 == ""  || foremanRequired4 == "" || foremanRequired5 == "" || foremanRequired6 == "" || foremanRequired7 == "" || foremanRequired8 == ""){
+            alert("Fill all the required fields!");
+            return false;
+        }
 
 
         jQuery.ajax({

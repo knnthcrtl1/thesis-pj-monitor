@@ -58,6 +58,11 @@
     <i class="fas fa-fw fa-tachometer-alt"></i>
     <span>Foreman</span></a>
 </li>
+<li class="nav-item <?php echo $active == "view_project" ? 'active': null?>">
+  <a class="nav-link" href="view_project.php">
+    <i class="fas fa-fw fa-tachometer-alt"></i>
+    <span>Projects</span></a>
+</li>
 
 <!-- Nav Item - Utilities Collapse Menu -->
 <!-- NAVS -->

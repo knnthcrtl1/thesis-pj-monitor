@@ -34,13 +34,15 @@
         
         if ($_POST["function-type"] === "edit-foreman") {
             $foremanId = mysqli_real_escape_string($conn,(strip_tags($_POST['foreman-id'])));
+            $foremanEmail = mysqli_real_escape_string($conn,(strip_tags($_POST['foreman-email'])));
+            
+            checkEmailExist($conn,$foremanEmail);
 
             $foremanFirstname = mysqli_real_escape_string($conn,(strip_tags($_POST['foreman-firstname'])));
             $foremanMiddlename = mysqli_real_escape_string($conn,(strip_tags($_POST['foreman-middlename'])));
             $foremanLastname = mysqli_real_escape_string($conn,(strip_tags($_POST['foreman-lastname'])));
             $foremanAge = mysqli_real_escape_string($conn,(strip_tags($_POST['foreman-age'])));
             $foremanBirthdate = mysqli_real_escape_string($conn,(strip_tags($_POST['foreman-birthdate'])));
-            $foremanEmail = mysqli_real_escape_string($conn,(strip_tags($_POST['foreman-email'])));
             $foremanContact = mysqli_real_escape_string($conn,(strip_tags($_POST['foreman-contact'])));
             $foremanGender = mysqli_real_escape_string($conn,(strip_tags($_POST['foreman-gender'])));
 

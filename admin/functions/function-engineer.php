@@ -33,14 +33,17 @@
         }
         
         if ($_POST["function-type"] === "edit-engineer") {
+            
             $engineerId = mysqli_real_escape_string($conn,(strip_tags($_POST['engineer-id'])));
+            $engineerEmail = mysqli_real_escape_string($conn,(strip_tags($_POST['engineer-email'])));
+            
+            checkEmailExist($conn,$engineerEmail);
 
             $engineerFirstname = mysqli_real_escape_string($conn,(strip_tags($_POST['engineer-firstname'])));
             $engineerMiddlename = mysqli_real_escape_string($conn,(strip_tags($_POST['engineer-middlename'])));
             $engineerLastname = mysqli_real_escape_string($conn,(strip_tags($_POST['engineer-lastname'])));
             $engineerAge = mysqli_real_escape_string($conn,(strip_tags($_POST['engineer-age'])));
             $engineerBirthdate = mysqli_real_escape_string($conn,(strip_tags($_POST['engineer-birthdate'])));
-            $engineerEmail = mysqli_real_escape_string($conn,(strip_tags($_POST['engineer-email'])));
             $engineerContact = mysqli_real_escape_string($conn,(strip_tags($_POST['engineer-contact'])));
             $engineerGender = mysqli_real_escape_string($conn,(strip_tags($_POST['engineer-gender'])));
 

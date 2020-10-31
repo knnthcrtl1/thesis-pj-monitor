@@ -12,7 +12,7 @@
 
 function checkEmailExist($conn, $email) {
         
-    $sql2 = "SELECT * FROM tbl_engineers WHERE engineer_email = '{$email}'";
+    $sql2 = "SELECT * FROM tbl_users WHERE user_username = '{$email}'";
     $result2 = mysqli_query($conn, $sql2);
     $row2 = mysqli_num_rows($result2);
     

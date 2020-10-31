@@ -58,7 +58,10 @@ $(document).ready(function() {
             url: "./functions/function-engineer.php",
             data: engineerFormData + "&ajax=true",
             success:function(data){
-                alert(data);
+                if(data == 1){
+                    alert('email already exists, please use other email');
+                    return false;
+                }
                 alert("Edited Successfully!");
             }
         });
