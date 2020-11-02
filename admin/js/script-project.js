@@ -8,9 +8,7 @@ $(document).ready(function() {
             data:{},
             success:function(data){
                 $("#projectTable table tbody").html(data);
-                $('#projectDataTable').DataTable( {
-                    "aaSorting": [[ 0, "desc" ]]
-                } );
+                $('#projectDataTable').DataTable( );
             }
         });
     }

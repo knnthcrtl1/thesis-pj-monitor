@@ -25,6 +25,10 @@ $(document).ready(function() {
                 url: "./delete-client.php",
                 data: `id=${deleteId}`,
                 success:function(data){
+                    if(data == 1){
+                        alert('Client has existing project, delete the data first on the connected project');
+                        return false;
+                    }
                     alert('Deleted Successfully');
                     fetchclientTable();
                 }

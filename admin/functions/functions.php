@@ -55,4 +55,19 @@ function checkUserIfExistInProjectData($conn, $userId) {
 
 }
 
+function checkClientIfExistInProjectData($conn, $userId) {
+        
+    $sql = "SELECT * FROM tbl_projects WHERE project_client_owner = '{$userId}'";
+    $result = mysqli_query($conn, $sql);
+    $row = mysqli_num_rows($result);
+    
+    if($row == 1){
+        echo $row;
+        return false;
+    }
+
+    return true;
+
+}
+
 ?>
