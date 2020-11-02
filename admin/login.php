@@ -60,10 +60,13 @@
 			 while($row = mysqli_fetch_assoc($query))
 			 {
 			 $username=$row['user_username'];
-			 $password=$row['user_password'];
+       $password=$row['user_password'];
+       $userLevel=$row['user_level'];
 			 }
 			 if($user == $username && $pass == $password)
 			 {
+       $_SESSION['user_level'] = $userLevel;
+
 			 //Redirect Browser
              header('Location:view_dashboard.php');
              exit();

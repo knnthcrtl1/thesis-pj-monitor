@@ -61,6 +61,7 @@ function checkClientIfExistInProjectData($conn, $userId) {
     $result = mysqli_query($conn, $sql);
     $row = mysqli_num_rows($result);
     
+    
     if($row == 1){
         echo $row;
         return false;
@@ -69,5 +70,11 @@ function checkClientIfExistInProjectData($conn, $userId) {
     return true;
 
 }
+
+function getUsualPassword() {
+    $usualPassword = "123456";
+    return md5($usualPassword);
+}
+
 
 ?>

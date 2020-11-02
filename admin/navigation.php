@@ -30,6 +30,13 @@
   Interface
 </div>
 
+<?php 
+
+$userLevel = $_SESSION['user_level']; 
+
+if($userLevel == 1){
+
+?>
 <!-- Nav Item - Pages Collapse Menu -->
 <li class="nav-item <?php echo $active == "view_equipment" ? 'active': null?>">
   <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
@@ -63,6 +70,10 @@
     <i class="fas fa-fw fa-tachometer-alt"></i>
     <span>Projects</span></a>
 </li>
+
+<?php 
+}
+?>
 
 <!-- Nav Item - Utilities Collapse Menu -->
 <!-- NAVS -->

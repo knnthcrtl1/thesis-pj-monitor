@@ -29,6 +29,21 @@
                 echo("Error description: " . mysqli_error($conn));
             }
 
+            $sql = "SELECT foreman_id FROM tbl_foreman ORDER BY foreman_id DESC LIMIT 1";
+
+			$result = mysqli_query($conn, $sql);
+
+            $foremanId = mysqli_fetch_array($result)['foreman_id'];
+
+            $password = getUsualPassword();
+
+            $sql = "INSERT INTO tbl_users (user_username,user_password,user_level,user_user_id) VALUES ('{$foremanEmail}',
+				'{$password}','6','{$foremanId}')";
+            
+            if (!mysqli_query($conn, $sql)) {
+                echo("Error description: " . mysqli_error($conn));
+            }
+
 
             // auditTrail($_SESSION['user'], "Update Student", $conn);
 
@@ -51,6 +66,9 @@
 
 			$sql = "UPDATE tbl_foreman SET foreman_firstname = '{$foremanFirstname}' , foreman_middlename = '{$foremanMiddlename}', foreman_lastname = '{$foremanLastname}', foreman_age = '{$foremanAge}', foreman_birthdate = '{$foremanBirthdate}' , foreman_email = '{$foremanEmail}', foreman_contact_number = '{$foremanContact}', foreman_gender = '{$foremanGender}' WHERE foreman_id = '{$foremanId}' ";
             mysqli_query($conn, $sql);
+
+            $sql = "UPDATE tbl_users SET user_username = '{$foremanEmail}' WHERE user_user_id = '{$foremanId}' ";
+			mysqli_query($conn, $sql);
 
             return false;
         }
