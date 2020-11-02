@@ -56,7 +56,7 @@
 <li class="nav-item <?php echo $active == "view_client" ? 'active': null?>">
   <a class="nav-link" href="view_client.php">
     <i class="fas fa-fw fa-tachometer-alt"></i>
-    <span>Foreman</span></a>
+    <span>Client</span></a>
 </li>
 <li class="nav-item <?php echo $active == "view_project" ? 'active': null?>">
   <a class="nav-link" href="view_project.php">

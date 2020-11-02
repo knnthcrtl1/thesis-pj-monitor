@@ -1,5 +1,6 @@
 $(document).ready(function() {
 
+
     const fetchprojectTable = () => {
         $.ajax({    
             method: "POST",
@@ -7,7 +8,9 @@ $(document).ready(function() {
             data:{},
             success:function(data){
                 $("#projectTable table tbody").html(data);
-                $('#projectDataTable').DataTable();
+                $('#projectDataTable').DataTable( {
+                    "aaSorting": [[ 0, "desc" ]]
+                } );
             }
         });
     }
@@ -95,5 +98,144 @@ $(document).ready(function() {
         });
 
     });
+
+    
+
+    // engineerProjectRequired1
+
+    $(document).on("click","#submit-add-engineer-in-project-form", function(e) {
+        e.preventDefault();
+
+        var addEngineerProjectForm = $("#add-engineer-in-project-form").serialize();
+
+        var engineerProjectRequired1 = $("#engineerProjectRequired1").val();
+
+        if (engineerProjectRequired1 == "" ){
+            alert("Fill all the required fields!");
+            return false;
+        }
+
+        jQuery.ajax({
+            method: "POST",
+            url: "./functions/function-project.php",
+            data: addEngineerProjectForm + "&ajax=true",
+            success:function(data){
+
+                if(data == 1){
+                    alert("Engineer already exists in project");
+                    return false;
+                }
+
+                alert("Added Successfully!");
+                fetchEngineerInProjectTable();
+            }
+        });
+
+    });
+
+    
+    let projectId = $('#editProjectId').val();
+
+    const fetchEngineerInProjectTable = () => {
+        $.ajax({    
+            method: "POST",
+            url: "./tables/partial_engineer_in_project_tables.php",
+            data: `projectId=${projectId}`,
+            success:function(data){
+                $("#engineerProjectTable table tbody").html(data);
+                $('#engineerProjectDataTable').DataTable( );
+            }
+        });
+    }
+
+    
+
+    $(document).on("click","#delete-engineer-in-project", function(e) {
+        
+        e.preventDefault();
+        let deleteId = $(this).attr('delete-id');
+
+        if (confirm("Are you sure you want to delete this item?")) {
+            $.ajax({    
+                method: "POST",
+                url: "./delete-engineer-in-project.php",
+                data: `id=${deleteId}`,
+                success:function(data){
+                    alert('Deleted Successfully');
+                    fetchEngineerInProjectTable();
+                }
+            });
+        }
+
+    });
+
+    fetchEngineerInProjectTable();
+
+    // foremanProjectRequired1
+
+    $(document).on("click","#submit-add-foreman-in-project-form", function(e) {
+        e.preventDefault();
+
+        var addforemanProjectForm = $("#add-foreman-in-project-form").serialize();
+
+        var foremanProjectRequired1 = $("#foremanProjectRequired1").val();
+
+        // if (foremanProjectRequired1 == "" ){
+        //     alert("Fill all the required fields!");
+        //     return false;
+        // }
+
+
+        jQuery.ajax({
+            method: "POST",
+            url: "./functions/function-project.php",
+            data: addforemanProjectForm + "&ajax=true",
+            success:function(data){
+                if(data == 1){
+                    alert("foreman already exists in project");
+                    return false;
+                }
+                alert("Added Successfully!");
+                fetchforemanInProjectTable();
+            }
+        });
+
+    });
+
+
+    const fetchforemanInProjectTable = () => {
+        $.ajax({    
+            method: "POST",
+            url: "./tables/partial_foreman_in_project_tables.php",
+            data: `projectId=${projectId}`,
+            success:function(data){
+                $("#foremanProjectTable table tbody").html(data);
+                $('#foremanProjectDataTable').DataTable();
+            }
+        });
+    }
+
+
+
+    $(document).on("click","#delete-foreman-in-project", function(e) {
+        
+        e.preventDefault();
+        let deleteId = $(this).attr('delete-id');
+
+        if (confirm("Are you sure you want to delete this item?")) {
+            $.ajax({    
+                method: "POST",
+                url: "./delete-engineer-in-project.php",
+                data: `id=${deleteId}`,
+                success:function(data){
+                    alert('Deleted Successfully');
+                    fetchforemanInProjectTable();
+                }
+            });
+        }
+
+    });
+
+    fetchforemanInProjectTable();
 
 });

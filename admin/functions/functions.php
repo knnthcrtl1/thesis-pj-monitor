@@ -25,4 +25,34 @@ function checkEmailExist($conn, $email) {
 
 }
 
+function checkEngineerExistInProject($conn, $projectId, $engineerId) {
+        
+    $sql = "SELECT * FROM tbl_user_handled_projects WHERE user_handled_project_project_id = '{$projectId}' AND user_handled_project_engineer_id = '{$engineerId}'";
+    $result = mysqli_query($conn, $sql);
+    $row = mysqli_num_rows($result);
+    
+    if($row == 1){
+        echo $row;
+        return false;
+    }
+
+    return true;
+
+}
+
+function checkUserIfExistInProjectData($conn, $userId) {
+        
+    $sql = "SELECT * FROM tbl_user_handled_projects WHERE user_handled_project_engineer_id = '{$userId}'";
+    $result = mysqli_query($conn, $sql);
+    $row = mysqli_num_rows($result);
+    
+    if($row == 1){
+        echo $row;
+        return false;
+    }
+
+    return true;
+
+}
+
 ?>

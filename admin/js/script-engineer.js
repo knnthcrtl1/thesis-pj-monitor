@@ -19,12 +19,16 @@ $(document).ready(function() {
         e.preventDefault();
         let deleteId = $(this).attr('delete-id');
 
-        if (confirm("Are you sure you want to delete this equipment?")) {
+        if (confirm("Are you sure you want to data this equipment?")) {
             $.ajax({    
                 method: "POST",
                 url: "./delete-engineer.php",
                 data: `id=${deleteId}`,
                 success:function(data){
+                    if(data == 1){
+                        alert('Engineer has existing project, delete the data first on the connected project');
+                        return false;
+                    }
                     alert('Deleted Successfully');
                     fetchEngineerTable();
                 }

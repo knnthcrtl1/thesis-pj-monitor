@@ -65,7 +65,7 @@ include('./header.php');
                     <div class="card-body">
                     <form id="edit-project-form" method="post">
                         <input type="hidden" name="function-type" value="edit-project">
-                        <input type="hidden" name="project-id" value="<?php echo $_GET['id'] ?>">
+                        <input type="hidden" name="project-id" id="editProjectId" value="<?php echo $_GET['id'] ?>">
                         <div class="form-group row">
                         <div class="col-sm-6 mb-3 mb-sm-0">
                           <input type="text" class="form-control form-control-user"  name="project-contractor-name" id="projectRequired1" placeholder="Contractor name" value="<?php echo $row['project_contractor_name'] ?>" >
@@ -91,7 +91,21 @@ include('./header.php');
                           <input type="text" class="form-control form-control-user"  name="project-issuing-address" placeholder="Issuing address" value="<?php echo $row['project_issuing_addres'] ?>">
                         </div>
                         <div class="col-sm-6 mb-3 mb-sm-0">
-                          <input type="text" class="form-control form-control-user"  name="project-client-owner" placeholder="project / Owner*" id="projectRequired7" value="<?php echo $row['project_client_owner'] ?>">
+                        <select class="custom-select"  class="form-control form-control-user"  name="project-client-owner"  placeholder="Client / Owner*" id="projectRequired7">
+                              <option selected value="">Select client / owner *</option>
+                              <?php
+                                include('./connection.php');
+                                  $sql2 = "SELECT * FROM tbl_clients";
+                                  $result2 = mysqli_query($conn, $sql2);
+                                  if (mysqli_num_rows($result2) != 0){
+                                      while($row2 = mysqli_fetch_assoc($result2)) { 
+                                  ?>
+                                  <option value="<?php echo $row2['client_id'] ?>" <?php echo ($row2['client_id'] === $row['project_client_owner']) ? 'selected' : null; ?>><?php echo $row2['client_id'] . " - ". $row2['client_name']; ?></option>
+                                <?php
+                                    }
+                                  }
+                                ?>
+                          </select>
                         </div>
                       </div>
 
@@ -123,6 +137,145 @@ include('./header.php');
                 </div>
 
             </div>
+
+            <div class="row">
+
+            <!-- Content Column -->
+            <div class="col-lg-6 mb-4">
+
+              <!-- Project Card Example -->
+              <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                  <h6 class="m-0 font-weight-bold text-primary">Engineers</h6>
+                </div>
+                <div class="card-body">
+                  <form id="add-engineer-in-project-form" method="post">
+                  <div>
+                  <input type="hidden" name="add-engineer-project-id" value="<?php echo $_GET['id'] ?>">
+                  <input type="hidden" name="function-type" value="add-engineer-in-project">
+                  <input type="hidden" name="add-user-type" value="Engineer">
+                  <select class="custom-select"  class="form-control form-control-user"  name="engineer-add-project"  placeholder="Engineer" id="engineerProjectRequired1">
+                          <option selected value="">Select engineer</option>
+                        <?php
+                          include('./connection.php');
+                            $sql = "SELECT * FROM tbl_engineers";
+                            $result = mysqli_query($conn, $sql);
+                            if (mysqli_num_rows($result) != 0){
+                                while($row = mysqli_fetch_assoc($result)) { 
+                            ?>
+                            <option value="<?php echo $row['engineer_id'] ?>"><?php echo $row['engineer_id'] . " - ". $row['engineer_firstname'] . " " . $row['engineer_lastname']; ?></option>
+                          <?php
+                              }
+                            }
+                          ?>
+                    </select>
+                  </div>
+                 
+
+                    <div class="d-flex justify-content-center" style="margin:0 auto;margin-top: 15px;">
+                        <div class="col-lg-3">
+                          <button id="submit-add-engineer-in-project-form" class="btn btn-primary btn-user btn-block mb-4 ">
+                            Submit
+                          </button>
+                        </div>
+                      </div>
+                    </form> 
+
+                    
+                  
+                    <div class="table-responsive" id="engineerProjectTable">
+                  <table class="table table-bordered" id="engineerProjectDataTable" width="100%" cellspacing="0">
+                    <thead>
+                      <tr>
+                        <th>ID</th>
+                        <th>Engineer ID - Name</th>
+                        <th>Options</th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                      </tbody>
+                      <tfoot>
+                      <tr>
+                      <th>ID</th>
+                        <th>Contractor Name</th>
+                        <th>Options</th>
+                      </tr>
+                    </tfoot>
+                  
+                  </table>
+                </div>
+
+                </div>
+              </div>
+
+            </div>
+
+            <div class="col-lg-6 mb-4">
+
+              <!-- Illustrations -->
+              <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                  <h6 class="m-0 font-weight-bold text-primary">Foreman</h6>
+                </div>
+                <div class="card-body">
+                <form id="add-foreman-in-project-form" method="post">
+                  <div>
+                  <input type="hidden" name="add-engineer-project-id" value="<?php echo $_GET['id'] ?>">
+                  <input type="hidden" name="function-type" value="add-engineer-in-project">
+                  <input type="hidden" name="add-user-type" value="Foreman">
+                  <select class="custom-select"  class="form-control form-control-user"  name="engineer-add-project"  placeholder="Foreman" id="foremanProjectRequired1">
+                          <option selected value="">Select foreman</option>
+                        <?php
+                          include('./connection.php');
+                            $sql = "SELECT * FROM tbl_foreman";
+                            $result = mysqli_query($conn, $sql);
+                            if (mysqli_num_rows($result) != 0){
+                                while($row = mysqli_fetch_assoc($result)) { 
+                            ?>
+                            <option value="<?php echo $row['foreman_id'] ?>"><?php echo $row['foreman_id'] . " - ". $row['foreman_firstname'] . " " . $row['foreman_lastname']; ?></option>
+                          <?php
+                              }
+                            }
+                          ?>
+                    </select>
+                  </div>
+                 
+
+                    <div class="d-flex justify-content-center" style="margin:0 auto;margin-top: 15px;">
+                        <div class="col-lg-3">
+                          <button id="submit-add-foreman-in-project-form" class="btn btn-primary btn-user btn-block mb-4 ">
+                            Submit
+                          </button>
+                        </div>
+                      </div>
+                    </form> 
+
+                    
+                  
+                    <div class="table-responsive" id="foremanProjectTable">
+                  <table class="table table-bordered" id="foremanProjectDataTable" width="100%" cellspacing="0">
+                    <thead>
+                      <tr>
+                        <th>ID</th>
+                        <th>Foreman ID - Name</th>
+                        <th>Options</th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                      </tbody>
+                      <tfoot>
+                      <tr>
+                      <th>ID</th>
+                        <th>Contractor Name</th>
+                        <th>Options</th>
+                      </tr>
+                    </tfoot>
+                  
+                  </table>
+                </div>
+
+            </div>
+          </div>
 
         </div>
         <!-- /.container-fluid -->

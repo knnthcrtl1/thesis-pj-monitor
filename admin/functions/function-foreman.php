@@ -25,7 +25,10 @@
             $sql = "INSERT INTO tbl_foreman ( {$foremanTableFields} ) VALUES 
                 ('{$foremanFirstname}','{$foremanMiddlename}','{$foremanLastname}','{$foremanAge}','{$foremanBirthdate}','{$foremanEmail}','{$foremanContact}','{$foremanGender}')";
             
-          mysqli_query($conn, $sql);
+            if (!mysqli_query($conn, $sql)) {
+                echo("Error description: " . mysqli_error($conn));
+            }
+
 
             // auditTrail($_SESSION['user'], "Update Student", $conn);
 

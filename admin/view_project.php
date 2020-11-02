@@ -71,7 +71,22 @@ include('./header.php');
                           <input type="text" class="form-control form-control-user"  name="project-issuing-address" placeholder="Issuing address">
                         </div>
                         <div class="col-sm-6 mb-3 mb-sm-0">
-                          <input type="text" class="form-control form-control-user"  name="project-client-owner" placeholder="Client / Owner*" id="projectRequired7">
+                          <select class="custom-select"  class="form-control form-control-user"  name="project-client-owner"  placeholder="Client / Owner*" id="projectRequired7">
+                              <option selected value="">Select client / owner *</option>
+                                
+                              <?php
+                                include('./connection.php');
+                                  $sql = "SELECT * FROM tbl_clients";
+                                  $result = mysqli_query($conn, $sql);
+                                  if (mysqli_num_rows($result) != 0){
+                                      while($row = mysqli_fetch_assoc($result)) { 
+                                  ?>
+                                  <option value="<?php echo $row['client_id'] ?>"><?php echo $row['client_id'] . " - ". $row['client_name']; ?></option>
+                                <?php
+                                    }
+                                  }
+                                ?>
+                          </select>
                         </div>
                       </div>
 
@@ -107,7 +122,7 @@ include('./header.php');
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+              <h6 class="m-0 font-weight-bold text-primary">Project Table</h6>
             </div>
             <div class="card-body">
               <div class="table-responsive" id="projectTable">
