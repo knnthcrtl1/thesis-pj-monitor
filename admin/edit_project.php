@@ -68,7 +68,22 @@ include('./header.php');
                         <input type="hidden" name="project-id" id="editProjectId" value="<?php echo $_GET['id'] ?>">
                         <div class="form-group row">
                         <div class="col-sm-6 mb-3 mb-sm-0">
-                          <input type="text" class="form-control form-control-user"  name="project-contractor-name" id="projectRequired1" placeholder="Contractor name" value="<?php echo $row['project_contractor_name'] ?>" >
+                        <select class="custom-select"  class="form-control form-control-user"  name="project-contractor-name"  placeholder="Client / Owner*" id="projectRequired1">
+                            <option selected value="">Select contractor *</option>
+                              <?php
+                                include('./connection.php');
+                                  $sql3 = "SELECT * FROM tbl_contractors";
+                                  $result3 = mysqli_query($conn, $sql3);
+                                  if (mysqli_num_rows($result3) != 0){
+                                      while($row3 = mysqli_fetch_assoc($result3)) { 
+                                  ?>
+                                  <option value="<?php echo $row3['contractor_id'] ?>" <?php echo ($row3['contractor_id'] === $row['project_contractor_name']) ? 'selected' : null; ?>><?php echo $row3['contractor_id'] . " - ". $row3['contractor_name']; ?></option>
+                                <?php
+                                    }
+                                  }
+                                ?>
+                          </select>
+                          <!-- <input type="text" class="form-control form-control-user"  name="project-contractor-name" id="projectRequired1" placeholder="Contractor name" value="<?php echo $row['project_contractor_name'] ?>" > -->
                         </div>
                         <div class="col-sm-6">
                           <input type="text" class="form-control form-control-user"  name="project-agreement-details" placeholder="Agreement details" id="projectRequired2" value="<?php echo $row['project_agreement_details'] ?>" >
@@ -79,17 +94,12 @@ include('./header.php');
                           <input type="text" class="form-control form-control-user"  name="project-address" placeholder="Project Address"  id="projectRequired3" value ="<?php echo $row['project_address'] ?>">
                         </div>
                         <div class="col-sm-6 mb-3">
-                          <input type="text" class="form-control form-control-user"  name="project-telephone" placeholder="Telephone*" id="projectRequired4" value="<?php echo $row['project_telephone'] ?>">
+                          <input type="number" class="form-control form-control-user"  name="project-telephone" placeholder="Telephone*" id="projectRequired4" value="<?php echo $row['project_telephone'] ?>">
                         </div>
                         <div class="col-sm-6 mb-3 mb-sm-0">
                         <input type="text" class="form-control form-control-user"  name="project-work-location" placeholder="Work location*" id="projectRequired5" value="<?php echo $row['project_work_location'] ?>">
                         </div>
-                        <div class="col-sm-6 mb-3">
-                          <input type="text" class="form-control form-control-user"  name="project-issuing-office" placeholder="Issuing office" id="projectRequired6" value="<?php echo $row['project_issuing_office']; ?>">
-                        </div>
-                        <div class="col-sm-6 mb-3 mb-sm-0">
-                          <input type="text" class="form-control form-control-user"  name="project-issuing-address" placeholder="Issuing address" value="<?php echo $row['project_issuing_addres'] ?>">
-                        </div>
+                      
                         <div class="col-sm-6 mb-3 mb-sm-0">
                         <select class="custom-select"  class="form-control form-control-user"  name="project-client-owner"  placeholder="Client / Owner*" id="projectRequired7">
                               <option selected value="">Select client / owner *</option>
@@ -112,11 +122,11 @@ include('./header.php');
                       <div class="form-group row">
                       <div class="col-sm-6 mb-3 mb-sm-0">
                             <Label>Start Date</Label>
-                          <input type="date" class="form-control form-control-user"  name="project-start-date" placeholder="Start date*" value="<?php echo $row['project_start_date'] ?>" >
+                          <input type="date" class="form-control form-control-user"  name="project-start-date" placeholder="Start date*" value="<?php echo $row['project_start_date'] ?>" id="projectRequired8" >
                         </div>
                         <div class="col-sm-6 mb-3 mb-sm-0">
                         <Label>End Date</Label>
-                          <input type="date" class="form-control form-control-user"  name="project-end-date" placeholder="End date*" value="<?php echo $row['project_end_date'] ?>">
+                          <input type="date" class="form-control form-control-user"  name="project-end-date" placeholder="End date*" value="<?php echo $row['project_end_date'] ?>" id="projectRequired9">
                         </div>
                         
                       </div>

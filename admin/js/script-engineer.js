@@ -57,6 +57,11 @@ $(document).ready(function() {
             return false;
         }
 
+        if (!validateEmail(engineerRequired4)){
+            alert('Please provide correct email address');
+            return false;
+        }
+
         jQuery.ajax({
             method: "POST",
             url: "./functions/function-engineer.php",
@@ -87,11 +92,15 @@ $(document).ready(function() {
         var engineerRequired7 = $("#engineerRequired7").val();
         var engineerRequired8 = $("#engineerRequired8").val();
         
-        // if (engineerRequired1 == "" || engineerRequired2 == "" || engineerRequired3 == ""  || engineerRequired4 == "" || engineerRequired5 == "" || engineerRequired6 == "" || engineerRequired7 == "" || engineerRequired8 == ""){
-        //     alert("Fill all the required fields!");
-        //     return false;
-        // }
+        if (engineerRequired1 == "" || engineerRequired2 == "" || engineerRequired3 == ""  || engineerRequired4 == "" || engineerRequired5 == "" || engineerRequired6 == "" || engineerRequired7 == "" || engineerRequired8 == ""){
+            alert("Fill all the required fields!");
+            return false;
+        }
 
+        if (!validateEmail(engineerRequired4)){
+            alert('Please provide correct email address');
+            return false;
+        }
 
         jQuery.ajax({
             method: "POST",
@@ -109,5 +118,11 @@ $(document).ready(function() {
         });
 
     });
+
+    function validateEmail (email) {
+        const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(String(email).toLowerCase());
+    }
+
 
 });

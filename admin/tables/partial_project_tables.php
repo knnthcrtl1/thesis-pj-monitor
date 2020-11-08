@@ -9,7 +9,12 @@
           ?>
           <tr>
             <td><?php echo $row['project_id'] ?></td>
-            <td><?php echo $row['project_contractor_name'] ?></td>
+            <?php
+                $sql3 = "SELECT * FROM tbl_contractors WHERE contractor_id = '{$row['project_contractor_name']}'";
+                $result3 = mysqli_query($conn, $sql3);
+                $row3 = mysqli_fetch_array($result3);
+            ?>
+            <td><?php echo $row3['contractor_id'] . " - " . $row3['contractor_name'] ?></td>
             <td><?php echo $row['project_address'] ?></td>
             <td><?php echo $row['project_telephone'] ?></td>
             <td><?php echo $row['project_work_location'] ?></td>

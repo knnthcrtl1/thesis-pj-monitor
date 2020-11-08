@@ -1,20 +1,21 @@
+
 $(document).ready(function() {
 
-    const fetchclientTable = () => {
+    const fetchcontractorTable = () => {
         $.ajax({    
             method: "POST",
-            url: "./tables/partial_client_tables.php",
+            url: "./tables/partial_contractor_tables.php",
             data:{},
             success:function(data){
-                $("#clientTable table tbody").html(data);
-                $('#clientDataTable').DataTable();
+                $("#contractorTable table tbody").html(data);
+                $('#contractorDataTable').DataTable();
             }
         });
     }
 
-    fetchclientTable();
+    fetchcontractorTable();
 
-    $(document).on("click","#delete-client", function(e) {
+    $(document).on("click","#delete-contractor", function(e) {
         
         e.preventDefault();
         let deleteId = $(this).attr('delete-id');
@@ -22,15 +23,15 @@ $(document).ready(function() {
         if (confirm("Are you sure you want to delete this equipment?")) {
             $.ajax({    
                 method: "POST",
-                url: "./delete-client.php",
+                url: "./delete-contractor.php",
                 data: `id=${deleteId}`,
                 success:function(data){
                     if(data == 1){
-                        alert('Client has existing project, delete the data first on the connected project');
+                        alert('Contractor has existing project, delete the data first on the connected project');
                         return false;
                     }
                     alert('Deleted Successfully');
-                    fetchclientTable();
+                    fetchcontractorTable();
                 }
             });
         }
@@ -38,31 +39,30 @@ $(document).ready(function() {
     });
 
  
-    $(document).on("click","#submit-edit-client-form", function(e) {
+    $(document).on("click","#submit-edit-contractor-form", function(e) {
         e.preventDefault();
        
-        var clientFormData = $("#edit-client-form").serialize();
+        var contractorFormData = $("#edit-contractor-form").serialize();
 
-        var clientRequired1 = $("#clientRequired1").val();
-        var clientRequired2 = $("#clientRequired2").val();
-        var clientRequired3 = $("#clientRequired3").val();
-        var clientRequired4 = $("#clientRequired4").val();
+        var contractorRequired1 = $("#contractorRequired1").val();
+        var contractorRequired2 = $("#contractorRequired2").val();
+        var contractorRequired3 = $("#contractorRequired3").val();
+        var contractorRequired4 = $("#contractorRequired4").val();
         
-        if (clientRequired1 == "" || clientRequired2 == "" || clientRequired3 == ""  || clientRequired4 == "" ){
+        if (contractorRequired1 == "" || contractorRequired2 == "" || contractorRequired3 == ""  || contractorRequired4 == "" ){
             alert("Fill all the required fields!");
             return false;
         }
 
-        if (!validateEmail(clientRequired3)){
+        if (!validateEmail(contractorRequired3)){
             alert('Please provide correct email address');
             return false;
         }
-
         
         jQuery.ajax({
             method: "POST",
-            url: "./functions/function-client.php",
-            data: clientFormData + "&ajax=true",
+            url: "./functions/function-contractor.php",
+            data: contractorFormData + "&ajax=true",
             success:function(data){
                 if(data == 1){
                     alert('email already exists, please use other email');
@@ -75,38 +75,37 @@ $(document).ready(function() {
     });
     
 
-    $(document).on("click","#submit-client-form", function(e) {
+    $(document).on("click","#submit-contractor-form", function(e) {
         e.preventDefault();
 
-        var clientFormData = $("#add-client-form").serialize();
+        var contractorFormData = $("#add-contractor-form").serialize();
 
-        var clientRequired1 = $("#clientRequired1").val();
-        var clientRequired2 = $("#clientRequired2").val();
-        var clientRequired3 = $("#clientRequired3").val();
-        var clientRequired4 = $("#clientRequired4").val();
+        var contractorRequired1 = $("#contractorRequired1").val();
+        var contractorRequired2 = $("#contractorRequired2").val();
+        var contractorRequired3 = $("#contractorRequired3").val();
+        var contractorRequired4 = $("#contractorRequired4").val();
         
-        if (clientRequired1 == "" || clientRequired2 == "" || clientRequired3 == ""  || clientRequired4 == "" ){
+        if (contractorRequired1 == "" || contractorRequired2 == "" || contractorRequired3 == ""  || contractorRequired4 == "" ){
             alert("Fill all the required fields!");
             return false;
         }
 
-        if (!validateEmail(clientRequired3)){
+        if (!validateEmail(contractorRequired3)){
             alert('Please provide correct email address');
-
             return false;
         }
 
         jQuery.ajax({
             method: "POST",
-            url: "./functions/function-client.php",
-            data: clientFormData + "&ajax=true",
+            url: "./functions/function-contractor.php",
+            data: contractorFormData + "&ajax=true",
             success:function(data){
                 if(data == 1){
                     alert('email already exists, please use other email');
                     return false;
                 }
                 alert("Added Successfully!");
-                fetchclientTable();
+                fetchcontractorTable();
             }
         });
 

@@ -63,12 +63,17 @@ if($userLevel == 1){
 <li class="nav-item <?php echo $active == "view_client" ? 'active': null?>">
   <a class="nav-link" href="view_client.php">
     <i class="fas fa-fw fa-tachometer-alt"></i>
-    <span>Client</span></a>
+    <span>Clients</span></a>
 </li>
 <li class="nav-item <?php echo $active == "view_project" ? 'active': null?>">
   <a class="nav-link" href="view_project.php">
     <i class="fas fa-fw fa-tachometer-alt"></i>
     <span>Projects</span></a>
+</li>
+<li class="nav-item <?php echo $active == "view_contractor" ? 'active': null?>">
+  <a class="nav-link" href="view_contractor.php">
+    <i class="fas fa-fw fa-tachometer-alt"></i>
+    <span>Contractors</span></a>
 </li>
 
 <?php 

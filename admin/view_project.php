@@ -48,7 +48,23 @@ include('./header.php');
                         <input type="hidden" name="function-type" value="add-project">
                       <div class="form-group row">
                         <div class="col-sm-6 mb-3 mb-sm-0">
-                          <input type="text" class="form-control form-control-user"  name="project-contractor-name" id="projectRequired1" placeholder="Contractor name" >
+                          <!-- <input type="text" class="form-control form-control-user"  name="project-contractor-name" id="projectRequired1" placeholder="Contractor name" > -->
+                          <select class="custom-select"  class="form-control form-control-user"  name="project-contractor-name"  placeholder="Client / Owner*" id="projectRequired1">
+                              <option selected value="">Select client / owner *</option>
+                                
+                              <?php
+                                include('./connection.php');
+                                  $sql = "SELECT * FROM tbl_contractors";
+                                  $result = mysqli_query($conn, $sql);
+                                  if (mysqli_num_rows($result) != 0){
+                                      while($row = mysqli_fetch_assoc($result)) { 
+                                  ?>
+                                  <option value="<?php echo $row['contractor_id'] ?>"><?php echo $row['contractor_id'] . " - ". $row['contractor_name']; ?></option>
+                                <?php
+                                    }
+                                  }
+                                ?>
+                          </select>
                         </div>
                         <div class="col-sm-6">
                           <input type="text" class="form-control form-control-user"  name="project-agreement-details" placeholder="Agreement details" id="projectRequired2" >
@@ -59,17 +75,17 @@ include('./header.php');
                           <input type="text" class="form-control form-control-user"  name="project-address" placeholder="Project Address"  id="projectRequired3">
                         </div>
                         <div class="col-sm-6 mb-3">
-                          <input type="text" class="form-control form-control-user"  name="project-telephone" placeholder="Telephone*" id="projectRequired4">
+                          <input type="number" class="form-control form-control-user"  name="project-telephone" placeholder="Telephone*" id="projectRequired4">
                         </div>
                         <div class="col-sm-6 mb-3 mb-sm-0">
                         <input type="text" class="form-control form-control-user"  name="project-work-location" placeholder="Work location*" id="projectRequired5">
                         </div>
-                        <div class="col-sm-6 mb-3">
+                        <!-- <div class="col-sm-6 mb-3">
                           <input type="text" class="form-control form-control-user"  name="project-issuing-office" placeholder="Issuing office" id="projectRequired6">
                         </div>
                         <div class="col-sm-6 mb-3 mb-sm-0">
                           <input type="text" class="form-control form-control-user"  name="project-issuing-address" placeholder="Issuing address">
-                        </div>
+                        </div> -->
                         <div class="col-sm-6 mb-3 mb-sm-0">
                           <select class="custom-select"  class="form-control form-control-user"  name="project-client-owner"  placeholder="Client / Owner*" id="projectRequired7">
                               <option selected value="">Select client / owner *</option>
@@ -93,11 +109,11 @@ include('./header.php');
                       <div class="form-group row">
                       <div class="col-sm-6 mb-3 mb-sm-0">
                             <Label>Start Date</Label>
-                          <input type="date" class="form-control form-control-user"  name="project-start-date" placeholder="Start date*" >
+                          <input type="date" class="form-control form-control-user"  name="project-start-date" placeholder="Start date*"  id="projectRequired8" >
                         </div>
                         <div class="col-sm-6 mb-3 mb-sm-0">
                         <Label>End Date</Label>
-                          <input type="date" class="form-control form-control-user"  name="project-end-date" placeholder="End date*" >
+                          <input type="date" class="form-control form-control-user"  name="project-end-date" placeholder="End date*"  id="projectRequired9">
                         </div>
                         
                       </div>

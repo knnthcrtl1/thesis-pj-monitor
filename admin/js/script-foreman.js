@@ -57,6 +57,11 @@ $(document).ready(function() {
             return false;
         }
 
+        if (!validateEmail(foremanRequired4)){
+            alert('Please provide correct email address');
+            return false;
+        }
+
         jQuery.ajax({
             method: "POST",
             url: "./functions/function-foreman.php",
@@ -92,6 +97,11 @@ $(document).ready(function() {
             return false;
         }
 
+        if (!validateEmail(foremanRequired4)){
+            alert('Please provide correct email address');
+            return false;
+        }
+
 
         jQuery.ajax({
             method: "POST",
@@ -108,5 +118,11 @@ $(document).ready(function() {
         });
 
     });
+
+    function validateEmail (email) {
+        const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(String(email).toLowerCase());
+    }
+
 
 });
