@@ -50,7 +50,7 @@ include('./header.php');
 
           <!-- Page Heading -->
           <h1 class="h3 mb-4 text-gray-800">
-          <a href="./view_equipment.php"><i class="fa fa-arrow-left" aria-hidden="true"></i></a> Edit Equipment</h1>
+          <a href="javascript:history.back()"><i class="fa fa-arrow-left" aria-hidden="true"></i></a> Edit Equipment</h1>
           <!-- <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below. For more information about DataTables, please visit the <a target="_blank" href="https://datatables.net">official DataTables documentation</a>.</p> -->
             
             <div class="row">
@@ -67,8 +67,13 @@ include('./header.php');
                         <input type="hidden" name="function-type" value="edit-equipment">
                         <input type="hidden" name="equipment-id" value="<?php echo $_GET['id'] ?>">
                       <div class="form-group row">
-                        <div class="col-sm-6 mb-3 mb-sm-0">
+                        <div class="col-sm-12 mb-3 mb-sm-0">
                           <input type="text" class="form-control form-control-user"  name="equipment-name" id="equipmentRequired1" placeholder="Equipment name*" value="<?php echo $row['equipment_name']; ?>" >
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <div class="col-sm-6 mb-3 mb-sm-0">
+                          <input type="text" class="form-control form-control-user"  name="equipment-price" id="equipmentRequired4" placeholder="Equipment price*" value="<?php echo $row['equipment_price']; ?>" >
                         </div>
                         <div class="col-sm-6">
                           <input type="text" class="form-control form-control-user"  name="equipment-description" placeholder="Equipment uses / description" value="<?php echo $row['equipment_description']; ?>">
@@ -76,16 +81,16 @@ include('./header.php');
                       </div>
                       <div class="form-group row">
                         <div class="col-sm-6 mb-3 mb-sm-0">
-                          <select class="custom-select"  class="form-control form-control-user"  name="equipment-category" placeholder="Equipment category" id="equipmentRequired2" >
-                            <option >Select Equipment Category *</option>
+                          <select class="custom-select"  class="form-control form-control-user"  name="equipment-project-id" placeholder="Equipment category" id="equipmentRequired2" >
+                            <option >Select project name *</option>
                             <?php
                               include('./connection.php');
-                              $sql2 = "SELECT * FROM tbl_equipment_categories";
+                              $sql2 = "SELECT * FROM tbl_projects";
                               $result2 = mysqli_query($conn, $sql2);
                               if (mysqli_num_rows($result2) != 0){
                                 while($row2 = mysqli_fetch_assoc($result2)) { 
                             ?>
-                              <option value="<?php echo $row2['equipment_category_id']?>" <?php echo ($row2['equipment_category_id'] == $row['equipment_category_id']) ? 'selected' : null; ?> ><?php echo $row2['equipment_category_name'] ?></option>
+                              <option value="<?php echo $row2['project_id']?>" <?php echo ($row2['project_id'] == $row['equipment_project_id']) ? 'selected' : null; ?> ><?php echo $row2['project_name'] ?></option>
                             <?php
                                 }
                               }

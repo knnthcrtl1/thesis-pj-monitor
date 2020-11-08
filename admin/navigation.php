@@ -38,7 +38,7 @@ if($userLevel == 1){
 
 ?>
 <!-- Nav Item - Pages Collapse Menu -->
-<li class="nav-item <?php echo $active == "view_equipment" ? 'active': null?>">
+<!-- <li class="nav-item <?php echo $active == "view_equipment" ? 'active': null?>">
   <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
     <i class="fas fa-fw fa-cog"></i>
     <span>Equipments</span>
@@ -49,6 +49,11 @@ if($userLevel == 1){
       <a class="collapse-item" href="./view_equipment_category.php">Equipment Categories</a>
     </div>
   </div>
+</li> -->
+<li class="nav-item <?php echo $active == "view_equipment" ? 'active': null?>">
+  <a class="nav-link" href="view_equipment.php">
+    <i class="fas fa-fw fa-tachometer-alt"></i>
+    <span>Equipments</span></a>
 </li>
 <li class="nav-item <?php echo $active == "view_engineer" ? 'active': null?>">
   <a class="nav-link" href="view_engineer.php">

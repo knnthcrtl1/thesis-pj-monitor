@@ -9,6 +9,7 @@
           ?>
           <tr>
             <td><?php echo $row['project_id'] ?></td>
+            <td><?php echo $row['project_name'] ?></td>
             <?php
                 $sql3 = "SELECT * FROM tbl_contractors WHERE contractor_id = '{$row['project_contractor_name']}'";
                 $result3 = mysqli_query($conn, $sql3);
@@ -18,8 +19,6 @@
             <td><?php echo $row['project_address'] ?></td>
             <td><?php echo $row['project_telephone'] ?></td>
             <td><?php echo $row['project_work_location'] ?></td>
-            <td><?php echo $row['project_issuing_office'] ?></td>
-            <td><?php echo $row['project_issuing_addres'] ?></td>
             <td><?php echo $row['project_start_date'] ?></td>
             <td><?php echo $row['project_end_date'] ?></td>
             <?php

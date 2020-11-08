@@ -46,9 +46,14 @@ include('./header.php');
                     <div class="card-body">
                     <form id="add-project-form" method="post">
                         <input type="hidden" name="function-type" value="add-project">
+                        <div class="form-group row">
+                          <div class="col-sm-12 mb-3 mb-sm-0">
+                            <input type="text" class="form-control form-control-user"  name="project-name" id="projectRequired6" placeholder="Project name*" >
+                          </div>
+                        </div>
                       <div class="form-group row">
+                        
                         <div class="col-sm-6 mb-3 mb-sm-0">
-                          <!-- <input type="text" class="form-control form-control-user"  name="project-contractor-name" id="projectRequired1" placeholder="Contractor name" > -->
                           <select class="custom-select"  class="form-control form-control-user"  name="project-contractor-name"  placeholder="Client / Owner*" id="projectRequired1">
                               <option selected value="">Select client / owner *</option>
                                 
@@ -141,17 +146,17 @@ include('./header.php');
               <h6 class="m-0 font-weight-bold text-primary">Project Table</h6>
             </div>
             <div class="card-body">
+                                  
               <div class="table-responsive" id="projectTable">
                 <table class="table table-bordered" id="projectDataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
                       <th>ID</th>
+                      <th>Project Name</th>
                       <th>Contractor Name</th>
                       <th>Address</th>
                       <th>Telephone</th>
                       <th>Work Location</th>
-                      <th>Issuing Office</th>
-                      <th>Issuing Address</th>
                       <th>Start Date</th>
                       <th>End Date</th>
                       <th>Client owner</th>
@@ -162,13 +167,12 @@ include('./header.php');
                     </tbody>
                     <tfoot>
                     <tr>
-                    <th>ID</th>
+                      <th>ID</th>
+                      <th>Project Name</th>
                       <th>Contractor Name</th>
                       <th>Address</th>
                       <th>Telephone</th>
                       <th>Work Location</th>
-                      <th>Issuing Office</th>
-                      <th>Issuing Address</th>
                       <th>Start Date</th>
                       <th>End Date</th>
                       <th>Client owner</th>

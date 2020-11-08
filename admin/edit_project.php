@@ -60,12 +60,17 @@ include('./header.php');
                 <!-- Basic Card Example -->
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Project Form</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Project Details</h6>
                     </div>
                     <div class="card-body">
                     <form id="edit-project-form" method="post">
                         <input type="hidden" name="function-type" value="edit-project">
                         <input type="hidden" name="project-id" id="editProjectId" value="<?php echo $_GET['id'] ?>">
+                        <div class="form-group row">
+                          <div class="col-sm-12 mb-3 mb-sm-0">
+                            <input type="text" class="form-control form-control-user"  name="project-name" id="projectRequired6" placeholder="Project name*" value="<?php echo $row['project_name'] ?>">
+                          </div>
+                        </div>
                         <div class="form-group row">
                         <div class="col-sm-6 mb-3 mb-sm-0">
                         <select class="custom-select"  class="form-control form-control-user"  name="project-contractor-name"  placeholder="Client / Owner*" id="projectRequired1">
@@ -263,7 +268,7 @@ include('./header.php');
                     
                   
                     <div class="table-responsive" id="foremanProjectTable">
-                  <table class="table table-bordered" id="foremanProjectDataTable" width="100%" cellspacing="0">
+                    <table class="table table-bordered" id="foremanProjectDataTable" width="100%" cellspacing="0">
                     <thead>
                       <tr>
                         <th>ID</th>
@@ -280,17 +285,186 @@ include('./header.php');
                         <th>Options</th>
                       </tr>
                     </tfoot>
-                  
                   </table>
                 </div>
 
             </div>
           </div>
+         
 
         </div>
         <!-- /.container-fluid -->
 
       </div>
+      <div class="row">
+          <div class="col-lg-12 mb-4">
+
+              <!-- Illustrations -->
+              <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                  <h6 class="m-0 font-weight-bold text-primary">Equipments</h6>
+                </div>
+                <div class="card-body">
+                <form id="add-equipment-form" method="post">
+				              <input type="hidden" name="function-type" value="add-equipment">
+                      <div class="form-group row">
+                        <div class="col-sm-12 mb-3 mb-sm-0">
+                          <input type="text" class="form-control form-control-user"  name="equipment-name" id="equipmentRequired1" placeholder="Equipment name*" >
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <div class="col-sm-6 mb-3 mb-sm-0">
+                          <input type="text" class="form-control form-control-user"  name="equipment-price" id="equipmentRequired4" placeholder="Equipment price*" >
+                        </div>
+                        <div class="col-sm-6">
+                          <input type="text" class="form-control form-control-user"  name="equipment-description" placeholder="Equipment uses / description" >
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <div class="col-sm-6 mb-3">
+                          <input type="number" class="form-control form-control-user"  name="equipment-count" placeholder="Equipment count *" id="equipmentRequired3">
+                        </div>
+                        
+                      </div>
+
+                      <div class="form-group row d-flex justify-content-center">
+                        <div class="col-lg-3">
+                          <button id="submit-equipment-form" class="btn btn-primary btn-user btn-block">
+                            Submit
+                          </button>
+                        </div>
+                      </div>
+                  
+                      <hr>
+                    </form>
+                <div class="table-responsive" id="equipmentTable">
+                  <table class="table table-bordered" id="equipmentDataTable" width="100%" cellspacing="0">
+                    <thead>
+                      <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Project Description</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                        <th>Total</th>
+                        <th>Options</th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                      </tbody>
+                      <tfoot>
+                      <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Project Description</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                        <th>Total</th>
+                        <th>Options</th>
+                      </tr>
+                    </tfoot>
+                 
+                    </table>
+                  </div>          
+                  <div class="row">
+                    <div class="col-lg-6 mb-4">
+                    </div>
+                    <div class="col-lg-6 mb-4 text-right ">
+                      <div style="font-weight:bold;">TOTAL: <span id="totalEquipmentPrice">0</span></div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+
+          </div>
+          <div class="col-lg-12 mb-4">
+
+              <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                  <h6 class="m-0 font-weight-bold text-primary">Tasks</h6>
+                </div>
+                <div class="card-body">
+                  
+                <form id="add-tasks-form" method="post">
+				              <input type="hidden" name="function-type" value="add-tasks">
+                      <div class="form-group row">
+                      <div class="col-sm-6 mb-3">
+                          <input type="text" class="form-control form-control-user"  name="project-tasks-name" placeholder="Tasks name*" id="taskRequired1">
+                        </div>
+                        <div class="col-sm-6 mb-3">
+                          <div class="" >
+                              <select class="custom-select"  class="form-control form-control-user"  name="project-tasks-status"  placeholder="Task Status*" id="taskRequired2">
+                              <option value="1">To Do</option>
+                              <option value="2">In Progress</option>
+                              <option value="3">Done</option>
+                              </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 mb-3">
+                          <input type="text" class="form-control form-control-user"  name="project-tasks-description" placeholder="Task Description" id="taskRequired3">
+                        </div>
+                      </div>
+
+                      <div class="form-group row d-flex justify-content-center">
+                        <div class="col-lg-3">
+                          <button id="submit-tasks-form" class="btn btn-primary btn-user btn-block">
+                            Submit
+                          </button>
+                        </div>
+                      </div>
+                  
+                      <hr>
+                    </form>
+
+                <div class="row ">
+                    <div class="col-lg-4 mb-4">
+                      <div class="card  mb-4">
+
+                        <div class="card-header py-3">
+
+                          <h6 class="m-0 font-weight-bold text-primary">To Do</h6>
+                        </div>
+                            <div class="card-body">
+                              <div id="tasksTodoColumn"></div>
+                          </div>
+                      </div>
+
+                    </div>
+
+                    <div class="col-lg-4 mb-4">
+                      <div class="card  mb-4">
+
+                        <div class="card-header py-3">
+
+                          <h6 class="m-0 font-weight-bold text-primary">In Progress</h6>
+                        </div>
+                        <div class="card-body">
+                          <div id="tasksInProgressColumn"></div>
+                        </div>
+                      </div>
+
+                    </div>
+
+                    <div class="col-lg-4 mb-4">
+                      <div class="card  mb-4">
+
+                        <div class="card-header py-3">
+
+                          <h6 class="m-0 font-weight-bold text-primary">Done</h6>
+                        </div>
+                        <div class="card-body">
+                        <div id="tasksDoneColumn"></div>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+
+                </div>
+            </div>
+            
+          </div>
+          
       <!-- End of Main Content -->
       
   <!-- Scroll to Top Button-->

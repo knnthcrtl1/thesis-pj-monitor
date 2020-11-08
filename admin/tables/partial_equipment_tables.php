@@ -11,17 +11,18 @@
             <td><?php echo $row['equipment_id'] ?></td>
             <td><?php echo $row['equipment_name'] ?></td>
             <td><?php echo $row['equipment_description'] ?></td>
-            <td><?php 
-              $sql2 = "SELECT * FROM tbl_equipment_categories WHERE equipment_category_id = '{$row['equipment_category_id']}'";
-              $result2 = mysqli_query($conn, $sql2);
-              if (mysqli_num_rows($result2) != 0){
-                while($row2 = mysqli_fetch_assoc($result2)) { 
-                  echo $row2['equipment_category_name'];
-                }
-              }
-              ?>
-            </td>
+            <?php
+                $sql3 = "SELECT * FROM tbl_projects WHERE project_id = '{$row['equipment_project_id']}'";
+                $result3 = mysqli_query($conn, $sql3);
+                $row3 = mysqli_fetch_array($result3);
+            ?>
+            <td><?php echo $row3['project_name']; ?></td>
             <td><?php echo $row['equipment_count'] ?></td>
+            <td><?php echo "PHP " . number_format($row['equipment_price'], 2); ?></td>
+            <?php 
+              $totalPrice =  $row['equipment_count'] * $row['equipment_price'];
+            ?>
+            <td><?php echo "PHP " . number_format($totalPrice, 2);  ?></td>
             <td>
               <a class="btn btn-success" href="edit_equipment.php?id=<?php echo $row['equipment_id']; ?>"><i class="fas fa-fw fa-edit"></i> Edit</a>
             &nbsp;

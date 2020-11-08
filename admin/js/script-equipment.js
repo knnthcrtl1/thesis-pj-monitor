@@ -67,8 +67,9 @@ $(document).ready(function() {
         var equipmentRequired1 = $("#equipmentRequired1").val();
         var equipmentRequired2 = $("#equipmentRequired2").val();
         var equipmentRequired3 = $("#equipmentRequired3").val();
+        var equipmentRequired4 = $("#equipmentRequired4").val();
         
-        if (equipmentRequired1 == "" || equipmentRequired2 == "" || equipmentRequired3 == ""){
+        if (equipmentRequired1 == "" || equipmentRequired2 == "" || equipmentRequired3 == "" || equipmentRequired4 == ""){
             alert("Fill all the required fields!");
             return false;
         } 

@@ -47,8 +47,13 @@ include('./header.php');
                     <form id="add-equipment-form" method="post">
 				              <input type="hidden" name="function-type" value="add-equipment">
                       <div class="form-group row">
-                        <div class="col-sm-6 mb-3 mb-sm-0">
+                        <div class="col-sm-12 mb-3 mb-sm-0">
                           <input type="text" class="form-control form-control-user"  name="equipment-name" id="equipmentRequired1" placeholder="Equipment name*" >
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <div class="col-sm-6 mb-3 mb-sm-0">
+                          <input type="text" class="form-control form-control-user"  name="equipment-price" id="equipmentRequired4" placeholder="Equipment price*" >
                         </div>
                         <div class="col-sm-6">
                           <input type="text" class="form-control form-control-user"  name="equipment-description" placeholder="Equipment uses / description" >
@@ -56,16 +61,16 @@ include('./header.php');
                       </div>
                       <div class="form-group row">
                         <div class="col-sm-6 mb-3 mb-sm-0">
-                          <select class="custom-select"  class="form-control form-control-user"  name="equipment-category" placeholder="Equipment category" id="equipmentRequired2">
-                            <option selected value="">Select Equipment Category *</option>
+                          <select class="custom-select"  class="form-control form-control-user"  name="equipment-project-id" placeholder="Equipment category" id="equipmentRequired2">
+                            <option selected value="">Select Project Name *</option>
                             <?php
                               include('./connection.php');
-                              $sql = "SELECT * FROM tbl_equipment_categories";
+                              $sql = "SELECT * FROM tbl_projects";
                               $result = mysqli_query($conn, $sql);
                               if (mysqli_num_rows($result) != 0){
                                 while($row = mysqli_fetch_assoc($result)) { 
                             ?>
-                              <option value="<?php echo $row['equipment_category_id']?>"><?php echo $row['equipment_category_name'] ?></option>
+                              <option value="<?php echo $row['project_id']?>"><?php echo $row['project_name'] ?></option>
                             <?php
                                 }
                               }
@@ -108,8 +113,10 @@ include('./header.php');
                       <th>ID</th>
                       <th>Name</th>
                       <th>Uses / Description</th>
-                      <th>Category</th>
+                      <th>Project Equipment</th>
                       <th>Count</th>
+                      <th>Price</th>
+                      <th>Total</th>
                       <th>Options</th>
                     </tr>
                     </thead>
@@ -120,8 +127,10 @@ include('./header.php');
                       <th>ID</th>
                       <th>Name</th>
                       <th>Uses / Description</th>
-                      <th>Category</th>
+                      <th>Project Equipment</th>
                       <th>Count</th>
+                      <th>Price</th>
+                      <th>Total</th>
                       <th>Options</th>
                     </tr>
                   </tfoot>
