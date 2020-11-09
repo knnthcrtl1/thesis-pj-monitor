@@ -33,7 +33,7 @@
             $equipmentPrice = mysqli_real_escape_string($conn,(strip_tags($_POST['equipment-price'])));
             $equipmentCount = mysqli_real_escape_string($conn,(strip_tags($_POST['equipment-count'])));
 
-			$sql = "UPDATE tbl_equipments SET equipment_name = '{$equipmentName}' , equipment_description = '{$equipmentDescription}', equipment_project_id = '{$equipmentCategory}', equipment_price = '{$equipmentPrice}' , equipment_count = '{$equipmentCount}' WHERE equipment_id = '{$equipmentId}' ";
+			$sql = "UPDATE tbl_equipments SET equipment_name = '{$equipmentName}' , equipment_description = '{$equipmentDescription}', equipment_project_id = '{$equipmentProjectId}', equipment_price = '{$equipmentPrice}' , equipment_count = '{$equipmentCount}' WHERE equipment_id = '{$equipmentId}' ";
             mysqli_query($conn, $sql);
         }
     }

@@ -1,5 +1,10 @@
 $(document).ready(function() {
-   
+    
+    const checkNumberNegative = (val) => {
+        let value = val <= 0;
+        return value;
+    }
+
     const fetchprojectTable = () => {
         $.ajax({    
             method: "POST",
@@ -19,12 +24,16 @@ $(document).ready(function() {
         e.preventDefault();
         let deleteId = $(this).attr('delete-id');
 
-        if (confirm("Are you sure you want to delete this equipment?")) {
+        if (confirm("Are you sure you want to delete this data?")) {
             $.ajax({    
                 method: "POST",
                 url: "./delete-project.php",
                 data: `id=${deleteId}`,
                 success:function(data){
+                    if(data > 0){
+                        alert('Project has existing equipments, delete the data first on the connected project');
+                        return false;
+                    }
                     alert('Deleted Successfully');
                     fetchprojectTable();
                 }
@@ -321,6 +330,11 @@ $(document).ready(function() {
             return false;
         } 
 
+        if(checkNumberNegative(equipmentRequired3) || checkNumberNegative(equipmentRequired4)) {
+            alert('Count or price must be greater than 0');
+            return false;
+        }
+
         jQuery.ajax({
             method: "POST",
             url: "./functions/function-equipment.php",
@@ -420,6 +434,25 @@ $(document).ready(function() {
                 fetchTasksInProgress();
             }
         });
+
+    });
+
+    $(document).on("click","#delete-equipment", function(e) {
+        
+        e.preventDefault();
+        let deleteId = $(this).attr('delete-id');
+
+        if (confirm("Are you sure you want to delete this equipment?")) {
+            $.ajax({    
+                method: "POST",
+                url: "./delete-equipment.php",
+                data: `id=${deleteId}`,
+                success:function(data){
+                    alert('Deleted Successfully');
+                    fetchEquipmentTable();
+                }
+            });
+        }
 
     });
 

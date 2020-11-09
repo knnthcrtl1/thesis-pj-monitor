@@ -1,5 +1,10 @@
 $(document).ready(function() {
 
+    const checkNumberNegative = (val) => {
+        let value = val <= 0;
+        return value;
+    }
+
     const fetchEquipmentTable = () => {
         $.ajax({    
             method: "POST",
@@ -41,11 +46,18 @@ $(document).ready(function() {
         var equipmentRequired1 = $("#equipmentRequired1").val();
         var equipmentRequired2 = $("#equipmentRequired2").val();
         var equipmentRequired3 = $("#equipmentRequired3").val();
+        var equipmentRequired4 = $("#equipmentRequired4").val();
 
-        if (equipmentRequired1 == "" || equipmentRequired2 == "" || equipmentRequired3 == ""){
+        if (equipmentRequired1 == "" || equipmentRequired2 == "" || equipmentRequired3 == "" || equipmentRequired4 == ""){
             alert("Fill all the required fields!");
             return false;
         } 
+
+        
+        if(checkNumberNegative(equipmentRequired4) || checkNumberNegative(equipmentRequired3)) {
+            alert('Count or price must be greater than 0');
+            return false;
+        }
 
          jQuery.ajax({
             method: "POST",
@@ -68,11 +80,16 @@ $(document).ready(function() {
         var equipmentRequired2 = $("#equipmentRequired2").val();
         var equipmentRequired3 = $("#equipmentRequired3").val();
         var equipmentRequired4 = $("#equipmentRequired4").val();
-        
+
         if (equipmentRequired1 == "" || equipmentRequired2 == "" || equipmentRequired3 == "" || equipmentRequired4 == ""){
             alert("Fill all the required fields!");
             return false;
         } 
+
+        if(checkNumberNegative(equipmentRequired3) || checkNumberNegative(equipmentRequired4)) {
+            alert('Count or price must be greater than 0');
+            return false;
+        }
 
         jQuery.ajax({
             method: "POST",

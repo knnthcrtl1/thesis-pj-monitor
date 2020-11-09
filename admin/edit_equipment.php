@@ -73,7 +73,7 @@ include('./header.php');
                       </div>
                       <div class="form-group row">
                         <div class="col-sm-6 mb-3 mb-sm-0">
-                          <input type="text" class="form-control form-control-user"  name="equipment-price" id="equipmentRequired4" placeholder="Equipment price*" value="<?php echo $row['equipment_price']; ?>" >
+                          <input type="number" class="form-control form-control-user"  name="equipment-price" id="equipmentRequired4" placeholder="Equipment price*" value="<?php echo $row['equipment_price']; ?>" >
                         </div>
                         <div class="col-sm-6">
                           <input type="text" class="form-control form-control-user"  name="equipment-description" placeholder="Equipment uses / description" value="<?php echo $row['equipment_description']; ?>">

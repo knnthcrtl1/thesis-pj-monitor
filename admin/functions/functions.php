@@ -77,7 +77,6 @@ function checkContractorIfExistInProjectData($conn, $userId) {
     $result = mysqli_query($conn, $sql);
     $row = mysqli_num_rows($result);
     
-    
     if($row == 1){
         echo $row;
         return false;
@@ -86,6 +85,22 @@ function checkContractorIfExistInProjectData($conn, $userId) {
     return true;
 
 }
+
+function checkEquipmentIfExistInProjectData($conn, $id) {
+        
+    $sql = "SELECT * FROM tbl_equipments WHERE equipment_project_id = '{$id}'";
+    $result = mysqli_query($conn, $sql);
+    $row = mysqli_num_rows($result);
+    
+    if($row > 0){
+        echo $row;
+        return false;
+    }
+
+    return true;
+
+}
+
 
 
 function getUsualPassword() {

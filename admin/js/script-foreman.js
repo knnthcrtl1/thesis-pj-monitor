@@ -19,7 +19,7 @@ $(document).ready(function() {
         e.preventDefault();
         let deleteId = $(this).attr('delete-id');
 
-        if (confirm("Are you sure you want to data this equipment?")) {
+        if (confirm("Are you sure you want to data this data?")) {
             $.ajax({    
                 method: "POST",
                 url: "./delete-foreman.php",
