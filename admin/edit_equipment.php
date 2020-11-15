@@ -76,27 +76,24 @@ include('./header.php');
                           <input type="number" class="form-control form-control-user"  name="equipment-price" id="equipmentRequired4" placeholder="Equipment price*" value="<?php echo $row['equipment_price']; ?>" >
                         </div>
                         <div class="col-sm-6">
-                          <input type="text" class="form-control form-control-user"  name="equipment-description" placeholder="Equipment uses / description" value="<?php echo $row['equipment_description']; ?>">
+                          <select class="form-control form-control-user"  name="equipment-description" placeholder="Unit of measure" name="equipment-description" id="">
+                          <option value="">Select unit of measurement *</option>
+                          <option value="AU" <?php echo $row['equipment_description'] == "AU" ? 'selected' : null; ?>>AU</option>
+                          <option value="LO"  <?php echo $row['equipment_description'] == "LO" ? 'selected' : null; ?>>LO</option>
+                          <option value="M2"  <?php echo $row['equipment_description'] == "M2" ? 'selected' : null; ?>>M2</option>
+                          <option value="PCE"  <?php echo $row['equipment_description'] == "PCE" ? 'selected' : null; ?>>PCE</option>
+                          <option value="M"  <?php echo $row['equipment_description'] == "M" ? 'selected' : null; ?>>M</option>
+                          <option value="M3" <?php echo $row['equipment_description'] == "M3" ? 'selected' : null; ?>> M3</option>
+                          <option value="KG"  <?php echo $row['equipment_description'] == "KG" ? 'selected' : null; ?>>KG</option>
+                          <option value="SET"  <?php echo $row['equipment_description'] == "SET" ? 'selected' : null; ?>>SET</option>
+                          <option value="UT" <?php echo $row['equipment_description'] == "UT" ? 'selected' : null; ?>>AU</option>
+                          <option value="PL" <?php echo $row['equipment_description'] == "PL" ? 'selected' : null; ?>>BAG</option>
+                          <option value="BAG" <?php echo $row['equipment_description'] == "BAG" ? 'selected' : null; ?>>BAG</option>
+                        </select>
                         </div>
                       </div>
                       <div class="form-group row">
-                        <div class="col-sm-6 mb-3 mb-sm-0">
-                          <select class="custom-select"  class="form-control form-control-user"  name="equipment-project-id" placeholder="Equipment category" id="equipmentRequired2" >
-                            <option >Select project name *</option>
-                            <?php
-                              include('./connection.php');
-                              $sql2 = "SELECT * FROM tbl_projects";
-                              $result2 = mysqli_query($conn, $sql2);
-                              if (mysqli_num_rows($result2) != 0){
-                                while($row2 = mysqli_fetch_assoc($result2)) { 
-                            ?>
-                              <option value="<?php echo $row2['project_id']?>" <?php echo ($row2['project_id'] == $row['equipment_project_id']) ? 'selected' : null; ?> ><?php echo $row2['project_name'] ?></option>
-                            <?php
-                                }
-                              }
-                            ?>
-                          </select>
-                        </div>
+                      
                         <div class="col-sm-6 mb-3">
                           <input type="number" class="form-control form-control-user"  name="equipment-count" placeholder="Equipment count *" id="equipmentRequired3" value="<?php echo $row['equipment_count']; ?>">
                         </div>

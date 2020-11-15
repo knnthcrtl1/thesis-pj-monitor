@@ -56,27 +56,40 @@ include('./header.php');
                           <input type="number" class="form-control form-control-user"  name="equipment-price" id="equipmentRequired4" placeholder="Equipment price*" >
                         </div>
                         <div class="col-sm-6">
-                          <input type="text" class="form-control form-control-user"  name="equipment-description" placeholder="Equipment uses / description" >
+                        <select class="form-control form-control-user"  name="equipment-description" placeholder="Unit of measure" name="equipment-description" id="">
+                          <option value="">Select unit of measurement *</option>
+                          <option value="AU">AU</option>
+                          <option value="LO">LO</option>
+                          <option value="M2">M2</option>
+                          <option value="PCE">PCE</option>
+                          <option value="M">M</option>
+                          <option value="M3" > M3</option>
+                          <option value="KG"  >KG</option>
+                          <option value="SET">SET</option>
+                          <option value="UT" >AU</option>
+                          <option value="PL">BAG</option>
+                          <option value="BAG">BAG</option>
+                        </select>
                         </div>
                       </div>
                       <div class="form-group row">
-                        <div class="col-sm-6 mb-3 mb-sm-0">
-                          <select class="custom-select"  class="form-control form-control-user"  name="equipment-project-id" placeholder="Equipment category" id="equipmentRequired2">
-                            <option selected value="">Select Project Name *</option>
+                        <!-- <div class="col-sm-6 mb-3 mb-sm-0"> -->
+                          <!-- <select class="custom-select"  class="form-control form-control-user"  name="equipment-project-id" placeholder="Equipment category" id="equipmentRequired2"> -->
+                            <!-- <option selected value="">Select Project Name *</option> -->
                             <?php
-                              include('./connection.php');
-                              $sql = "SELECT * FROM tbl_projects";
-                              $result = mysqli_query($conn, $sql);
-                              if (mysqli_num_rows($result) != 0){
-                                while($row = mysqli_fetch_assoc($result)) { 
+                              // include('./connection.php');
+                              // $sql = "SELECT * FROM tbl_projects";
+                              // $result = mysqli_query($conn, $sql);
+                              // if (mysqli_num_rows($result) != 0){
+                              //   while($row = mysqli_fetch_assoc($result)) { 
                             ?>
-                              <option value="<?php echo $row['project_id']?>"><?php echo $row['project_name'] ?></option>
+                              <!-- <option value="<?php echo $row['project_id']?>"><?php echo $row['project_name'] ?></option> -->
                             <?php
-                                }
-                              }
+                              //   }
+                              // }
                             ?>
-                          </select>
-                        </div>
+                          <!-- </select> -->
+                        <!-- </div> -->
                         <div class="col-sm-6 mb-3">
                           <input type="number" class="form-control form-control-user"  name="equipment-count" placeholder="Equipment count *" id="equipmentRequired3">
                         </div>
@@ -112,8 +125,7 @@ include('./header.php');
                     <tr>
                       <th>ID</th>
                       <th>Name</th>
-                      <th>Uses / Description</th>
-                      <th>Project Equipment</th>
+                      <th>UM</th>
                       <th>Count</th>
                       <th>Price</th>
                       <th>Total</th>
@@ -126,8 +138,7 @@ include('./header.php');
                     <tr>
                       <th>ID</th>
                       <th>Name</th>
-                      <th>Uses / Description</th>
-                      <th>Project Equipment</th>
+                      <th>UM</th>
                       <th>Count</th>
                       <th>Price</th>
                       <th>Total</th>

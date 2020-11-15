@@ -30,6 +30,8 @@ if (isset($_POST['ajax'])) {
         $sql = "UPDATE tbl_equipment_categories SET equipment_category_name = '{$equipmentName}' , equipment_category_description = '{$equipmentDescription}' WHERE equipment_category_id = '{$equipmentId}' ";
         mysqli_query($conn, $sql);
 
+  
+
     }
 
 }

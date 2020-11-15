@@ -53,9 +53,9 @@ include('./header.php');
                         </div>
                       <div class="form-group row">
                         
-                        <div class="col-sm-6 mb-3 mb-sm-0">
+                        <div class="col-sm-12 mb-3 mb-sm-0">
                           <select class="custom-select"  class="form-control form-control-user"  name="project-contractor-name"  placeholder="Client / Owner*" id="projectRequired1">
-                              <option selected value="">Select client / owner *</option>
+                              <option selected value="">Select contractor *</option>
                                 
                               <?php
                                 include('./connection.php');
@@ -70,9 +70,6 @@ include('./header.php');
                                   }
                                 ?>
                           </select>
-                        </div>
-                        <div class="col-sm-6">
-                          <input type="text" class="form-control form-control-user"  name="project-agreement-details" placeholder="Agreement details" id="projectRequired2" >
                         </div>
                       </div>
                       <div class="form-group row">

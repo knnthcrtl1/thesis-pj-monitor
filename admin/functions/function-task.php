@@ -15,10 +15,11 @@
             $projectTasksName = mysqli_real_escape_string($conn,(strip_tags($_POST['project-tasks-name'])));
             $projectTasksStatus = mysqli_real_escape_string($conn,(strip_tags($_POST['project-tasks-status'])));
             $projectTasksDescription = mysqli_real_escape_string($conn,(strip_tags($_POST['project-tasks-description'])));
+            $projectTasksDate = mysqli_real_escape_string($conn,(strip_tags($_POST['project-tasks-date'])));
 
-            $tasksTableFields = "project_task_name,project_task_description,project_task_status,project_task_project_id";
+            $tasksTableFields = "project_task_name,project_task_description,project_task_status,project_task_project_id,project_task_date";
             $sql = "INSERT INTO tbl_project_tasks ( {$tasksTableFields} ) VALUES 
-                ('{$projectTasksName}','{$projectTasksDescription}','{$projectTasksStatus}','{$projectId}')";
+                ('{$projectTasksName}','{$projectTasksDescription}','{$projectTasksStatus}','{$projectId}','{$projectTasksDate}')";
             
             if (!mysqli_query($conn, $sql)) {
                 echo("Error description: " . mysqli_error($conn));

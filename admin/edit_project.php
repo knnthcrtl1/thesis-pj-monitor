@@ -6,7 +6,7 @@ if ( !isset($_SESSION["user"]) ) {
 include('./connection.php');
 include('./header.php');
 ?>
-
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
 
   <!-- Page Wrapper -->
   <div id="wrapper">
@@ -72,7 +72,7 @@ include('./header.php');
                           </div>
                         </div>
                         <div class="form-group row">
-                        <div class="col-sm-6 mb-3 mb-sm-0">
+                        <div class="col-sm-12 mb-3 mb-sm-0">
                         <select class="custom-select"  class="form-control form-control-user"  name="project-contractor-name"  placeholder="Client / Owner*" id="projectRequired1">
                             <option selected value="">Select contractor *</option>
                               <?php
@@ -89,9 +89,6 @@ include('./header.php');
                                 ?>
                           </select>
                           <!-- <input type="text" class="form-control form-control-user"  name="project-contractor-name" id="projectRequired1" placeholder="Contractor name" value="<?php echo $row['project_contractor_name'] ?>" > -->
-                        </div>
-                        <div class="col-sm-6">
-                          <input type="text" class="form-control form-control-user"  name="project-agreement-details" placeholder="Agreement details" id="projectRequired2" value="<?php echo $row['project_agreement_details'] ?>" >
                         </div>
                       </div>
                       <div class="form-group row">
@@ -305,24 +302,59 @@ include('./header.php');
                   <h6 class="m-0 font-weight-bold text-primary">Equipments</h6>
                 </div>
                 <div class="card-body">
+                <div class="form-group row">
+                  <span>Search:</span>
+                  <div class="col-sm-6 mb-3">
+                    <!-- Dropdown --> 
+                    <select class="select2 form-control form-control-user" name="state">
+                    <option value=""></option>
+                    <option value="">AW</option>
+                    <?php 
+                       $sql = "SELECT * FROM tbl_equipments";
+                       $result = mysqli_query($conn, $sql);
+                       if (mysqli_num_rows($result) != 0){
+                           while($row = mysqli_fetch_assoc($result)) { 
+                    ?>  
+                      <option value="<?php echo $row['equipment_id'] ?>"><?php echo $row['equipment_name'] ?></option>
+                    <?php
+                        }
+                      }
+                    ?>
+                  </select>
+                  </div>
+                </div>
+
                 <form id="add-equipment-form" method="post">
-				              <input type="hidden" name="function-type" value="add-equipment">
+				              <input type="hidden" name="function-type" value="add-equipment-handled-project">
                       <div class="form-group row">
-                        <div class="col-sm-12 mb-3 mb-sm-0">
-                          <input type="text" class="form-control form-control-user"  name="equipment-name" id="equipmentRequired1" placeholder="Equipment name*" >
+                        <div class="col-sm-6 mb-3 mb-sm-0">
+                        <label for="">Equipment ID</label>
+                          <input type="text" class="form-control form-control-user"  name="equipment-id" id="equipmentRequiredId" disabled >
+                        </div>
+                        <div class="col-sm-6 mb-3 mb-sm-0">
+                        <label for="">Equipment Name</label>
+                          <input type="text" class="form-control form-control-user"  name="equipment-name" id="equipmentRequired1"  disabled >
                         </div>
                       </div>
                       <div class="form-group row">
                         <div class="col-sm-6 mb-3 mb-sm-0">
-                          <input type="number" class="form-control form-control-user"  name="equipment-price" id="equipmentRequired4" placeholder="Equipment price*" >
+                       <label for="">Equipment Price</label>
+                          <input type="number" class="form-control form-control-user"  name="equipment-price" id="equipmentRequired4"  disabled >
                         </div>
                         <div class="col-sm-6">
-                          <input type="text" class="form-control form-control-user"  name="equipment-description" placeholder="Equipment uses / description" >
+                       <label for="">Unit of Measurement</label>
+
+                          <input type="text" class="form-control form-control-user"  name="equipment-description" disabled id="umId" >
                         </div>
                       </div>
                       <div class="form-group row">
                         <div class="col-sm-6 mb-3">
-                          <input type="number" class="form-control form-control-user"  name="equipment-count" placeholder="Equipment count *" id="equipmentRequired3">
+                        <label for="">Equipment Count/Quantity</label>
+                          <input type="number" class="form-control form-control-user"  name="equipment-count"  id="equipmentRequired3" disabled>
+                        </div>
+                        <div class="col-sm-6 mb-3">
+                        <label for="">Equipment Stock</label>
+                          <input type="number" class="form-control form-control-user"  name="equipment-stock"  disabled id="equipmentStock">
                         </div>
                         
                       </div>
@@ -343,7 +375,7 @@ include('./header.php');
                       <tr>
                         <th>ID</th>
                         <th>Name</th>
-                        <th>Project Description</th>
+                        <th>UM</th>
                         <th>Quantity</th>
                         <th>Price</th>
                         <th>Total</th>
@@ -356,7 +388,7 @@ include('./header.php');
                       <tr>
                         <th>ID</th>
                         <th>Name</th>
-                        <th>Project Description</th>
+                        <th>UM</th>
                         <th>Quantity</th>
                         <th>Price</th>
                         <th>Total</th>
@@ -400,8 +432,11 @@ include('./header.php');
                               </select>
                             </div>
                         </div>
-                        <div class="col-lg-12 mb-3">
+                        <div class="col-lg-6 mb-3">
                           <input type="text" class="form-control form-control-user"  name="project-tasks-description" placeholder="Task Description" id="taskRequired3">
+                        </div>
+                        <div class="col-lg-6 mb-3">
+                          <input type="date" class="form-control form-control-user"  name="project-tasks-date" placeholder="Task Date" id="taskRequired4">
                         </div>
                       </div>
 
@@ -481,7 +516,9 @@ include('./header.php');
 
   <script src="js/sb-admin-2.min.js"></script>
 
-  <script src="./js/script-project.js"></script>
+  <script src="./js/script-edit-project.js"></script>
 
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+    
   </body>
 </html>

@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
     const checkNumberNegative = (val) => {
-        let value = val <= 0;
+        let value = val < 0;
         return value;
     }
 
@@ -44,11 +44,10 @@ $(document).ready(function() {
 
         var equipmentFormData = $("#edit-equipment-form").serialize();
         var equipmentRequired1 = $("#equipmentRequired1").val();
-        var equipmentRequired2 = $("#equipmentRequired2").val();
         var equipmentRequired3 = $("#equipmentRequired3").val();
         var equipmentRequired4 = $("#equipmentRequired4").val();
 
-        if (equipmentRequired1 == "" || equipmentRequired2 == "" || equipmentRequired3 == "" || equipmentRequired4 == ""){
+        if (equipmentRequired1 == ""  || equipmentRequired3 == "" || equipmentRequired4 == ""){
             alert("Fill all the required fields!");
             return false;
         } 
@@ -77,11 +76,10 @@ $(document).ready(function() {
         var equipmentFormData = $("#add-equipment-form").serialize();
 
         var equipmentRequired1 = $("#equipmentRequired1").val();
-        var equipmentRequired2 = $("#equipmentRequired2").val();
         var equipmentRequired3 = $("#equipmentRequired3").val();
         var equipmentRequired4 = $("#equipmentRequired4").val();
 
-        if (equipmentRequired1 == "" || equipmentRequired2 == "" || equipmentRequired3 == "" || equipmentRequired4 == ""){
+        if (equipmentRequired1 == ""  || equipmentRequired3 == "" || equipmentRequired4 == ""){
             alert("Fill all the required fields!");
             return false;
         } 

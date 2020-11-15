@@ -11,12 +11,6 @@
             <td><?php echo $row['equipment_id'] ?></td>
             <td><?php echo $row['equipment_name'] ?></td>
             <td><?php echo $row['equipment_description'] ?></td>
-            <?php
-                $sql3 = "SELECT * FROM tbl_projects WHERE project_id = '{$row['equipment_project_id']}'";
-                $result3 = mysqli_query($conn, $sql3);
-                $row3 = mysqli_fetch_array($result3);
-            ?>
-            <td><?php echo $row3['project_name']; ?></td>
             <td><?php echo $row['equipment_count'] ?></td>
             <td><?php echo "PHP " . number_format($row['equipment_price'], 2); ?></td>
             <?php 
