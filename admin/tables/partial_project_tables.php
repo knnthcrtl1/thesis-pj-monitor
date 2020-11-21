@@ -1,6 +1,8 @@
 <?php
 
     include('../connection.php');
+    include('../functions/functions.php');
+    session_start();
 
     $sql = "SELECT * FROM tbl_projects";
     $result = mysqli_query($conn, $sql);
@@ -28,9 +30,11 @@
             ?>
             <td><?php echo $row2['client_id'] . " - " . $row2['client_name'] ?></td>
             <td style="display:flex;flex-direction:row">
-              <a class="btn btn-success" href="edit_project.php?id=<?php echo $row['project_id']; ?>"><i class="fas fa-fw fa-edit"></i> Edit</a>
-            &nbsp;
-            <span id="delete-project" class="btn btn-danger" delete-id="<?php echo $row['project_id'] ?>"><i class="fas fa-fw fa-trash"></i> Delete</span></td>
+              <a class="btn btn-success" href="edit_project.php?id=<?php echo $row['project_id']; ?>"><i class="fas fa-fw fa-edit"></i> View</a>
+              <?php if ( checkAuthAction( authActions($_SESSION['user_id'],"",$conn), "Delete Project" ) ) {  ?>
+                &nbsp;
+                <span id="delete-project" class="btn btn-danger" delete-id="<?php echo $row['project_id'] ?>"><i class="fas fa-fw fa-trash"></i> Delete</span></td>
+              <?php }?>
           </tr>
         <?php
         }

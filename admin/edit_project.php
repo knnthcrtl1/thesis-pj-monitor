@@ -3,8 +3,9 @@ session_start();
 if ( !isset($_SESSION["user"]) ) {
   header("Location: login.php");
 }
-include('./connection.php');
 include('./header.php');
+
+include('./connection.php');
 ?>
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
 
@@ -14,7 +15,7 @@ include('./header.php');
     <!-- Sidebar -->
     <?php
       include('./navigation.php');
-      navigationList('view_project');
+      navigationList('view_project', $conn);
     ?>
     <!-- End of Sidebar -->
 
@@ -53,6 +54,7 @@ include('./header.php');
           <a href="./view_project.php"><i class="fa fa-arrow-left" aria-hidden="true"></i></a> Edit Project</h1>
           <!-- <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below. For more information about DataTables, please visit the <a target="_blank" href="https://datatables.net">official DataTables documentation</a>.</p> -->
             
+            <?php if ( checkAuthAction( authActions($_SESSION['user_id'],"",$conn), "Edit Project Form" ) ) {  ?>
             <div class="row">
                 
                 <div class="col-lg-12">
@@ -149,6 +151,99 @@ include('./header.php');
                 </div>
 
             </div>
+            <?php } ?>
+            <?php if ( checkAuthAction( authActions($_SESSION['user_id'],"",$conn), "Edit Project Form (Foreman)" ) ) {  ?>
+              <div class="row">
+                  
+                  <div class="col-lg-12">
+
+                  <!-- Basic Card Example -->
+                  <div class="card shadow mb-4">
+                      <div class="card-header py-3">
+                      <h6 class="m-0 font-weight-bold text-primary">Project Details</h6>
+                      </div>
+                      <div class="card-body">
+                      <form id="edit-project-form" method="post">
+                          <input type="hidden" name="function-type" value="edit-project">
+                          <input type="hidden" name="project-id" id="editProjectId" value="<?php echo $_GET['id'] ?>">
+                          <div class="form-group row">
+                            <div class="col-sm-12 mb-3 mb-sm-0">
+                              <input type="text" class="form-control form-control-user"  disabled name="project-name" id="projectRequired6" placeholder="Project name*" value="<?php echo $row['project_name'] ?>">
+                            </div>
+                          </div>
+                          <div class="form-group row">
+                          <div class="col-sm-12 mb-3 mb-sm-0">
+                          <select class="custom-select"  class="form-control form-control-user" disabled name="project-contractor-name"  placeholder="Client / Owner*" id="projectRequired1">
+                              <option selected value="">Select contractor *</option>
+                                <?php
+                                  include('./connection.php');
+                                    $sql3 = "SELECT * FROM tbl_contractors";
+                                    $result3 = mysqli_query($conn, $sql3);
+                                    if (mysqli_num_rows($result3) != 0){
+                                        while($row3 = mysqli_fetch_assoc($result3)) { 
+                                    ?>
+                                    <option value="<?php echo $row3['contractor_id'] ?>" <?php echo ($row3['contractor_id'] === $row['project_contractor_name']) ? 'selected' : null; ?>><?php echo $row3['contractor_id'] . " - ". $row3['contractor_name']; ?></option>
+                                  <?php
+                                      }
+                                    }
+                                  ?>
+                            </select>
+                            <!-- <input type="text" class="form-control form-control-user"  name="project-contractor-name" id="projectRequired1" placeholder="Contractor name" value="<?php echo $row['project_contractor_name'] ?>" > -->
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <div class="col-sm-6 mb-3 mb-sm-0">
+                            <input type="text" class="form-control form-control-user" disabled name="project-address" placeholder="Project Address"  id="projectRequired3" value ="<?php echo $row['project_address'] ?>">
+                          </div>
+                          <div class="col-sm-6 mb-3">
+                            <input type="number" class="form-control form-control-user"  disabled name="project-telephone" placeholder="Telephone*" id="projectRequired4" value="<?php echo $row['project_telephone'] ?>">
+                          </div>
+                          <div class="col-sm-6 mb-3 mb-sm-0">
+                          <input type="text" class="form-control form-control-user"  disabled name="project-work-location" placeholder="Work location*" id="projectRequired5" value="<?php echo $row['project_work_location'] ?>">
+                          </div>
+                        
+                          <div class="col-sm-6 mb-3 mb-sm-0">
+                          <select class="custom-select"  class="form-control form-control-user"  disabled name="project-client-owner"  placeholder="Client / Owner*" id="projectRequired7">
+                                <option selected value="">Select client / owner *</option>
+                                <?php
+                                  include('./connection.php');
+                                    $sql2 = "SELECT * FROM tbl_clients";
+                                    $result2 = mysqli_query($conn, $sql2);
+                                    if (mysqli_num_rows($result2) != 0){
+                                        while($row2 = mysqli_fetch_assoc($result2)) { 
+                                    ?>
+                                    <option value="<?php echo $row2['client_id'] ?>" <?php echo ($row2['client_id'] === $row['project_client_owner']) ? 'selected' : null; ?>><?php echo $row2['client_id'] . " - ". $row2['client_name']; ?></option>
+                                  <?php
+                                      }
+                                    }
+                                  ?>
+                            </select>
+                          </div>
+                        </div>
+
+                        <div class="form-group row">
+                        <div class="col-sm-6 mb-3 mb-sm-0">
+                              <Label>Start Date</Label>
+                            <input type="date" class="form-control form-control-user"  name="project-start-date" placeholder="Start date*" value="<?php echo $row['project_start_date'] ?>" id="projectRequired8" disabled>
+                          </div>
+                          <div class="col-sm-6 mb-3 mb-sm-0">
+                          <Label>End Date</Label>
+                            <input type="date" class="form-control form-control-user"  name="project-end-date" placeholder="End date*" value="<?php echo $row['project_end_date'] ?>" id="projectRequired9" disabled>
+                          </div>
+                          
+                        </div>
+
+                       
+                    
+                        <hr>
+                      </form>
+                      </div>
+                  </div>
+
+                  </div>
+
+              </div>
+            <?php } ?>
 
             <div class="row">
 
@@ -161,6 +256,7 @@ include('./header.php');
                   <h6 class="m-0 font-weight-bold text-primary">Engineers</h6>
                 </div>
                 <div class="card-body">
+                <?php if ( checkAuthAction( authActions($_SESSION['user_id'],"",$conn), "Add Engineer in Project" ) ) {  ?>
                   <form id="add-engineer-in-project-form" method="post">
                   <div>
                   <input type="hidden" name="add-engineer-project-id" value="<?php echo $_GET['id'] ?>">
@@ -192,7 +288,7 @@ include('./header.php');
                         </div>
                       </div>
                     </form> 
-
+                    <?php } ?>
                     
                   
                     <div class="table-responsive" id="engineerProjectTable">
@@ -230,6 +326,7 @@ include('./header.php');
                   <h6 class="m-0 font-weight-bold text-primary">Foreman</h6>
                 </div>
                 <div class="card-body">
+                <?php if ( checkAuthAction( authActions($_SESSION['user_id'],"",$conn), "Add Foreman in Project" ) ) {  ?>
                 <form id="add-foreman-in-project-form" method="post">
                   <div>
                   <input type="hidden" name="add-engineer-project-id" value="<?php echo $_GET['id'] ?>">
@@ -261,6 +358,8 @@ include('./header.php');
                         </div>
                       </div>
                     </form> 
+
+                    <?php } ?>
 
                     
                   
@@ -379,7 +478,9 @@ include('./header.php');
                         <th>Quantity</th>
                         <th>Price</th>
                         <th>Total</th>
+                        <?php if ( checkAuthAction( authActions($_SESSION['user_id'],"",$conn), "Delete Equipment in Project" ) ) {  ?>
                         <th>Options</th>
+                        <?php } ?>
                       </tr>
                       </thead>
                       <tbody>
@@ -392,7 +493,9 @@ include('./header.php');
                         <th>Quantity</th>
                         <th>Price</th>
                         <th>Total</th>
+                        <?php if ( checkAuthAction( authActions($_SESSION['user_id'],"",$conn), "Delete Equipment in Project" ) ) {  ?>
                         <th>Options</th>
+                        <?php } ?>
                       </tr>
                     </tfoot>
                  

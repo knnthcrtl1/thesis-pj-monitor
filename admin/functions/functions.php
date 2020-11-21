@@ -1,5 +1,62 @@
 <?php
 
+function authPages($id="", $pageName="", $conn="") {
+	
+    $sql = "SELECT * FROM tbl_users WHERE user_user_id = '{$id}'";
+    $result = mysqli_query($conn, $sql);
+
+    // $userLevel = mysqli_fetch_array($result)['user_level'];
+    $userLvl = mysqli_fetch_array($result, MYSQLI_BOTH);
+
+    $userLevel = $userLvl['user_level'];
+
+    $sql = "SELECT * FROM tbl_restriction_page WHERE restriction_page_user_level LIKE '%{$userLevel}%'";
+    $result = mysqli_query($conn, $sql);
+
+    $pages = [];
+
+    while($row = mysqli_fetch_assoc($result)) {
+        array_push($pages, $row["restriction_page_name"]);
+    }
+
+    return $pages;
+
+}
+
+function checkAuthPage($userAuthPages=[], $page="") {
+    if ( !in_array($page, $userAuthPages) ) {
+        header("Location: index.php");
+    }
+}
+
+function authActions($id="", $actionName="", $conn="") {
+	
+    $sql = "SELECT * FROM tbl_users WHERE user_user_id = '{$id}'";
+    $result = mysqli_query($conn, $sql);
+
+    $userLevel = mysqli_fetch_array($result)['user_level'];
+
+    $sql = "SELECT * FROM tbl_restriction_action WHERE restriction_action_user_level LIKE '%{$userLevel}%'";
+    $result = mysqli_query($conn, $sql);
+
+    $actions = [];
+
+    while($row = mysqli_fetch_assoc($result)) {
+        array_push($actions, $row["restriction_action_name"]);
+    }
+
+    return $actions;
+
+}
+
+function checkAuthAction($userAuthAction=[], $action="") {
+    if ( in_array($action, $userAuthAction) ) {
+        return true;
+    } else{
+        return false;
+    }
+}
+
 // function auditTrail($userId="", $action, $conn="") {
 		
 //     $sql = "SELECT user_username FROM tbl_users WHERE user_id = {$userId}";
@@ -10,20 +67,7 @@
     
 // }   
 
-function checkEmailExist($conn, $email) {
-        
-    $sql2 = "SELECT * FROM tbl_users WHERE user_username = '{$email}'";
-    $result2 = mysqli_query($conn, $sql2);
-    $row2 = mysqli_num_rows($result2);
-    
-    if($row2 == 1){
-         echo $row2;
-        return false;
-    }
 
-    return true;
-
-}
 
 function checkEngineerExistInProject($conn, $projectId, $engineerId) {
         

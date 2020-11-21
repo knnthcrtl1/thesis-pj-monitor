@@ -14,7 +14,7 @@ include('./header.php');
     <!-- Sidebar -->
     <?php
       include('./navigation.php');
-      navigationList('view_equipment');
+      navigationList('view_equipment', $conn);
     ?>
     <!-- End of Sidebar -->
 

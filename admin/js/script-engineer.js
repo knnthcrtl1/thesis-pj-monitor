@@ -111,7 +111,6 @@ $(document).ready(function() {
                     alert('email already exists, please use other email');
                     return false;
                 }
-
                 alert("Added Successfully!");
                 fetchEngineerTable();
             }

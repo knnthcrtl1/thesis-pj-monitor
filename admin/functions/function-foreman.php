@@ -11,7 +11,16 @@
         if ($_POST["function-type"] === "add-foreman") {
 
             $foremanEmail = mysqli_real_escape_string($conn,(strip_tags($_POST['foreman-email'])));
-            checkEmailExist($conn,$foremanEmail);
+            
+            $password = getUsualPassword();
+            $sql = "INSERT INTO tbl_users (user_username,user_password,user_level) VALUES ('{$foremanEmail}',
+            '{$password}','5')";
+
+            if (!mysqli_query($conn, $sql)) {
+                // echo("Error description: " . mysqli_error($conn));
+                echo 1;
+                return false;
+            }
 
             $foremanFirstname = mysqli_real_escape_string($conn,(strip_tags($_POST['foreman-firstname'])));
             $foremanMiddlename = mysqli_real_escape_string($conn,(strip_tags($_POST['foreman-middlename'])));
@@ -35,14 +44,8 @@
 
             $foremanId = mysqli_fetch_array($result)['foreman_id'];
 
-            $password = getUsualPassword();
-
-            $sql = "INSERT INTO tbl_users (user_username,user_password,user_level,user_user_id) VALUES ('{$foremanEmail}',
-				'{$password}','6','{$foremanId}')";
-            
-            if (!mysqli_query($conn, $sql)) {
-                echo("Error description: " . mysqli_error($conn));
-            }
+            $sql = "UPDATE tbl_users SET user_user_id = '{$foremanId}' WHERE user_username = '{$foremanEmail}' ";
+            mysqli_query($conn, $sql);
 
 
             // auditTrail($_SESSION['user'], "Update Student", $conn);
@@ -54,7 +57,14 @@
             $foremanId = mysqli_real_escape_string($conn,(strip_tags($_POST['foreman-id'])));
             $foremanEmail = mysqli_real_escape_string($conn,(strip_tags($_POST['foreman-email'])));
             
-            checkEmailExist($conn,$foremanEmail);
+            $sql = "UPDATE tbl_users SET user_username = '{$foremanEmail}' WHERE user_user_id = '{$foremanId}' ";
+            mysqli_query($conn, $sql);
+            
+            if (!mysqli_query($conn, $sql)) {
+                // echo("Error description: " . mysqli_error($conn));
+                echo 1;
+                return false;
+            }
 
             $foremanFirstname = mysqli_real_escape_string($conn,(strip_tags($_POST['foreman-firstname'])));
             $foremanMiddlename = mysqli_real_escape_string($conn,(strip_tags($_POST['foreman-middlename'])));
@@ -66,9 +76,6 @@
 
 			$sql = "UPDATE tbl_foreman SET foreman_firstname = '{$foremanFirstname}' , foreman_middlename = '{$foremanMiddlename}', foreman_lastname = '{$foremanLastname}', foreman_age = '{$foremanAge}', foreman_birthdate = '{$foremanBirthdate}' , foreman_email = '{$foremanEmail}', foreman_contact_number = '{$foremanContact}', foreman_gender = '{$foremanGender}' WHERE foreman_id = '{$foremanId}' ";
             mysqli_query($conn, $sql);
-
-            $sql = "UPDATE tbl_users SET user_username = '{$foremanEmail}' WHERE user_user_id = '{$foremanId}' ";
-			mysqli_query($conn, $sql);
 
             return false;
         }

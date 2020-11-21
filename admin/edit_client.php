@@ -3,8 +3,11 @@ session_start();
 if ( !isset($_SESSION["user"]) ) {
   header("Location: login.php");
 }
-include('./connection.php');
 include('./header.php');
+
+include('./connection.php');
+
+
 ?>
 
 
@@ -14,7 +17,9 @@ include('./header.php');
     <!-- Sidebar -->
     <?php
       include('./navigation.php');
-      navigationList('view_client');
+      navigationList('view_client', $conn);
+      checkAuthPage( authPages($_SESSION['user_id'],"",$conn), "Client" );
+      
     ?>
     <!-- End of Sidebar -->
 

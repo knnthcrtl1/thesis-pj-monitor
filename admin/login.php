@@ -62,10 +62,12 @@
 			 $username=$row['user_username'];
        $password=$row['user_password'];
        $userLevel=$row['user_level'];
+       $userId=$row['user_user_id'];
 			 }
 			 if($user == $username && $pass == $password)
 			 {
        $_SESSION['user_level'] = $userLevel;
+       $_SESSION["user_id"] = $userId;
 
 			 //Redirect Browser
              header('Location:view_dashboard.php');

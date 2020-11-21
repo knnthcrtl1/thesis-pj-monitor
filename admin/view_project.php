@@ -6,6 +6,9 @@ if ( !isset($_SESSION["user"]) ) {
 }
 
 include('./header.php');
+include('./connection.php');
+
+
 ?>
   <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
@@ -15,7 +18,10 @@ include('./header.php');
     <!-- Sidebar -->
     <?php
       include('./navigation.php');
-      navigationList('view_project');
+      
+      navigationList('view_project', $conn);
+    
+      
     ?>
     <!-- End of Sidebar -->
 
@@ -33,7 +39,7 @@ include('./header.php');
           <!-- Page Heading -->
           <h1 class="h3 mb-4 text-gray-800">Projects</h1>
           <!-- <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below. For more information about DataTables, please visit the <a target="_blank" href="https://datatables.net">official DataTables documentation</a>.</p> -->
-            
+            <?php if ( checkAuthAction( authActions($_SESSION['user_id'],"",$conn), "Add Project" ) ) {  ?>
             <div class="row">
                 
                 <div class="col-lg-12">
@@ -136,6 +142,8 @@ include('./header.php');
                 </div>
 
             </div>
+
+            <?php } ?>
 
           <!-- DataTales Example -->
           <div class="card shadow mb-4">

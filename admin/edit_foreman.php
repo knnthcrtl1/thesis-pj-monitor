@@ -5,6 +5,9 @@ if ( !isset($_SESSION["user"]) ) {
 }
 include('./connection.php');
 include('./header.php');
+
+// checkAuthPage( authPages($_SESSION['user'],"",$conn), "Edit Foreman" );
+
 ?>
 
 
@@ -14,7 +17,8 @@ include('./header.php');
     <!-- Sidebar -->
     <?php
       include('./navigation.php');
-      navigationList('view_foreman');
+      navigationList('view_foreman', $conn);
+      checkAuthPage( authPages($_SESSION['user_id'],"",$conn), "Foreman" );
     ?>
     <!-- End of Sidebar -->
 

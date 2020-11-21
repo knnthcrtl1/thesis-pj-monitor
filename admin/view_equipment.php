@@ -4,8 +4,9 @@ session_start();
 if ( !isset($_SESSION["user"]) ) {
   header("Location: login.php");
 }
-
 include('./header.php');
+include('./connection.php');
+
 ?>
   <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
@@ -15,7 +16,7 @@ include('./header.php');
     <!-- Sidebar -->
     <?php
       include('./navigation.php');
-      navigationList('view_equipment');
+      navigationList('view_equipment', $conn);
     ?>
     <!-- End of Sidebar -->
 
@@ -129,7 +130,9 @@ include('./header.php');
                       <th>Count</th>
                       <th>Price</th>
                       <th>Total</th>
+                      <?php if ( checkAuthAction( authActions($_SESSION['user_id'],"",$conn), "Edit Equipment" ) ) {  ?>
                       <th>Options</th>
+                      <?php } ?>
                     </tr>
                     </thead>
                     <tbody>
@@ -142,7 +145,9 @@ include('./header.php');
                       <th>Count</th>
                       <th>Price</th>
                       <th>Total</th>
+                      <?php if ( checkAuthAction( authActions($_SESSION['user_id'],"",$conn), "Edit Equipment" ) ) {  ?>
                       <th>Options</th>
+                      <?php } ?>
                     </tr>
                   </tfoot>
                  

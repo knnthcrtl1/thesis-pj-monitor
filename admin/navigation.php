@@ -1,6 +1,11 @@
 <?php
 
-    function navigationList($active) {
+include('./connection.php');
+
+    function navigationList($active, $conn  ) {
+include('./functions/functions.php');
+      
+
 ?>
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
@@ -34,7 +39,7 @@
 
 $userLevel = $_SESSION['user_level']; 
 
-if($userLevel == 1){
+if(true){
 
 ?>
 <!-- Nav Item - Pages Collapse Menu -->
@@ -50,36 +55,48 @@ if($userLevel == 1){
     </div>
   </div>
 </li> -->
+<?php if ( checkAuthAction( authActions($_SESSION['user_id'],"",$conn), "View Equipments" ) ) {  ?>
 <li class="nav-item <?php echo $active == "view_equipment" ? 'active': null?>">
   <a class="nav-link" href="view_equipment.php">
     <i class="fas fa-fw fa-tachometer-alt"></i>
     <span>Equipments</span></a>
 </li>
+<?php }  ?>
+<?php if ( checkAuthAction( authActions($_SESSION['user_id'],"",$conn), "View Engineers" ) ) {  ?>
 <li class="nav-item <?php echo $active == "view_engineer" ? 'active': null?>">
   <a class="nav-link" href="view_engineer.php">
     <i class="fas fa-fw fa-tachometer-alt"></i>
     <span>Engineers</span></a>
 </li>
+<?php }  ?>
+<?php if ( checkAuthAction( authActions($_SESSION['user_id'],"",$conn), "View Foreman" ) ) {  ?>
 <li class="nav-item <?php echo $active == "view_foreman" ? 'active': null?>">
   <a class="nav-link" href="view_foreman.php">
     <i class="fas fa-fw fa-tachometer-alt"></i>
     <span>Foreman</span></a>
 </li>
+<?php }  ?>
+<?php if ( checkAuthAction( authActions($_SESSION['user_id'],"",$conn), "View Clients" ) ) {  ?>
 <li class="nav-item <?php echo $active == "view_client" ? 'active': null?>">
   <a class="nav-link" href="view_client.php">
     <i class="fas fa-fw fa-tachometer-alt"></i>
     <span>Clients</span></a>
 </li>
+<?php }  ?>
+<?php if ( checkAuthAction( authActions($_SESSION['user_id'],"",$conn), "View Projects" ) ) {  ?>
 <li class="nav-item <?php echo $active == "view_project" ? 'active': null?>">
   <a class="nav-link" href="view_project.php">
     <i class="fas fa-fw fa-tachometer-alt"></i>
     <span>Projects</span></a>
 </li>
+<?php }  ?>
+<?php if ( checkAuthAction( authActions($_SESSION['user_id'],"",$conn), "View Projects" ) ) {  ?>
 <li class="nav-item <?php echo $active == "view_contractor" ? 'active': null?>">
   <a class="nav-link" href="view_contractor.php">
     <i class="fas fa-fw fa-tachometer-alt"></i>
     <span>Contractors</span></a>
 </li>
+<?php }  ?>
 
 <?php 
 }

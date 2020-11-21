@@ -6,6 +6,9 @@ if ( !isset($_SESSION["user"]) ) {
 }
 
 include('./header.php');
+// include('./functions/functions.php');
+// checkAuthPage( authPages($_SESSION['user_id'],"",$conn), "Foreman" );
+
 ?>
   <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
@@ -15,7 +18,9 @@ include('./header.php');
     <!-- Sidebar -->
     <?php
       include('./navigation.php');
-      navigationList('view_foreman');
+      navigationList('view_foreman', $conn);
+
+      checkAuthPage( authPages($_SESSION['user_id'],"",$conn), "Foreman" );
     ?>
     <!-- End of Sidebar -->
 

@@ -14,7 +14,8 @@ include('./header.php');
     <!-- Sidebar -->
     <?php
       include('./navigation.php');
-      navigationList('view_engineer');
+      navigationList('view_engineer', $conn);
+      checkAuthPage( authPages($_SESSION['user_id'],"",$conn), "Engineer" );
     ?>
     <!-- End of Sidebar -->
 

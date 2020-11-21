@@ -1,6 +1,8 @@
 <?php
 
     include('../connection.php');
+    include('../functions/functions.php');
+    session_start();
 
     if (isset($_POST['projectId'])) {
 
@@ -26,10 +28,12 @@
                 <td><?php echo "₱ " . number_format($row2['equipment_price'], 2); ?></td>
                
                 <td i><?php echo "₱ " . number_format($totalPrice, 2);  ?></td>
+                <?php if ( checkAuthAction( authActions($_SESSION['user_id'],"",$conn), "Delete Equipment in Project" ) ) {  ?>
                 <td>
                 <!-- <a class="btn btn-success" href="edit_equipment.php?id=<?php echo $row['equipment_handled_project_id ']; ?>"><i class="fas fa-fw fa-edit"></i> Edit</a>
                 &nbsp; -->
                 <span id="delete-equipment" class="btn btn-danger" delete-id="<?php echo $row['equipment_handled_project_id'] ?>"><i class="fas fa-fw fa-trash"></i> Delete</span></td>
+                <?php } ?>
             </tr>
             <?php
             }

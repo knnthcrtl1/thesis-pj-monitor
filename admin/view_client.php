@@ -6,6 +6,7 @@ if ( !isset($_SESSION["user"]) ) {
 }
 
 include('./header.php');
+
 ?>
   <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
@@ -15,7 +16,12 @@ include('./header.php');
     <!-- Sidebar -->
     <?php
       include('./navigation.php');
-      navigationList('view_client');
+
+
+      navigationList('view_client', $conn);
+
+      checkAuthPage( authPages($_SESSION['user_id'],"",$conn), "Client" );
+
     ?>
     <!-- End of Sidebar -->
 
