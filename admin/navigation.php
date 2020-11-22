@@ -90,7 +90,7 @@ if(true){
     <span>Projects</span></a>
 </li>
 <?php }  ?>
-<?php if ( checkAuthAction( authActions($_SESSION['user_id'],"",$conn), "View Projects" ) ) {  ?>
+<?php if ( checkAuthAction( authActions($_SESSION['user_id'],"",$conn), "View Contractors" ) ) {  ?>
 <li class="nav-item <?php echo $active == "view_contractor" ? 'active': null?>">
   <a class="nav-link" href="view_contractor.php">
     <i class="fas fa-fw fa-tachometer-alt"></i>

@@ -30,6 +30,8 @@ include('./header.php');
        <?php include('./navbar.php')?>
 
         <!-- Begin Page Content -->
+        <?php if($_SESSION['user_level'] == 1) { ?>
+
         <div class="container-fluid">
 
           <!-- Page Heading -->
@@ -199,6 +201,8 @@ include('./header.php');
           <!-- Content Row -->
 
         </div>
+
+        <?php } ?>
         <!-- /.container-fluid -->
 
       </div>
