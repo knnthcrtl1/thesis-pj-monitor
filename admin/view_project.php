@@ -44,6 +44,12 @@ include('./connection.php');
                 
                 <div class="col-lg-12">
 
+                <?php
+                   $sql = "SELECT * FROM tbl_projects
+                   LEFT JOIN tbl_user_handled_projects
+                   ON project_id = user_handled_project_project_id
+                   AND user_handled_project_engineer_id = '{$_SESSION['user_id']}";
+                ?>
                 <!-- Basic Card Example -->
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">

@@ -4,8 +4,19 @@
     include('../functions/functions.php');
     session_start();
 
-    $sql = "SELECT * FROM tbl_projects";
+    // $sql = "SELECT * FROM tbl_projects";
+    // $result = mysqli_query($conn, $sql);
+    if ( checkAuthAction( authActions($_SESSION['user_id'],"",$conn), "Display Project" ) ) {  
+      $sql = "SELECT * FROM tbl_projects";
+    }
+
+    if ( checkAuthAction( authActions($_SESSION['user_id'],"",$conn), "Display Project (Engineer)" ) ) {  
+    $sql = "SELECT * FROM tbl_projects LEFT JOIN tbl_user_handled_projects ON tbl_projects.project_id = tbl_user_handled_projects.user_handled_project_project_id WHERE tbl_user_handled_projects.user_handled_project_engineer_id = '{$_SESSION['user_id']}'";
+    }
+
     $result = mysqli_query($conn, $sql);
+
+
     if (mysqli_num_rows($result) != 0){
         while($row = mysqli_fetch_assoc($result)) { 
           ?>

@@ -14,7 +14,7 @@
             
             $password = getUsualPassword();
             $sql = "INSERT INTO tbl_users (user_username,user_password,user_level) VALUES ('{$foremanEmail}',
-            '{$password}','5')";
+            '{$password}','6')";
 
             if (!mysqli_query($conn, $sql)) {
                 // echo("Error description: " . mysqli_error($conn));

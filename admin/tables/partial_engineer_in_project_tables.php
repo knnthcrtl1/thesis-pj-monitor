@@ -17,8 +17,10 @@
                 $row2 = mysqli_fetch_array($result2);
             ?>
             <td><?php echo $row2['engineer_id'] . " - " . $row2['engineer_firstname'] . " " . $row2['engineer_lastname'] ?></td>
+            <?php  if ( checkAuthAction( authActions($_SESSION['user_id'],"",$conn), "Delete User in Project" ) ) { ?>
             <td style="display:flex;flex-direction:row">
             <span id="delete-engineer-in-project" class="btn btn-danger" delete-id="<?php echo $row['user_handled_project_id'] ?>"><i class="fas fa-fw fa-trash"></i> Delete</span></td>
+            <?php } ?> 
           </tr>
         <?php
         }

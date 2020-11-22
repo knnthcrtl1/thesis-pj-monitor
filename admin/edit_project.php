@@ -297,7 +297,9 @@ include('./connection.php');
                       <tr>
                         <th>ID</th>
                         <th>Engineer ID - Name</th>
+                        <?php  if ( checkAuthAction( authActions($_SESSION['user_id'],"",$conn), "Delete User in Project" ) ) { ?>
                         <th>Options</th>
+                        <?php } ?>
                       </tr>
                       </thead>
                       <tbody>
@@ -306,7 +308,9 @@ include('./connection.php');
                       <tr>
                       <th>ID</th>
                         <th>Contractor Name</th>
+                        <?php  if ( checkAuthAction( authActions($_SESSION['user_id'],"",$conn), "Delete User in Project" ) ) { ?>
                         <th>Options</th>
+                        <?php } ?>
                       </tr>
                     </tfoot>
                   
@@ -369,7 +373,9 @@ include('./connection.php');
                       <tr>
                         <th>ID</th>
                         <th>Foreman ID - Name</th>
+                        <?php  if ( checkAuthAction( authActions($_SESSION['user_id'],"",$conn), "Delete User in Project" ) ) { ?>
                         <th>Options</th>
+                        <?php } ?>
                       </tr>
                       </thead>
                       <tbody>
@@ -378,7 +384,9 @@ include('./connection.php');
                       <tr>
                       <th>ID</th>
                         <th>Contractor Name</th>
+                        <?php  if ( checkAuthAction( authActions($_SESSION['user_id'],"",$conn), "Delete User in Project" ) ) { ?>
                         <th>Options</th>
+                        <?php } ?>
                       </tr>
                     </tfoot>
                   </table>
