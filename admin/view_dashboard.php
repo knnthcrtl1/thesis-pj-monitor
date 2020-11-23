@@ -38,7 +38,7 @@ include('./header.php');
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
    
             <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-            <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+           
           </div>
 
           <!-- Content Row -->
@@ -196,6 +196,11 @@ include('./header.php');
           </div>
 
           <!-- Content Row -->
+          
+          <div class="row">
+
+
+          <canvas id="myChart"></canvas>
 
 
           <!-- Content Row -->
@@ -225,8 +230,10 @@ include('./header.php');
     <script src="vendor/chart.js/Chart.min.js"></script>
 
     <!-- Page level custom scripts -->
-    <script src="js/demo/chart-area-demo.js"></script>
-    <script src="js/demo/chart-pie-demo.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <script src="./js/script-dashboard.js"></script>
+    <!-- <script src="js/demo/chart-area-demo.js"></script> -->
+    <!-- <script src="js/demo/chart-pie-demo.js"></script> -->
 
 
 <?php include('./footer.php') ?>

@@ -51,8 +51,9 @@ $(document).ready(function() {
         var engineerRequired6 = $("#engineerRequired6").val();
         var engineerRequired7 = $("#engineerRequired7").val();
         var engineerRequired8 = $("#engineerRequired8").val();
+        var engineerRequired9 = $("#engineerRequired9").val();
         
-        if (engineerRequired1 == "" || engineerRequired2 == "" || engineerRequired3 == ""  || engineerRequired4 == "" || engineerRequired5 == "" || engineerRequired6 == "" || engineerRequired7 == "" || engineerRequired8 == ""){
+        if (engineerRequired1 == "" || engineerRequired2 == "" || engineerRequired3 == ""  || engineerRequired4 == "" || engineerRequired5 == "" || engineerRequired6 == "" || engineerRequired7 == "" || engineerRequired8 == "" || engineerRequired9 == ""){
             alert("Fill all the required fields!");
             return false;
         }
@@ -91,8 +92,9 @@ $(document).ready(function() {
         var engineerRequired6 = $("#engineerRequired6").val();
         var engineerRequired7 = $("#engineerRequired7").val();
         var engineerRequired8 = $("#engineerRequired8").val();
+        var engineerRequired9 = $("#engineerRequired9").val();
         
-        if (engineerRequired1 == "" || engineerRequired2 == "" || engineerRequired3 == ""  || engineerRequired4 == "" || engineerRequired5 == "" || engineerRequired6 == "" || engineerRequired7 == "" || engineerRequired8 == ""){
+        if (engineerRequired1 == "" || engineerRequired2 == "" || engineerRequired3 == ""  || engineerRequired4 == "" || engineerRequired5 == "" || engineerRequired6 == "" || engineerRequired7 == "" || engineerRequired8 == "" || engineerRequired9 == ""){
             alert("Fill all the required fields!");
             return false;
         }

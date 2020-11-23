@@ -17,6 +17,7 @@
             <td><?php echo $row['engineer_email'] ?></td>
             <td><?php echo $row['engineer_contact_number'] ?></td>
             <td><?php echo $row['engineer_gender'] ?></td>
+            <td><?php echo "PHP " . number_format($row['engineer_salary'], 2); ?></td>
             <td style="display:flex;flex-direction:row">
               <a class="btn btn-success" href="edit_engineer.php?id=<?php echo $row['engineer_id']; ?>"><i class="fas fa-fw fa-edit"></i> Edit</a>
             &nbsp;

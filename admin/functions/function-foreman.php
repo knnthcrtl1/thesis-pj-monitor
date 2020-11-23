@@ -29,10 +29,11 @@
             $foremanBirthdate = mysqli_real_escape_string($conn,(strip_tags($_POST['foreman-birthdate'])));
             $foremanContact = mysqli_real_escape_string($conn,(strip_tags($_POST['foreman-contact'])));
             $foremanGender = mysqli_real_escape_string($conn,(strip_tags($_POST['foreman-gender'])));
+            $foremanSalary = mysqli_real_escape_string($conn,(strip_tags($_POST['foreman-salary'])));
 
-            $foremanTableFields = "foreman_firstname,foreman_middlename,foreman_lastname,foreman_age,foreman_birthdate,foreman_email,foreman_contact_number,foreman_gender";
+            $foremanTableFields = "foreman_firstname,foreman_middlename,foreman_lastname,foreman_age,foreman_birthdate,foreman_email,foreman_contact_number,foreman_gender,foreman_salary";
             $sql = "INSERT INTO tbl_foreman ( {$foremanTableFields} ) VALUES 
-                ('{$foremanFirstname}','{$foremanMiddlename}','{$foremanLastname}','{$foremanAge}','{$foremanBirthdate}','{$foremanEmail}','{$foremanContact}','{$foremanGender}')";
+                ('{$foremanFirstname}','{$foremanMiddlename}','{$foremanLastname}','{$foremanAge}','{$foremanBirthdate}','{$foremanEmail}','{$foremanContact}','{$foremanGender}','{$foremanSalary}')";
             
             if (!mysqli_query($conn, $sql)) {
                 echo("Error description: " . mysqli_error($conn));
@@ -73,8 +74,9 @@
             $foremanBirthdate = mysqli_real_escape_string($conn,(strip_tags($_POST['foreman-birthdate'])));
             $foremanContact = mysqli_real_escape_string($conn,(strip_tags($_POST['foreman-contact'])));
             $foremanGender = mysqli_real_escape_string($conn,(strip_tags($_POST['foreman-gender'])));
+            $foremanSalary = mysqli_real_escape_string($conn,(strip_tags($_POST['foreman-salary'])));
 
-			$sql = "UPDATE tbl_foreman SET foreman_firstname = '{$foremanFirstname}' , foreman_middlename = '{$foremanMiddlename}', foreman_lastname = '{$foremanLastname}', foreman_age = '{$foremanAge}', foreman_birthdate = '{$foremanBirthdate}' , foreman_email = '{$foremanEmail}', foreman_contact_number = '{$foremanContact}', foreman_gender = '{$foremanGender}' WHERE foreman_id = '{$foremanId}' ";
+			$sql = "UPDATE tbl_foreman SET foreman_firstname = '{$foremanFirstname}' , foreman_middlename = '{$foremanMiddlename}', foreman_lastname = '{$foremanLastname}', foreman_age = '{$foremanAge}', foreman_birthdate = '{$foremanBirthdate}' , foreman_email = '{$foremanEmail}', foreman_contact_number = '{$foremanContact}', foreman_gender = '{$foremanGender}', foreman_salary = '{$foremanSalary}' WHERE foreman_id = '{$foremanId}' ";
             mysqli_query($conn, $sql);
 
             return false;

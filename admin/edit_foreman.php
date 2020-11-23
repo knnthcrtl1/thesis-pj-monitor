@@ -94,12 +94,15 @@ include('./header.php');
                         <div class="col-sm-6 mb-3 mb-sm-0">
                           <input type="number" class="form-control form-control-user"  name="foreman-contact" placeholder="foreman Contact #*" id="foremanRequired5" value="<?php echo $row['foreman_contact_number'] ?>">
                         </div>
-                          <div class="col-sm-6 mb-3">
+                        <div class="col-sm-6 mb-3">
                           <select class="custom-select"  class="form-control form-control-user"  name="foreman-gender" placeholder="foreman gender" id="foremanRequired6" value="<?php echo $row['foreman_gender'] ?>" >
                               <option selected value="">Select Gender *</option>
                                 <option value="Male" <?php echo $row['foreman_gender'] == "Male" ? 'selected' : null ?>>Male</option>
                                 <option value="Female" <?php echo $row['foreman_gender'] == "Female" ? 'selected' : null ?>>Female</option>
                             </select>
+                          </div>
+                          <div class="col-sm-6 mb-3 mb-sm-0">
+                            <input type="number" class="form-control form-control-user"  name="foreman-salary" placeholder="Salary *" id="foremanRequired9" value="<?php echo $row['foreman_salary']; ?>">
                           </div>
                       </div>
 

@@ -17,6 +17,7 @@
             <td><?php echo $row['foreman_email'] ?></td>
             <td><?php echo $row['foreman_contact_number'] ?></td>
             <td><?php echo $row['foreman_gender'] ?></td>
+            <td><?php echo "PHP " . number_format($row['foreman_salary'], 2); ?></td>
             <td style="display:flex;flex-direction:row">
               <a class="btn btn-success" href="edit_foreman.php?id=<?php echo $row['foreman_id']; ?>"><i class="fas fa-fw fa-edit"></i> Edit</a>
             &nbsp;

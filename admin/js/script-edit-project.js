@@ -76,6 +76,28 @@ $(document).ready(function() {
             data: `projectId=${projectId}`,
             success:function(data){
                 $("#engineerProjectTable table tbody").html(data);
+
+                let totalPrice = document.getElementsByClassName('engineerSalary[]');
+                
+                let totalPriceArr = [...totalPrice];
+                let pushPriceInArr = [];
+
+                totalPriceArr.map((val, i) => {
+                    pushPriceInArr.push(Number(val.getAttribute('testValue')));
+                })
+
+                var totalValueInColumn = pushPriceInArr.reduce(function(a, b){
+                    return a + b;
+                }, 0);
+
+                const formatToCurrency = amount => {
+                    return "₱ " + amount.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&,");
+                };
+                  formatToCurrency(12.34546); //"$12.35"
+                  formatToCurrency(42345255.356); //"$42,345,255.36
+
+                $('#totalEngineerSalary').html(formatToCurrency(totalValueInColumn))
+
                 $('#engineerProjectDataTable').DataTable( );
             }
         });
@@ -142,6 +164,29 @@ $(document).ready(function() {
             data: `projectId=${projectId}`,
             success:function(data){
                 $("#foremanProjectTable table tbody").html(data);
+
+                let totalPrice = document.getElementsByClassName('foremanSalary[]');
+                let totalPriceArr = [...totalPrice];
+                let pushPriceInArr = [];
+
+                totalPriceArr.map((val, i) => {
+                    pushPriceInArr.push(Number(val.getAttribute('testValue')));
+                })
+
+                var totalValueInColumn = pushPriceInArr.reduce(function(a, b){
+                    return a + b;
+                }, 0);
+
+                const formatToCurrency = amount => {
+                    return "₱ " + amount.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&,");
+                };
+                  formatToCurrency(12.34546); //"$12.35"
+                  formatToCurrency(42345255.356); //"$42,345,255.36
+
+                $('#totalForemanSalary').html(formatToCurrency(totalValueInColumn))
+
+                $('#equipmentDataTable').DataTable( );
+
                 $('#foremanProjectDataTable').DataTable();
             }
         });

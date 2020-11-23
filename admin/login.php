@@ -39,7 +39,8 @@
               <div class="col-lg-6">
                 <div class="p-5">
                   <div class="text-center">
-                    <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
+                    <img class="app__logo" src="./img/app-logo.jpg" style="max-width: 300px;"/>
+                    <h1 class="h4 text-gray-900 mb-4" style="margin-top: 20px">Welcome Back!</h1>
                   </div>
                   <?php
             include('./connection.php');

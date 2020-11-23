@@ -82,6 +82,9 @@ include('./header.php');
                                 <option value="Female">Female</option>
                             </select>
                           </div>
+                          <div class="col-sm-6 mb-3 mb-sm-0">
+                            <input type="number" class="form-control form-control-user"  name="engineer-salary" placeholder="Salary *" id="engineerRequired9">
+                          </div>
                       </div>
                       
 
@@ -121,6 +124,7 @@ include('./header.php');
                       <th>Email</th>
                       <th>Contact #</th>
                       <th>Gender</th>
+                      <th>Salary</th>
                       <th>Options</th>
                     </tr>
                     </thead>
@@ -137,6 +141,7 @@ include('./header.php');
                       <th>Email</th>
                       <th>Contact #</th>
                       <th>Gender</th>
+                      <th>Salary</th>
                       <th>Options</th>
                     </tr>
                   </tfoot>

@@ -297,7 +297,8 @@ include('./connection.php');
                       <tr>
                         <th>ID</th>
                         <th>Engineer ID - Name</th>
-                        <?php  if ( checkAuthAction( authActions($_SESSION['user_id'],"",$conn), "Delete User in Project" ) ) { ?>
+                        <th>Salary</th>
+                        <?php  if ( checkAuthAction( authActions($_SESSION['user_id'],"",$conn), "Delete Users (Project)" ) ) {  ?>
                         <th>Options</th>
                         <?php } ?>
                       </tr>
@@ -307,15 +308,24 @@ include('./connection.php');
                       <tfoot>
                       <tr>
                       <th>ID</th>
-                        <th>Contractor Name</th>
-                        <?php  if ( checkAuthAction( authActions($_SESSION['user_id'],"",$conn), "Delete User in Project" ) ) { ?>
+                        <th>Engineer ID - Name</th>
+                        <th>Salary</th>
+                        <?php  if ( checkAuthAction( authActions($_SESSION['user_id'],"",$conn), "Delete Users (Project)" ) ) { ?>
                         <th>Options</th>
                         <?php } ?>
                       </tr>
                     </tfoot>
                   
                   </table>
+                  
                 </div>
+                <div class="row">
+                    <div class="col-lg-6 mb-4">
+                    </div>
+                    <div class="col-lg-6 mb-4 text-right ">
+                      <div style="font-weight:bold;">TOTAL: <span id="totalEngineerSalary">0</span></div>
+                    </div>
+                  </div>
 
                 </div>
               </div>
@@ -373,7 +383,8 @@ include('./connection.php');
                       <tr>
                         <th>ID</th>
                         <th>Foreman ID - Name</th>
-                        <?php  if ( checkAuthAction( authActions($_SESSION['user_id'],"",$conn), "Delete User in Project" ) ) { ?>
+                        <th>Salary</th>
+                        <?php  if ( checkAuthAction( authActions($_SESSION['user_id'],"",$conn), "Delete Users (Project)" ) ) { ?>
                         <th>Options</th>
                         <?php } ?>
                       </tr>
@@ -383,14 +394,23 @@ include('./connection.php');
                       <tfoot>
                       <tr>
                       <th>ID</th>
-                        <th>Contractor Name</th>
-                        <?php  if ( checkAuthAction( authActions($_SESSION['user_id'],"",$conn), "Delete User in Project" ) ) { ?>
+                        <th>Foreman ID Name</th>
+                        <th>Salary</th>
+                        <?php  if ( checkAuthAction( authActions($_SESSION['user_id'],"",$conn), "Delete Users (Project)" ) ) { ?>
                         <th>Options</th>
                         <?php } ?>
                       </tr>
                     </tfoot>
                   </table>
                 </div>
+
+                <div class="row">
+                    <div class="col-lg-6 mb-4">
+                    </div>
+                    <div class="col-lg-6 mb-4 text-right ">
+                      <div style="font-weight:bold;">TOTAL: <span id="totalForemanSalary">0</span></div>
+                    </div>
+                  </div>
 
             </div>
           </div>

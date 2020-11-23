@@ -51,8 +51,9 @@ $(document).ready(function() {
         var foremanRequired6 = $("#foremanRequired6").val();
         var foremanRequired7 = $("#foremanRequired7").val();
         var foremanRequired8 = $("#foremanRequired8").val();
+        var foremanRequired9 = $("#foremanRequired9").val();
         
-        if (foremanRequired1 == "" || foremanRequired2 == "" || foremanRequired3 == ""  || foremanRequired4 == "" || foremanRequired5 == "" || foremanRequired6 == "" || foremanRequired7 == "" || foremanRequired8 == ""){
+        if (foremanRequired1 == "" || foremanRequired2 == "" || foremanRequired3 == ""  || foremanRequired4 == "" || foremanRequired5 == "" || foremanRequired6 == "" || foremanRequired7 == "" || foremanRequired8 == "" || foremanRequired9 == ""){
             alert("Fill all the required fields!");
             return false;
         }
@@ -91,8 +92,9 @@ $(document).ready(function() {
         var foremanRequired6 = $("#foremanRequired6").val();
         var foremanRequired7 = $("#foremanRequired7").val();
         var foremanRequired8 = $("#foremanRequired8").val();
+        var foremanRequired9 = $("#foremanRequired9").val();
         
-        if (foremanRequired1 == "" || foremanRequired2 == "" || foremanRequired3 == ""  || foremanRequired4 == "" || foremanRequired5 == "" || foremanRequired6 == "" || foremanRequired7 == "" || foremanRequired8 == ""){
+        if (foremanRequired1 == "" || foremanRequired2 == "" || foremanRequired3 == ""  || foremanRequired4 == "" || foremanRequired5 == "" || foremanRequired6 == "" || foremanRequired7 == "" || foremanRequired8 == "" || foremanRequired9 == ""){
             alert("Fill all the required fields!");
             return false;
         }
