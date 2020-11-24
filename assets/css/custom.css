@@ -1,0 +1,35 @@
+.bg-login-image{
+    background-image: url(../../admin/img/login-bg.jpeg);
+}
+
+.delete-button {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    cursor: pointer;
+}
+
+.task-title{
+    margin-top: 10px;
+}
+
+.todo_items {
+    border: 1px solid #f1f1f1;
+    padding: 25px;
+    position: relative;
+    border-radius: 6px;
+    margin-bottom: 15px;
+}
+
+span.select2.select2-container.select2-container--default {
+    width: 100% !important;
+}
+
+.user_nav_name{
+    text-transform: capitalize;
+}
+
+img.app__logo {
+    width: 100%;
+    max-width: 190px;
+}

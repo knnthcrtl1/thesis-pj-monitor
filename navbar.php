@@ -151,23 +151,15 @@
       <span class="mr-2 d-none d-lg-inline text-gray-600 small user_nav_name">
       <?php 
 
-        if($_SESSION['user_level'] == 1) {
-          echo "Admin";
-        } else {
         $id = $_SESSION['user_id'];
-         $sql = "SELECT * FROM tbl_engineers,tbl_foreman WHERE engineer_id = '{$id}' || foreman_id = '{$id}' ";
+         $sql = "SELECT * FROM tbl_clients WHERE client_id = '{$id}' ";
          $result = mysqli_query($conn, $sql);
          $row = mysqli_fetch_array($result);
 
-         $foremanFirstname = $row['foreman_firstname'];
-         $foremanLastname = $row['foreman_lastname'];
-         $engineerFirstname = $row['engineer_firstname'];
-         $engineerLastname = $row['engineer_lastname'];
+         $clientName = $row['client_name'];
 
-        echo ($engineerFirstname) ? $engineerFirstname : $foremanFirstname;
-        echo ' ';
-        echo ($engineerLastname) ? $engineerLastname : $foremanLastname;
-        }
+         echo $clientName;
+
         ?>
       <i class="fas fa-chevron-down"></i>
       </span>

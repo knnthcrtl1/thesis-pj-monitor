@@ -13,7 +13,15 @@
             $clientEmail = mysqli_real_escape_string($conn,(strip_tags($_POST['client-email'])));
 
             // check if email exist return false 
-            checkEmailExist($conn,$clientEmail);
+            $password = getUsualPassword();
+            $sql = "INSERT INTO tbl_users (user_username,user_password,user_level) VALUES ('{$clientEmail}',
+            '{$password}','7')";
+
+            if (!mysqli_query($conn, $sql)) {
+                // echo("Error description: " . mysqli_error($conn));
+                echo 1;
+                return false;
+            }
 
             $clientName = mysqli_real_escape_string($conn,(strip_tags($_POST['client-name'])));
             $clientAddress = mysqli_real_escape_string($conn,(strip_tags($_POST['client-address'])));
@@ -24,6 +32,19 @@
             $sql = "INSERT INTO tbl_clients ( {$clientTableFields} ) VALUES 
                 ('{$clientName}','{$clientAddress}','{$clientContact}','{$clientEmail}')";
             
+            mysqli_query($conn, $sql);
+
+            if (!mysqli_query($conn, $sql)) {
+                echo("Error description: " . mysqli_error($conn));
+            }
+
+            $sql = "SELECT client_id FROM tbl_clients ORDER BY client_id DESC LIMIT 1";
+
+			$result = mysqli_query($conn, $sql);
+
+            $clientId = mysqli_fetch_array($result)['client_id'];
+
+            $sql = "UPDATE tbl_users SET user_user_id = '{$clientId}' WHERE user_username = '{$clientEmail}' ";
             mysqli_query($conn, $sql);
 
             // auditTrail($_SESSION['user'], "Update Student", $conn);
@@ -37,7 +58,14 @@
             $clientEmail = mysqli_real_escape_string($conn,(strip_tags($_POST['client-email'])));
 
             // check if email exist return false 
-            checkEmailExist($conn,$clientEmail);
+            $sql = "UPDATE tbl_users SET user_username = '{$clientEmail}' WHERE user_user_id = '{$clientId}' ";
+            mysqli_query($conn, $sql);
+            
+            if (!mysqli_query($conn, $sql)) {
+                // echo("Error description: " . mysqli_error($conn));
+                echo 1;
+                return false;
+            }
 
             $clientName = mysqli_real_escape_string($conn,(strip_tags($_POST['client-name'])));
             $clientAddress = mysqli_real_escape_string($conn,(strip_tags($_POST['client-address'])));
@@ -49,7 +77,6 @@
                 echo("Error description: " . mysqli_error($conn));
             }
             
-            // return false;
         }
     }
 

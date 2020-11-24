@@ -19,7 +19,7 @@ $(document).ready(function() {
         e.preventDefault();
         let deleteId = $(this).attr('delete-id');
 
-        if (confirm("Are you sure you want to delete this equipment?")) {
+        if (confirm("Are you sure you want to delete this data?")) {
             $.ajax({    
                 method: "POST",
                 url: "./delete-client.php",
