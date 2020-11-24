@@ -2,6 +2,7 @@ $(document).ready(function() {
 
 let projectId = $('#editProjectId').val();
 
+
 const fetchEngineerInProjectTable = () => {
     $.ajax({    
         method: "POST",
@@ -200,27 +201,19 @@ $(document).on("click","#delete-equipment", function(e) {
 
 });
 
-$(document).on("click","#delete-task", function(e) {
-    
-    e.preventDefault();
+const fetchWorkerProjectTable = () => {
+    $.ajax({    
+        method: "POST",
+        url: "./tables/partial_worker_in_project_tables.php",
+        data: `projectId=${projectId}`,
+        success:function(data){
+            $("#workerTable table tbody").html(data);
+            $('#workerDataTable').DataTable( );
+        }
+    });
+}
 
-    let deleteId = $(this).attr('delete-id');
-
-
-    if (confirm("Are you sure you want to delete this data?")) {
-        $.ajax({    
-            method: "POST",
-            url: "./delete-task.php",
-            data: `id=${deleteId}`,
-            success:function(data){
-                fetchTasksTodo();
-                fetchTasksDone();
-                fetchTasksInProgress();
-            }
-        });
-    }
-
-});
+fetchWorkerProjectTable();
 
 function onSelectProjectStatus(arr) {
     arr.map((val, i) => {

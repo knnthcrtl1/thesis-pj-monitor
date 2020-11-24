@@ -1,5 +1,7 @@
 $(document).ready(function() {
 
+   
+
         $('.select2').select2();
     
         $('.select2').select2({
@@ -68,6 +70,66 @@ $(document).ready(function() {
 
     
     let projectId = $('#editProjectId').val();
+
+    const fetchWorkerProjectTable = () => {
+        $.ajax({    
+            method: "POST",
+            url: "./tables/partial_worker_in_project_tables.php",
+            data: `projectId=${projectId}`,
+            success:function(data){
+                $("#workerTable table tbody").html(data);
+                $('#workerDataTable').DataTable( );
+            }
+        });
+    }
+
+    fetchWorkerProjectTable();
+
+    $(document).on("click","#delete-worker-in-project", function(e) {
+        
+        e.preventDefault();
+        let deleteId = $(this).attr('delete-id');
+
+        if (confirm("Are you sure you want to delete this data?")) {
+            $.ajax({    
+                method: "POST",
+                url: "./delete-worker.php",
+                data: `id=${deleteId}`,
+                success:function(data){
+                    alert('Deleted Successfully');
+                    fetchWorkerProjectTable();
+                }
+            });
+        }
+
+    });
+
+
+    $(document).on("click","#submit-worker-form", function(e) {
+        e.preventDefault();
+
+        var addWorkerProjectForm = $("#add-worker-form").serialize();
+
+        var workerRequired1 = $("#workerRequired1").val();
+
+        if (workerRequired1 == "" ){
+            alert("Fill all the required fields!");
+            return false;
+        }
+
+        jQuery.ajax({
+            method: "POST",
+            url: "./functions/function-worker.php",
+            data: addWorkerProjectForm + `&ajax=true&projectId=${projectId}`,
+            success:function(data){
+                alert("Added Successfully!");
+                fetchWorkerProjectTable();
+            }
+        });
+
+    });
+
+
 
     const fetchEngineerInProjectTable = () => {
         $.ajax({    

@@ -196,6 +196,38 @@ include('./connection.php');
           </div>
           <div class="col-lg-12 mb-4">
 
+<div class="card shadow mb-4">
+  <div class="card-header py-3">
+    <h6 class="m-0 font-weight-bold text-primary">Workers</h6>
+  </div>
+  <div class="card-body">
+  <div class="table-responsive" id="workerTable">
+      <table class="table table-bordered" id="workerDataTable" width="100%" cellspacing="0">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+          </tr>
+          </thead>
+          <tbody>
+          </tbody>
+          <tfoot>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+          </tr>
+        </tfoot>
+     
+        </table>
+      </div>          
+    </div>
+
+  </div>
+</div>
+</div>
+
+          <div class="col-lg-12 mb-4">
+
               <div class="card shadow mb-4">
                 <div class="card-header py-3">
                   <h6 class="m-0 font-weight-bold text-primary">Tasks</h6>

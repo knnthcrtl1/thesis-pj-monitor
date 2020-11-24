@@ -161,7 +161,7 @@
          echo $clientName;
 
         ?>
-      <i class="fas fa-chevron-down"></i>
+       <i class="fas fa-chevron-down"> </i>
       </span>
     </a>
     <!-- Dropdown - User Information -->

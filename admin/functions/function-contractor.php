@@ -12,9 +12,6 @@
 
             $contractorEmail = mysqli_real_escape_string($conn,(strip_tags($_POST['contractor-email'])));
 
-            // check if email exist return false 
-            checkEmailExist($conn,$contractorEmail);
-
             $contractorName = mysqli_real_escape_string($conn,(strip_tags($_POST['contractor-name'])));
             $contractorAddress = mysqli_real_escape_string($conn,(strip_tags($_POST['contractor-address'])));
             $contractorContact = mysqli_real_escape_string($conn,(strip_tags($_POST['contractor-contact'])));
@@ -36,8 +33,6 @@
             $contractorId = mysqli_real_escape_string($conn,(strip_tags($_POST['contractor-id'])));
             $contractorEmail = mysqli_real_escape_string($conn,(strip_tags($_POST['contractor-email'])));
 
-            // check if email exist return false 
-            checkEmailExist($conn,$contractorEmail);
 
             $contractorName = mysqli_real_escape_string($conn,(strip_tags($_POST['contractor-name'])));
             $contractorAddress = mysqli_real_escape_string($conn,(strip_tags($_POST['contractor-address'])));

@@ -542,6 +542,59 @@ include('./connection.php');
           </div>
           <div class="col-lg-12 mb-4">
 
+            <div class="card shadow mb-4">
+              <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Workers</h6>
+              </div>
+              <div class="card-body">
+                <form id="add-worker-form" method="post">
+                  <input type="hidden" name="function-type" value="add-worker">
+                  <div class="form-group row">
+                    <div class="col-sm-12 mb-3">
+                      <input type="text" class="form-control form-control-user"  name="worker-name" placeholder="Worker name" id="workerRequired1">
+                    </div>
+                  </div>
+                  <div class="form-group row d-flex justify-content-center">
+                      <div class="col-lg-3">
+                        <button id="submit-worker-form" class="btn btn-primary btn-user btn-block">
+                          Submit
+                        </button>
+                      </div>
+                    </div>
+                </form>
+                <div class="table-responsive" id="workerTable">
+                  <table class="table table-bordered" id="workerDataTable" width="100%" cellspacing="0">
+                    <thead>
+                      <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <?php if ( checkAuthAction( authActions($_SESSION['user_id'],"",$conn), "Delete Worker" ) ) {  ?>
+                        <th>Options</th>
+                        <?php } ?>
+                      </tr>
+                      </thead>
+                      <tbody>
+                      </tbody>
+                      <tfoot>
+                      <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <?php if ( checkAuthAction( authActions($_SESSION['user_id'],"",$conn), "Delete Worker" ) ) {  ?>
+                        <th>Options</th>
+                        <?php } ?>
+                      </tr>
+                    </tfoot>
+                 
+                    </table>
+                  </div>          
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-12 mb-4">
+
               <div class="card shadow mb-4">
                 <div class="card-header py-3">
                   <h6 class="m-0 font-weight-bold text-primary">Tasks</h6>
