@@ -2,7 +2,6 @@ $(document).ready(function() {
 
 let projectId = $('#editProjectId').val();
 
-
 const fetchEngineerInProjectTable = () => {
     $.ajax({    
         method: "POST",

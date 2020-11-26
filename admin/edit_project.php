@@ -47,8 +47,8 @@ include('./connection.php');
             }
             
 
-        ?>
-
+        ?>  
+       
           <!-- Page Heading -->
           <h1 class="h3 mb-4 text-gray-800">
           <a href="./view_project.php"><i class="fa fa-arrow-left" aria-hidden="true"></i></a> Edit Project</h1>
@@ -105,6 +105,7 @@ include('./connection.php');
                         </div>
                       
                         <div class="col-sm-6 mb-3 mb-sm-0">
+
                         <select class="custom-select"  class="form-control form-control-user"  name="project-client-owner"  placeholder="Client / Owner*" id="projectRequired7">
                               <option selected value="">Select client / owner *</option>
                               <?php
@@ -415,6 +416,11 @@ include('./connection.php');
             </div>
           </div>
          
+           <form id="test-add-equipment-form" method="post">
+           <button id="test-submit-edit-project-form" class="btn btn-primary btn-user btn-block">
+            Submit
+          </button>
+        </form>
 
         </div>
         <!-- /.container-fluid -->

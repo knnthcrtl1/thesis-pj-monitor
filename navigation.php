@@ -53,11 +53,20 @@ include('./connection.php');
   </div>
 </li> -->
 
+<li class="nav-item <?php echo $active == "view_notification" ? 'active': null?>">
+  <a class="nav-link" href="view_notification.php">
+    <i class="fas fa-fw fa-tachometer-alt"></i>
+    <span>Notifications</span></a>
+</li>
+
 <li class="nav-item <?php echo $active == "view_project" ? 'active': null?>">
   <a class="nav-link" href="view_project.php">
     <i class="fas fa-fw fa-tachometer-alt"></i>
     <span>Projects</span></a>
 </li>
+
+
+
 
 
 <!-- Nav Item - Utilities Collapse Menu -->

@@ -7,7 +7,6 @@ if ( !isset($_SESSION["user"]) ) {
 include('./header.php');
 ?>
 
-
   <!-- Page Wrapper -->
   <div id="wrapper">
 
@@ -198,8 +197,9 @@ include('./header.php');
           
           <div class="row">
 
-
-          <canvas id="myChart"></canvas>
+          <div class="google_chart">
+            <div id="chart_div"></div>
+          </div>
 
 
           <!-- Content Row -->
@@ -224,12 +224,79 @@ include('./header.php');
   <?php
     include('./logout-modal.php')
   ?>
-    <!-- Page level custom scripts -->
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script >
+  google.charts.load('current', {'packages':['gantt']});
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+
+      var data = new google.visualization.DataTable();
+      data.addColumn('string', 'Task ID');
+      data.addColumn('string', 'Task Name');
+      data.addColumn('string', 'Contractor');
+      data.addColumn('date', 'Start Date');
+      data.addColumn('date', 'End Date');
+      data.addColumn('number', 'Duration');
+      data.addColumn('number', 'Percent Complete');
+      data.addColumn('string', 'Dependencies');
+
+      data.addRows([
+          <?php
+            $sql = "SELECT * FROM tbl_projects";
+            $result = mysqli_query($conn, $sql);
+            if (mysqli_num_rows($result) != 0){
+                while($row = mysqli_fetch_assoc($result)){
+
+                $startTimeDate = strtotime($row['project_start_date']);
+                $endTimeDate = strtotime($row['project_end_date']);
+
+                $startYearDate = date('Y',$startTimeDate);
+                $startMonthDate = date('m',$startTimeDate);
+                $startDayDate =  date('j',$startTimeDate);
+
+                $endYearDate = date('Y',$endTimeDate);
+                $endMonthDate = date('m',$endTimeDate);
+                $endDayDate = date('j',$endTimeDate);
+
+                  echo "['" . $row['project_id']. "','" . $row['project_name'] . "','" . $row[
+                    'project_contractor_name'] . "', new Date(" . $startYearDate . " ," . $startMonthDate . " , " . $startDayDate . "), new Date(" . $endYearDate . ", " . $endMonthDate . ", " . $endDayDate . "), null, null, null],";
+                }
+            }
+          ?>
+      ]);
+
+      // data.addRows([
+      //     ['1031866','123','1171240', new Date(2020-11-13), new Date( 2020-11-14), ,0,],['1031868','TEST','1171240', new Date(2020-11-12), new Date( 2020-11-13), ,0,]]);
+
+      // data.addRows([
+      //        ['2014Spring', 'Spring 2014', 'spring',
+      //    new Date(2020, 11, 12), new Date(2020, 11, 13), null, 100, null],
+      // ])
+
+
+   
+      var options = {
+        height: 400,
+        width: 1020,
+        gantt: {
+          trackHeight: 60
+        }
+      };
+
+      var chart = new google.visualization.Gantt(document.getElementById('chart_div'));
+
+      chart.draw(data, options);
+}
+  
+  </script>
+
+    <!-- Page level custom scripts -->  
     <!-- Page level plugins -->
-    <script src="vendor/chart.js/Chart.min.js"></script>
+    <!-- <script src="vendor/chart.js/Chart.min.js"></script> -->
 
     <!-- Page level custom scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script> -->
     <script src="./js/script-dashboard.js"></script>
     <!-- <script src="js/demo/chart-area-demo.js"></script> -->
     <!-- <script src="js/demo/chart-pie-demo.js"></script> -->

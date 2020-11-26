@@ -66,8 +66,22 @@ function checkAuthAction($userAuthAction=[], $action="") {
 //     mysqli_query($conn, $sql);
     
 // }   
+function auditTrail($userId="", $action, $projectId, $taskId, $taskStatus, $clientId, $conn) {
+		
+    $sql = "SELECT user_username FROM tbl_users WHERE user_user_id = {$userId}";
+    $userUserName = mysqli_fetch_assoc(mysqli_query($conn, $sql))['user_username'];
+    
+    if (!mysqli_query($conn, $sql)) {
+        echo("Error description: " . mysqli_error($conn));
+    }
 
+    $sql = "INSERT INTO tbl_audit (audit_username,audit_action,audit_task_id,audit_project_id,audit_task_status,audit_client_id) VALUES ('{$userUserName}','{$action}','{$taskId}','{$projectId}','{$taskStatus}','{$clientId}')";
 
+    if (!mysqli_query($conn, $sql)) {
+        echo("Error description: " . mysqli_error($conn));
+    }
+    
+}
 
 function checkEngineerExistInProject($conn, $projectId, $engineerId) {
         

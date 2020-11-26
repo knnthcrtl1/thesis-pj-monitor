@@ -55,7 +55,7 @@ include('./header.php');
                         $result = mysqli_query($conn, $sql);
                         $row = mysqli_num_rows($result);
                       ?>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $row; ?></div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $row; ?> out of 50</div>
 
                     </div>
                     <div class="col-auto">
