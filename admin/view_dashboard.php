@@ -28,7 +28,6 @@ include('./header.php');
        <?php include('./navbar.php')?>
 
         <!-- Begin Page Content -->
-        <?php if($_SESSION['user_level'] == 1) { ?>
 
         <div class="container-fluid">
 
@@ -41,6 +40,9 @@ include('./header.php');
 
           <!-- Content Row -->
           <div class="row">
+
+        <?php if($_SESSION['user_level'] == 1) { ?>
+
 
             <!-- Earnings (Monthly) Card Example -->
             <div class="col-xl-3 col-md-6 mb-4">
@@ -191,6 +193,42 @@ include('./header.php');
               </div>
             </div>
 
+        <?php }
+        
+        if ( checkAuthAction( authActions($_SESSION['user_id'],"",$conn), "Display Project (Engineer)" ) ) {  
+         
+
+        ?>
+             <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Projects</div>
+                      <?php
+                         $sql = "SELECT * FROM tbl_projects LEFT JOIN tbl_user_handled_projects ON tbl_projects.project_id = tbl_user_handled_projects.user_handled_project_project_id WHERE tbl_user_handled_projects.user_handled_project_engineer_id = '{$_SESSION['user_id']}'";
+                         $result = mysqli_query($conn, $sql);
+                         $row = mysqli_num_rows($result);
+                      ?>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $row; ?></div>
+
+                    </div>
+                    <div class="col-auto">
+                      <!-- <i class="fas fa-calendar fa-2x text-gray-300"></i> -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+        <?php
+        }
+
+        
+        
+        
+        ?>
+
+            
           </div>
 
           <!-- Content Row -->
@@ -206,7 +244,6 @@ include('./header.php');
 
         </div>
 
-        <?php } ?>
         <!-- /.container-fluid -->
 
       </div>
@@ -229,7 +266,13 @@ include('./header.php');
   google.charts.load('current', {'packages':['gantt']});
     google.charts.setOnLoadCallback(drawChart);
 
+  
     function drawChart() {
+
+      <?php 
+      if($_SESSION['user_level'] == 1){
+
+    ?>
 
       var data = new google.visualization.DataTable();
       data.addColumn('string', 'Task ID');
@@ -287,7 +330,13 @@ include('./header.php');
       var chart = new google.visualization.Gantt(document.getElementById('chart_div'));
 
       chart.draw(data, options);
+
+      <?php 
+      }
+  ?>
 }
+
+
   
   </script>
 

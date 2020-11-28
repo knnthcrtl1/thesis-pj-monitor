@@ -34,6 +34,7 @@ img.app__logo {
     max-width: 190px;
 }
 
-.google_chart{
+.google_chart {
     overflow: auto;
+    margin: 0 auto;
 }
