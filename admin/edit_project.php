@@ -626,7 +626,10 @@ include('./connection.php');
                           <input type="text" class="form-control form-control-user"  name="project-tasks-description" placeholder="Task Description" id="taskRequired3">
                         </div>
                         <div class="col-lg-6 mb-3">
-                          <input type="date" class="form-control form-control-user"  name="project-tasks-date" placeholder="Task Date" id="taskRequired4">
+                          <input type="date" class="form-control form-control-user"  name="project-start-tasks-date" placeholder="Task Date" id="taskRequired4">
+                        </div>
+                        <div class="col-lg-6 mb-3">
+                          <input type="date" class="form-control form-control-user"  name="project-end-tasks-date" placeholder="Task Date" id="taskRequired5">
                         </div>
                       </div>
 
@@ -690,12 +693,95 @@ include('./connection.php');
             
           </div>
           
+          <div class="col-lg-12 mb-4">
+
+            <div class="card shadow mb-4">
+              <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Task Gant Chart</h6>
+              </div>
+              <div class="card-body">
+                <div class="google_chart">
+                  <div id="chart_div"></div>
+                </div>
+              </div>
+          </div>
+         
+          
       <!-- End of Main Content -->
       
   <!-- Scroll to Top Button-->
   <?php
     include('./logout-modal.php')
   ?>
+   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script >
+  google.charts.load('current', {'packages':['gantt']});
+    google.charts.setOnLoadCallback(drawChart);
+
+  
+    function drawChart() {
+
+      <?php 
+      if($_SESSION['user_level'] == 1){
+
+    ?>
+
+      var data = new google.visualization.DataTable();
+      data.addColumn('string', 'Task ID');
+      data.addColumn('string', 'Task Name');
+      data.addColumn('string', 'Contractor');
+      data.addColumn('date', 'Start Date');
+      data.addColumn('date', 'End Date');
+      data.addColumn('number', 'Duration');
+      data.addColumn('number', 'Percent Complete');
+      data.addColumn('string', 'Dependencies');
+
+      data.addRows([
+          <?php
+            $sql = "SELECT * FROM tbl_project_tasks WHERE project_task_project_id = '{$_GET['id']}' ";
+            $result = mysqli_query($conn, $sql);
+            if (mysqli_num_rows($result) != 0){
+                while($row = mysqli_fetch_assoc($result)){
+
+                $startTimeDate = strtotime($row['project_task_start_date']);
+                $endTimeDate = strtotime($row['project_task_end_date']);
+
+                $startYearDate = date('Y',$startTimeDate);
+                $startMonthDate = date('m',$startTimeDate);
+                $startDayDate =  date('j',$startTimeDate);
+
+                $endYearDate = date('Y',$endTimeDate);
+                $endMonthDate = date('m',$endTimeDate);
+                $endDayDate = date('j',$endTimeDate);
+
+                  echo "['" . $row['project_task_id']. "','" . $row['project_task_name'] . "','" . $row[
+                    'project_task_description'] . "', new Date(" . $startYearDate . " ," . $startMonthDate . " , " . $startDayDate . "), new Date(" . $endYearDate . ", " . $endMonthDate . ", " . $endDayDate . "), null, null, null],";
+                }
+            }
+          ?>
+      ]);
+
+   
+      var options = {
+        height: 400,
+        width: 1020,
+        gantt: {
+          trackHeight: 60
+        }
+      };
+
+      var chart = new google.visualization.Gantt(document.getElementById('chart_div'));
+
+      chart.draw(data, options);
+
+      <?php 
+      }
+  ?>
+}
+
+
+  
+  </script>
 
   <!-- Bootstrap core JavaScript-->
   <script src="vendor/jquery/jquery.min.js"></script>

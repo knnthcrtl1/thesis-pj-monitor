@@ -490,28 +490,31 @@ $(document).ready(function() {
         var taskRequired2 = $("#taskRequired2").val();
         var taskRequired3 = $("#taskRequired3").val();
         var taskRequired4 = $("#taskRequired4").val();
-        var projectRequired8 = $('#projectRequired8').val();
-        var projectRequired9 = $('#projectRequired9').val();
+        var taskRequired5 = $("#taskRequired5").val();
         
-        if (taskRequired1 == "" || taskRequired2 == "" || taskRequired3 == "" || taskRequired4 == ""){
+        if (taskRequired1 == "" || taskRequired2 == "" || taskRequired3 == "" || taskRequired4 == ""|| taskRequired5 == ""){
             alert("Fill all the required fields!");
             return false;
         } 
 
-        var taskDate = new Date(taskRequired4);
-        var varStartDate = new Date(projectRequired8);
-        var varEndDate = new Date(projectRequired9);
+        // var taskDate = new Date(taskRequired4);
+        var varStartDate = new Date(taskRequired4);
+        var varEndDate = new Date(taskRequired5);
 
-
-        if (taskDate < varStartDate) {
-            alert("End date should be greater than or equal on the start date");
+        if (varEndDate <= varStartDate) {
+            alert("End date should be greater than Start date");
             return false;
         }
 
-        if (taskDate > varEndDate) {
-            alert("End date should be less than end date");
-            return false;
-        }
+        // if (taskDate < varStartDate) {
+        //     alert("End date should be greater than or equal on the start date");
+        //     return false;
+        // }
+
+        // if (taskDate > varEndDate) {
+        //     alert("End date should be less than end date");
+        //     return false;
+        // }
 
         jQuery.ajax({
             method: "POST",

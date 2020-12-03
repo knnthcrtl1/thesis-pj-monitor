@@ -309,15 +309,6 @@ include('./header.php');
           ?>
       ]);
 
-      // data.addRows([
-      //     ['1031866','123','1171240', new Date(2020-11-13), new Date( 2020-11-14), ,0,],['1031868','TEST','1171240', new Date(2020-11-12), new Date( 2020-11-13), ,0,]]);
-
-      // data.addRows([
-      //        ['2014Spring', 'Spring 2014', 'spring',
-      //    new Date(2020, 11, 12), new Date(2020, 11, 13), null, 100, null],
-      // ])
-
-
    
       var options = {
         height: 400,

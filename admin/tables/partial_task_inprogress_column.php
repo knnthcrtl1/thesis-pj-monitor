@@ -19,7 +19,8 @@
                  <?php } ?>
                 <div class="task-title">Title: <?php echo $row['project_task_name']; ?></div>
                 <div class="text-black-50 small">Description: <?php echo $row['project_task_description']; ?></div>
-                <div class="text-black-50 small">Date: <?php echo $row['project_task_date']; ?></div>
+                <div class="text-black-50 small">Start Date: <?php echo $row['project_task_start_date']; ?></div>
+                <div class="text-black-50 small">End Date: <?php echo $row['project_task_end_date']; ?></div>
                 <div class="" style="margin-top: 10px">
                 <select class="custom-select select-project-status[]"  class="form-control form-control-user"  name="project-tasks-status"  placeholder="Client / Owner*" id="projectRequired1" edit-attr-id="<?php echo $row['project_task_id']; ?>">
                 <option value="1" <?php echo $row['project_task_status'] == 1 ? 'selected' : null ?>>To Do</option>
