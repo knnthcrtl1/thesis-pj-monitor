@@ -700,6 +700,15 @@ include('./connection.php');
                 <h6 class="m-0 font-weight-bold text-primary">Task Gant Chart</h6>
               </div>
               <div class="card-body">
+              <?php
+              $sql = "SELECT * FROM tbl_project_tasks WHERE project_task_project_id = '{$_GET['id']}' ";
+              $result = mysqli_query($conn, $sql);
+              $row = mysqli_fetch_array($result);
+              if(!$row){
+                echo 'No data found!';
+                return false;
+              }
+              ?>
                 <div class="google_chart">
                   <div id="chart_div"></div>
                 </div>
