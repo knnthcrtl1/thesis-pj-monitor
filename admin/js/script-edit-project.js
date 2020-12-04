@@ -584,7 +584,6 @@ $(document).ready(function() {
                     url: "./functions/function-task.php",
                     data: `function-type=update-tasks&ajax=true&project-id=${projectId}&taskId=${taskId}&taskStatus=${taskStatus}&clientId=${clientId}`,
                     success:function(data){
-                        alert(data)
                         fetchTasksTodo();
                         fetchTasksDone();
                         fetchTasksInProgress();
