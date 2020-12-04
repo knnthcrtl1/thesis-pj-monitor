@@ -706,7 +706,6 @@ include('./connection.php');
               $row = mysqli_fetch_array($result);
               if(!$row){
                 echo 'No data found!';
-                return false;
               }
               ?>
                 <div class="google_chart">
