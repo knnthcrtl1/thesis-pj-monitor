@@ -282,6 +282,28 @@ include('./connection.php');
             </div>
             
           </div>
+
+          <div class="col-lg-12 mb-4">
+
+<div class="card shadow mb-4">
+  <div class="card-header py-3">
+    <h6 class="m-0 font-weight-bold text-primary">Task Gant Chart</h6>
+  </div>
+  <div class="card-body">
+  <?php
+  $sql = "SELECT * FROM tbl_project_tasks WHERE project_task_project_id = '{$_GET['id']}' ";
+  $result = mysqli_query($conn, $sql);
+  $row = mysqli_fetch_array($result);
+  if(!$row){
+    echo 'No data found!';
+    return false;
+  }
+  ?>
+    <div class="google_chart">
+      <div id="chart_div"></div>
+    </div>
+  </div>
+</div>
           
       <!-- End of Main Content -->
       
@@ -289,6 +311,75 @@ include('./connection.php');
   <?php
     include('./logout-modal.php')
   ?>
+   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script >
+  google.charts.load('current', {'packages':['gantt']});
+    google.charts.setOnLoadCallback(drawChart);
+
+  
+    function drawChart() {
+
+      <?php 
+      if($_SESSION['user_level'] == 7){
+
+    ?>
+
+      var data = new google.visualization.DataTable();
+      data.addColumn('string', 'Task ID');
+      data.addColumn('string', 'Task Name');
+      data.addColumn('string', 'Contractor');
+      data.addColumn('date', 'Start Date');
+      data.addColumn('date', 'End Date');
+      data.addColumn('number', 'Duration');
+      data.addColumn('number', 'Percent Complete');
+      data.addColumn('string', 'Dependencies');
+
+      data.addRows([
+          <?php
+            $sql = "SELECT * FROM tbl_project_tasks WHERE project_task_project_id = '{$_GET['id']}' ";
+            $result = mysqli_query($conn, $sql);
+            if (mysqli_num_rows($result) != 0){
+                while($row = mysqli_fetch_assoc($result)){
+
+                $startTimeDate = strtotime($row['project_task_start_date']);
+                $endTimeDate = strtotime($row['project_task_end_date']);
+
+                $startYearDate = date('Y',$startTimeDate);
+                $startMonthDate = date('m',$startTimeDate);
+                $startDayDate =  date('j',$startTimeDate);
+
+                $endYearDate = date('Y',$endTimeDate);
+                $endMonthDate = date('m',$endTimeDate);
+                $endDayDate = date('j',$endTimeDate);
+
+                  echo "['" . $row['project_task_id']. "','" . $row['project_task_name'] . "','" . $row[
+                    'project_task_description'] . "', new Date(" . $startYearDate . " ," . $startMonthDate . " , " . $startDayDate . "), new Date(" . $endYearDate . ", " . $endMonthDate . ", " . $endDayDate . "), null, null, null],";
+                }
+            }
+          ?>
+      ]);
+
+   
+      var options = {
+        height: 400,
+        width: 1020,
+        gantt: {
+          trackHeight: 60
+        }
+      };
+
+      var chart = new google.visualization.Gantt(document.getElementById('chart_div'));
+
+      chart.draw(data, options);
+
+      <?php 
+      }
+  ?>
+}
+
+
+  
+  </script>
 
   <!-- Bootstrap core JavaScript-->
   <script src="admin/vendor/jquery/jquery.min.js"></script>
@@ -296,6 +387,8 @@ include('./connection.php');
 
   <!-- Core plugin JavaScript-->
   <script src="admin/vendor/jquery-easing/jquery.easing.min.js"></script>
+  <script src="admin/vendor/datatables/jquery.dataTables.min.js"></script>
+  <script src="admin/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
   <script src="admin/js/sb-admin-2.min.js"></script>
 
