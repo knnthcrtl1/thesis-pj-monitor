@@ -345,11 +345,11 @@ include('./connection.php');
                 $endTimeDate = strtotime($row['project_task_end_date']);
 
                 $startYearDate = date('Y',$startTimeDate);
-                $startMonthDate = date('m',$startTimeDate);
+                $startMonthDate = date('m',$startTimeDate) - 1;
                 $startDayDate =  date('j',$startTimeDate);
 
                 $endYearDate = date('Y',$endTimeDate);
-                $endMonthDate = date('m',$endTimeDate);
+                $endMonthDate = date('m',$endTimeDate) - 1;
                 $endDayDate = date('j',$endTimeDate);
 
                   echo "['" . $row['project_task_id']. "','" . $row['project_task_name'] . "','" . $row[

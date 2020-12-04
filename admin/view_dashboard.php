@@ -295,11 +295,11 @@ include('./header.php');
                 $endTimeDate = strtotime($row['project_end_date']);
 
                 $startYearDate = date('Y',$startTimeDate);
-                $startMonthDate = date('m',$startTimeDate);
+                $startMonthDate = date('m',$startTimeDate) - 1;
                 $startDayDate =  date('j',$startTimeDate);
 
                 $endYearDate = date('Y',$endTimeDate);
-                $endMonthDate = date('m',$endTimeDate);
+                $endMonthDate = date('m',$endTimeDate) - 1;
                 $endDayDate = date('j',$endTimeDate);
 
                   echo "['" . $row['project_id']. "','" . $row['project_name'] . "','" . $row[

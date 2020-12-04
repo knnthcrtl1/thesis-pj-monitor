@@ -626,10 +626,10 @@ include('./connection.php');
                           <input type="text" class="form-control form-control-user"  name="project-tasks-description" placeholder="Task Description" id="taskRequired3">
                         </div>
                         <div class="col-lg-6 mb-3">
-                          <input type="date" class="form-control form-control-user"  name="project-start-tasks-date" placeholder="Task Date" id="taskRequired4">
+                          <input placeholder="Start Date" class="form-control form-control-user" type="text" onfocus="(this.type='date')" name="project-start-tasks-date"id="taskRequired4">
                         </div>
                         <div class="col-lg-6 mb-3">
-                          <input type="date" class="form-control form-control-user"  name="project-end-tasks-date" placeholder="Task Date" id="taskRequired5">
+                        <input placeholder="End Date" class="form-control form-control-user" type="text" onfocus="(this.type='date')" on name="project-end-tasks-date" id="taskRequired5">
                         </div>
                       </div>
 
@@ -756,11 +756,11 @@ include('./connection.php');
                 $endTimeDate = strtotime($row['project_task_end_date']);
 
                 $startYearDate = date('Y',$startTimeDate);
-                $startMonthDate = date('m',$startTimeDate);
+                $startMonthDate = date('m',$startTimeDate) - 1;
                 $startDayDate =  date('j',$startTimeDate);
-
+                  
                 $endYearDate = date('Y',$endTimeDate);
-                $endMonthDate = date('m',$endTimeDate);
+                $endMonthDate = date('m',$endTimeDate) - 1;
                 $endDayDate = date('j',$endTimeDate);
 
                   echo "['" . $row['project_task_id']. "','" . $row['project_task_name'] . "','" . $row[
