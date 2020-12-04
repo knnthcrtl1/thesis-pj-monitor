@@ -64,7 +64,7 @@
        $_SESSION["user_id"] = $userId;
 
 			 //Redirect Browser
-             header('Location:view_dashboard.php');
+             header('Location:view_project.php');
              exit();
 			 }
 			 }

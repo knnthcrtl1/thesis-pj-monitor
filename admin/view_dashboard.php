@@ -312,7 +312,7 @@ include('./header.php');
    
       var options = {
         height: 400,
-        width: 1020,
+        width: 1920,
         gantt: {
           trackHeight: 60
         }

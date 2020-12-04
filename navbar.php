@@ -148,21 +148,22 @@
   <!-- Nav Item - User Information -->
   <li class="nav-item dropdown no-arrow">
     <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      <span class="mr-2 d-none d-lg-inline text-gray-600 small user_nav_name">
-      <?php 
+    <?php 
 
-        $id = $_SESSION['user_id'];
-         $sql = "SELECT * FROM tbl_clients WHERE client_id = '{$id}' ";
-         $result = mysqli_query($conn, $sql);
-         $row = mysqli_fetch_array($result);
+$id = $_SESSION['user_id'];
+ $sql = "SELECT * FROM tbl_clients WHERE client_id = '{$id}' ";
+ $result = mysqli_query($conn, $sql);
+ $row = mysqli_fetch_array($result);
 
-         $clientName = $row['client_name'];
+ $clientName = $row['client_name'];
 
-         echo $clientName;
+ echo $clientName ;
 
-        ?>
-       <i class="fas fa-chevron-down"> </i>
-      </span>
+?>
+   &nbsp; <i class="fas fa-chevron-down"> </i>
+      <!-- <span class="mr-2 d-none d-lg-inline text-gray-600 small user_nav_name">
+     
+      </span> -->
     </a>
     <!-- Dropdown - User Information -->
     <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">

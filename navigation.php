@@ -10,7 +10,7 @@ include('./connection.php');
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
 <!-- Sidebar - Brand -->
-<a class="sidebar-brand d-flex align-items-center justify-content-center" href="/project-monitoring/view_dashboard.php">
+<a class="sidebar-brand d-flex align-items-center justify-content-center" href="/project-monitoring/view_project.php">
   <!-- <div class="sidebar-brand-icon rotate-n-15">
     <i class="fas fa-laugh-wink"></i>
   </div>
@@ -22,11 +22,16 @@ include('./connection.php');
 <hr class="sidebar-divider my-0">
 
 <!-- Nav Item - Dashboard -->
-<li class="nav-item <?php echo $active == "view_dashboard" ? 'active': null?>">
+<li class="nav-item <?php echo $active == "view_project" ? 'active': null?>">
+  <a class="nav-link" href="view_project.php">
+    <i class="fas fa-fw fa-tachometer-alt"></i>
+    <span>Projects</span></a>
+</li>
+<!-- <li class="nav-item <?php echo $active == "view_dashboard" ? 'active': null?>">
   <a class="nav-link" href="view_dashboard.php">
     <i class="fas fa-fw fa-tachometer-alt"></i>
     <span>Dashboard</span></a>
-</li>
+</li> -->
 
 <!-- Divider -->
 <hr class="sidebar-divider">
@@ -59,11 +64,7 @@ include('./connection.php');
     <span>Notifications</span></a>
 </li>
 
-<li class="nav-item <?php echo $active == "view_project" ? 'active': null?>">
-  <a class="nav-link" href="view_project.php">
-    <i class="fas fa-fw fa-tachometer-alt"></i>
-    <span>Projects</span></a>
-</li>
+
 
 
 
