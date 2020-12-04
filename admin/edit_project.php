@@ -706,11 +706,12 @@ include('./connection.php');
               $row = mysqli_fetch_array($result);
               if(!$row){
                 echo 'No data found!';
-              }
+              } else {
               ?>
                 <div class="google_chart">
                   <div id="chart_div"></div>
                 </div>
+              <?php } ?>
               </div>
           </div>
          
