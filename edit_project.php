@@ -207,6 +207,7 @@ include('./connection.php');
           <tr>
             <th>ID</th>
             <th>Name</th>
+            <th>Contact Number</th>
           </tr>
           </thead>
           <tbody>
@@ -215,6 +216,7 @@ include('./connection.php');
           <tr>
             <th>ID</th>
             <th>Name</th>
+            <th>Contact Number</th>
           </tr>
         </tfoot>
      

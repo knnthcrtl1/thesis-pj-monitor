@@ -64,7 +64,7 @@ const fetchEquipmentTable = () => {
 
             $('#totalEquipmentPrice').html(formatToCurrency(totalValueInColumn))
 
-            $('#equipmentDataTable').DataTable( );
+            // $('#equipmentDataTable').DataTable( );
             
             // console.log('aw');
         }
