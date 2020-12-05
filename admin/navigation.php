@@ -25,7 +25,7 @@ include('./functions/functions.php');
 <?php if ( checkAuthAction( authActions($_SESSION['user_id'],"",$conn), "View Dashboard" ) ) {  ?>
 <li class="nav-item <?php echo $active == "view_dashboard" ? 'active': null?>">
   <a class="nav-link" href="view_dashboard.php">
-    <i class="fas fa-fw fa-tachometer-alt"></i>
+  <i class="fas fa-chart-line"></i>
     <span>Dashboard</span></a>
 </li>
 <?php } ?>
@@ -60,42 +60,42 @@ if(true){
 <?php if ( checkAuthAction( authActions($_SESSION['user_id'],"",$conn), "View Equipments" ) ) {  ?>
 <li class="nav-item <?php echo $active == "view_equipment" ? 'active': null?>">
   <a class="nav-link" href="view_equipment.php">
-    <i class="fas fa-fw fa-tachometer-alt"></i>
+  <i class="fas fa-boxes"></i>
     <span>Equipments</span></a>
 </li>
 <?php }  ?>
 <?php if ( checkAuthAction( authActions($_SESSION['user_id'],"",$conn), "View Engineers" ) ) {  ?>
 <li class="nav-item <?php echo $active == "view_engineer" ? 'active': null?>">
   <a class="nav-link" href="view_engineer.php">
-    <i class="fas fa-fw fa-tachometer-alt"></i>
+  <i class="fas fa-building"></i>
     <span>Engineers</span></a>
 </li>
 <?php }  ?>
 <?php if ( checkAuthAction( authActions($_SESSION['user_id'],"",$conn), "View Foreman" ) ) {  ?>
 <li class="nav-item <?php echo $active == "view_foreman" ? 'active': null?>">
   <a class="nav-link" href="view_foreman.php">
-    <i class="fas fa-fw fa-tachometer-alt"></i>
+  <i class="fas fa-hard-hat"></i>
     <span>Foreman</span></a>
 </li>
 <?php }  ?>
 <?php if ( checkAuthAction( authActions($_SESSION['user_id'],"",$conn), "View Clients" ) ) {  ?>
 <li class="nav-item <?php echo $active == "view_client" ? 'active': null?>">
   <a class="nav-link" href="view_client.php">
-    <i class="fas fa-fw fa-tachometer-alt"></i>
+  <i class="fas fa-address-card"></i>
     <span>Clients</span></a>
 </li>
 <?php }  ?>
 <?php if ( checkAuthAction( authActions($_SESSION['user_id'],"",$conn), "View Projects" ) ) {  ?>
 <li class="nav-item <?php echo $active == "view_project" ? 'active': null?>">
   <a class="nav-link" href="view_project.php">
-    <i class="fas fa-fw fa-tachometer-alt"></i>
+  <i class="fas fa-tasks"></i>
     <span>Projects</span></a>
 </li>
 <?php }  ?>
 <?php if ( checkAuthAction( authActions($_SESSION['user_id'],"",$conn), "View Contractors" ) ) {  ?>
 <li class="nav-item <?php echo $active == "view_contractor" ? 'active': null?>">
   <a class="nav-link" href="view_contractor.php">
-    <i class="fas fa-fw fa-tachometer-alt"></i>
+  <i class="fas fa-file-signature"></i>
     <span>Contractors</span></a>
 </li>
 <?php }  ?>

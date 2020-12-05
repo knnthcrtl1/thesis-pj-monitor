@@ -132,6 +132,28 @@ $(document).ready(function() {
             data: `projectId=${projectId}`,
             success:function(data){
                 $("#workerTable table tbody").html(data);
+
+                let totalPrice = document.getElementsByClassName('workerSalary[]');
+                
+                let totalPriceArr = [...totalPrice];
+                let pushPriceInArr = [];
+
+                totalPriceArr.map((val, i) => {
+                    pushPriceInArr.push(Number(val.getAttribute('testValue')));
+                })
+
+                var totalValueInColumn = pushPriceInArr.reduce(function(a, b){
+                    return a + b;
+                }, 0);
+
+                const formatToCurrency = amount => {
+                    return "₱ " + amount.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&,");
+                };
+                  formatToCurrency(12.34546); //"$12.35"
+                  formatToCurrency(42345255.356); //"$42,345,255.36
+
+                $('#totalWorkerSalary').html(formatToCurrency(totalValueInColumn))
+
                 $('#workerDataTable').DataTable( );
             }
         });
@@ -166,8 +188,9 @@ $(document).ready(function() {
 
         var workerRequired1 = $("#workerRequired1").val();
         var workerRequired2 = $("#workerRequired2").val();
+        var workerRequired3 = $("#workerRequired3").val();
 
-        if (workerRequired1 == "" || workerRequired2 == "" ){
+        if (workerRequired1 == "" || workerRequired2 == "" || workerRequired3 == "" ){
             alert("Fill all the required fields!");
             return false;
         }
@@ -177,8 +200,9 @@ $(document).ready(function() {
             url: "./functions/function-worker.php",
             data: addWorkerProjectForm + `&ajax=true&projectId=${projectId}`,
             success:function(data){
-                alert("Added Successfully!");
-                fetchWorkerProjectTable();
+                alert(data);
+                // alert("Added Successfully!");
+                // fetchWorkerProjectTable();
             }
         });
 

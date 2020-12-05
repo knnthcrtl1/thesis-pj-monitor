@@ -63,8 +63,9 @@
             $projectClientOwner = mysqli_real_escape_string($conn,(strip_tags($_POST['project-client-owner'])));
             $projectStartDate = mysqli_real_escape_string($conn,(strip_tags($_POST['project-start-date'])));
             $projectEndDate = mysqli_real_escape_string($conn,(strip_tags($_POST['project-end-date'])));
+            $projectStatus = mysqli_real_escape_string($conn,(strip_tags($_POST['project-status'])));
 
-            $sql = "UPDATE tbl_projects SET project_name = '{$projectName}' , project_contractor_name = '{$projectContractorName}' , project_telephone = '{$projectTelephone}', project_work_location = '{$projectWorkLocation}' , project_start_date = '{$projectStartDate}', project_end_date = '{$projectEndDate}', project_client_owner = '{$projectClientOwner}' WHERE project_id = '{$projectId}' ";
+            $sql = "UPDATE tbl_projects SET project_status = '{$projectStatus}' , project_name = '{$projectName}' , project_contractor_name = '{$projectContractorName}' , project_telephone = '{$projectTelephone}', project_work_location = '{$projectWorkLocation}' , project_start_date = '{$projectStartDate}', project_end_date = '{$projectEndDate}', project_client_owner = '{$projectClientOwner}' WHERE project_id = '{$projectId}' ";
             
             if (!mysqli_query($conn, $sql)) {
                 echo("Error description: " . mysqli_error($conn));

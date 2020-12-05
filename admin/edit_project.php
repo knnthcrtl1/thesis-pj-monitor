@@ -94,9 +94,15 @@ include('./connection.php');
                         </div>
                       </div>
                       <div class="form-group row">
-                        <!-- <div class="col-sm-6 mb-3 mb-sm-0">
-                          <input type="text" class="form-control form-control-user"  name="project-address" placeholder="Project Address"  id="projectRequired3" value ="<?php echo $row['project_address'] ?>">
-                        </div> -->
+                        <div class="col-sm-6 mb-3 mb-sm-0">
+                        <select class="custom-select"  class="form-control form-control-user"  name="project-status"  placeholder="project status*" id="projectRequired7">
+                          <option  value=""  <?php echo !$row['project_status']? 'selected' : null?>>Select project status</option>
+                          <option  value="1" <?php echo $row['project_status'] == 1 ? 'selected': null?>>In Progress</option>
+                          <option  value="2"  <?php echo $row['project_status'] == 2 ? 'selected': null?>>Done</option>
+                        </select>
+                          <!-- <input type="text" class="form-control form-control-user"  name="project-address" placeholder="Project Address"  id="projectRequired3" value ="<?php echo $row['project_address'] ?>"> -->
+                        </div>
+                       
                         <div class="col-sm-6 mb-3">
                           <input type="number" class="form-control form-control-user"  name="project-telephone" placeholder="Telephone*" id="projectRequired4" value="<?php echo $row['project_telephone'] ?>">
                         </div>
@@ -562,6 +568,9 @@ include('./connection.php');
                     <div class="col-sm-6 mb-3">
                       <input type="number" class="form-control form-control-user"  name="worker-phone" placeholder="Worker contact number" id="workerRequired2">
                     </div>
+                    <div class="col-sm-6 mb-3">
+                      <input type="number" class="form-control form-control-user"  name="worker-salary" placeholder="Worker salary" id="workerRequired3">
+                    </div>
                   </div>
                   <div class="form-group row d-flex justify-content-center">
                       <div class="col-lg-3">
@@ -578,6 +587,9 @@ include('./connection.php');
                         <th>ID</th>
                         <th>Name</th>
                         <th>Phone</th>
+                        <?php if ( checkAuthAction( authActions($_SESSION['user_id'],"",$conn), "View Worker Salary" ) ) {  ?>
+                        <th>Salary</th>
+                        <?php } ?>
                         <?php if ( checkAuthAction( authActions($_SESSION['user_id'],"",$conn), "Delete Worker" ) ) {  ?>
                         <th>Options</th>
                         <?php } ?>
@@ -590,6 +602,9 @@ include('./connection.php');
                         <th>ID</th>
                         <th>Name</th>
                         <th>Phone</th>
+                        <?php if ( checkAuthAction( authActions($_SESSION['user_id'],"",$conn), "View Worker Salary" ) ) {  ?>
+                        <th>Salary</th>
+                        <?php } ?>
                         <?php if ( checkAuthAction( authActions($_SESSION['user_id'],"",$conn), "Delete Worker" ) ) {  ?>
                         <th>Options</th>
                         <?php } ?>
@@ -597,8 +612,16 @@ include('./connection.php');
                     </tfoot>
                  
                     </table>
-                  </div>          
+                  </div>  
+                  <div class="row" style="margin-top: 15px">
+                    <div class="col-lg-6 mb-4">
+                    </div>
+                    <div class="col-lg-6 mb-4 text-right ">
+                      <div style="font-weight:bold;">TOTAL: <span id="totalWorkerSalary">0</span></div>
+                    </div>
+                  </div>        
                 </div>
+                
 
               </div>
             </div>
@@ -736,7 +759,6 @@ include('./connection.php');
     function drawChart() {
 
       <?php 
-      if($_SESSION['user_level'] == 1){
 
     ?>
 
@@ -800,9 +822,7 @@ include('./connection.php');
 
       chart.draw(data, options);
 
-      <?php 
-      }
-  ?>
+   
 }
 
 

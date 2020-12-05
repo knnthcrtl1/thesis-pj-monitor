@@ -11,10 +11,13 @@
         if (mysqli_num_rows($result) != 0){
             while($row = mysqli_fetch_assoc($result)) { 
             ?>
-            <tr>
+            <tr class="workerSalary[]" testValue="<?php echo $row['worker_handled_project_salary']; ?>">
                 <td><?php echo $row['worker_handled_project_id'] ?></td>
                 <td><?php echo $row['worker_handled_project_name'] ?></td>
                 <td><?php echo $row['worker_handled_project_phone'] ?></td>
+                <?php if ( checkAuthAction( authActions($_SESSION['user_id'],"",$conn), "View Worker Salary" ) ) {  ?>
+                <td><?php echo "PHP " . number_format($row['worker_handled_project_salary'], 2); ?></td>
+                <?php } ?>
                 <?php if ( checkAuthAction( authActions($_SESSION['user_id'],"",$conn), "Delete Worker" ) ) {  ?>
                 <td>
                 <!-- <a class="btn btn-success" href="edit_equipment.php?id=<?php echo $row['equipment_handled_project_id ']; ?>"><i class="fas fa-fw fa-edit"></i> Edit</a>
