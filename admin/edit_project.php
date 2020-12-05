@@ -559,6 +559,7 @@ include('./connection.php');
                 <h6 class="m-0 font-weight-bold text-primary">Workers</h6>
               </div>
               <div class="card-body">
+              <?php if ( checkAuthAction( authActions($_SESSION['user_id'],"",$conn), "Add Worker" ) ) {  ?>
                 <form id="add-worker-form" method="post">
                   <input type="hidden" name="function-type" value="add-worker">
                   <div class="form-group row">
@@ -580,6 +581,7 @@ include('./connection.php');
                       </div>
                     </div>
                 </form>
+              <?php } ?>
                 <div class="table-responsive" id="workerTable">
                   <table data-order='[[ 0, "desc" ]]' class="table table-bordered" id="workerDataTable" width="100%" cellspacing="0">
                     <thead>
