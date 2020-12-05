@@ -22,12 +22,13 @@ include('./functions/functions.php');
 <hr class="sidebar-divider my-0">
 
 <!-- Nav Item - Dashboard -->
+<?php if ( checkAuthAction( authActions($_SESSION['user_id'],"",$conn), "View Dashboard" ) ) {  ?>
 <li class="nav-item <?php echo $active == "view_dashboard" ? 'active': null?>">
   <a class="nav-link" href="view_dashboard.php">
     <i class="fas fa-fw fa-tachometer-alt"></i>
     <span>Dashboard</span></a>
 </li>
-
+<?php } ?>
 <!-- Divider -->
 <hr class="sidebar-divider">
 

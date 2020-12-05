@@ -360,13 +360,25 @@ include('./connection.php');
       ]);
 
    
-      var options = {
-        height: 400,
-        width: 1020,
-        gantt: {
-          trackHeight: 60
-        }
-      };
+      var trackHeight = 30;
+   
+   var options = {
+     height: (data.getNumberOfRows() * trackHeight) + 60,
+     width: 1920,
+     hAxis: {
+         textStyle: {
+             fontName: ["RobotoCondensedRegular"]
+         }
+     },
+     gantt: {
+         labelStyle: {
+         fontName: ["RobotoCondensedRegular"],
+         fontSize: 12,
+         color: '#757575',
+         },
+         trackHeight: trackHeight
+     }
+ };
 
       var chart = new google.visualization.Gantt(document.getElementById('chart_div'));
 

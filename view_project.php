@@ -52,7 +52,6 @@ include('./connection.php');
                       <th>ID</th>
                       <th>Project Name</th>
                       <th>Contractor Name</th>
-                      <th>Address</th>
                       <th>Telephone</th>
                       <th>Work Location</th>
                       <th>Start Date</th>
@@ -67,7 +66,6 @@ include('./connection.php');
                       <th>ID</th>
                       <th>Project Name</th>
                       <th>Contractor Name</th>
-                      <th>Address</th>
                       <th>Telephone</th>
                       <th>Work Location</th>
                       <th>Start Date</th>

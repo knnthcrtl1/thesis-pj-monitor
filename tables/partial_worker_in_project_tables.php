@@ -13,6 +13,7 @@
             <tr>
                 <td><?php echo $row['worker_handled_project_id'] ?></td>
                 <td><?php echo $row['worker_handled_project_name'] ?></td>
+                <td><?php echo $row['worker_handled_project_phone'] ?></td>
             </tr>
             <?php
             }

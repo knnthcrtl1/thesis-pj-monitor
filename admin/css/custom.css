@@ -35,6 +35,6 @@ img.app__logo {
 }
 
 .google_chart {
-    overflow: auto;
+    overflow-x: scroll;
     margin: 0 auto;
 }

@@ -165,8 +165,9 @@ $(document).ready(function() {
         var addWorkerProjectForm = $("#add-worker-form").serialize();
 
         var workerRequired1 = $("#workerRequired1").val();
+        var workerRequired2 = $("#workerRequired2").val();
 
-        if (workerRequired1 == "" ){
+        if (workerRequired1 == "" || workerRequired2 == "" ){
             alert("Fill all the required fields!");
             return false;
         }
@@ -361,7 +362,7 @@ $(document).ready(function() {
 
                 $('#totalEquipmentPrice').html(formatToCurrency(totalValueInColumn))
 
-                $('#equipmentDataTable').DataTable( );
+                // $('#equipmentDataTable').DataTable( );
                 
                 // console.log('aw');
             }
@@ -491,13 +492,17 @@ $(document).ready(function() {
         var taskRequired3 = $("#taskRequired3").val();
         var taskRequired4 = $("#taskRequired4").val();
         var taskRequired5 = $("#taskRequired5").val();
+
+        var projectRequired8 = $("#projectRequired8").val();
+        var projectRequired9 = $("#projectRequired9").val();
         
         if (taskRequired1 == "" || taskRequired2 == "" || taskRequired3 == "" || taskRequired4 == ""|| taskRequired5 == ""){
             alert("Fill all the required fields!");
             return false;
         } 
 
-        // var taskDate = new Date(taskRequired4);
+        var projStartDate = new Date(projectRequired8);
+        var projEndDate = new Date(projectRequired9);
         var varStartDate = new Date(taskRequired4);
         var varEndDate = new Date(taskRequired5);
 
@@ -506,10 +511,25 @@ $(document).ready(function() {
             return false;
         }
 
-        // if (taskDate < varStartDate) {
-        //     alert("End date should be greater than or equal on the start date");
-        //     return false;
-        // }
+        if (projStartDate > varStartDate ) {
+            alert("task date must be within range of project date");
+            return false;
+        }
+
+        if (projStartDate > varEndDate ) {
+            alert("task date must be within range of project date");
+            return false;
+        }
+
+        if (projEndDate < varStartDate ) {
+            alert("task date must be within range of project date");
+            return false;
+        }
+
+        if (projEndDate < varEndDate ) {
+            alert("task date must be within range of project date");
+            return false;
+        }
 
         // if (taskDate > varEndDate) {
         //     alert("End date should be less than end date");

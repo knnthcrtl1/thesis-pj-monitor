@@ -69,10 +69,15 @@
 			 {
        $_SESSION['user_level'] = $userLevel;
        $_SESSION["user_id"] = $userId;
-
+       if($userLevel == 5 || $userLevel == 6) {
+        header('Location:view_project.php');
+        exit();
+       } else {
 			 //Redirect Browser
-             header('Location:view_dashboard.php');
-             exit();
+        header('Location:view_dashboard.php');
+        exit();
+       }
+            
 			 }
 			 }
 			 else

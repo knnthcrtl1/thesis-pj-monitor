@@ -12,11 +12,12 @@
 
             $workName = mysqli_real_escape_string($conn,(strip_tags($_POST['worker-name'])));
             $projectId = mysqli_real_escape_string($conn,(strip_tags($_POST['projectId'])));
+            $workerPhone = mysqli_real_escape_string($conn,(strip_tags($_POST['worker-phone'])));
 
 
-            $contractorTableFields = "worker_handled_project_name,worker_handle_project_project_id";
+            $contractorTableFields = "worker_handled_project_name,worker_handled_project_phone,worker_handle_project_project_id";
             $sql = "INSERT INTO tbl_worker_handled_projects ( {$contractorTableFields} ) VALUES 
-                ('{$workName}','{$projectId}')";
+                ('{$workName}','{$workerPhone}','{$projectId}')";
             
             if (!mysqli_query($conn, $sql)) {
                 echo("Error description: " . mysqli_error($conn));

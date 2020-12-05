@@ -20,7 +20,6 @@
                 $row3 = mysqli_fetch_array($result3);
             ?>
             <td><?php echo $row3['contractor_id'] . " - " . $row3['contractor_name'] ?></td>
-            <td><?php echo $row['project_address'] ?></td>
             <td><?php echo $row['project_telephone'] ?></td>
             <td><?php echo $row['project_work_location'] ?></td>
             <td><?php echo $row['project_start_date'] ?></td>

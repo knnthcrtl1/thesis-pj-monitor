@@ -94,9 +94,9 @@ include('./connection.php');
                         </div>
                       </div>
                       <div class="form-group row">
-                        <div class="col-sm-6 mb-3 mb-sm-0">
+                        <!-- <div class="col-sm-6 mb-3 mb-sm-0">
                           <input type="text" class="form-control form-control-user"  name="project-address" placeholder="Project Address"  id="projectRequired3" value ="<?php echo $row['project_address'] ?>">
-                        </div>
+                        </div> -->
                         <div class="col-sm-6 mb-3">
                           <input type="number" class="form-control form-control-user"  name="project-telephone" placeholder="Telephone*" id="projectRequired4" value="<?php echo $row['project_telephone'] ?>">
                         </div>
@@ -193,9 +193,9 @@ include('./connection.php');
                           </div>
                         </div>
                         <div class="form-group row">
-                          <div class="col-sm-6 mb-3 mb-sm-0">
+                          <!-- <div class="col-sm-6 mb-3 mb-sm-0">
                             <input type="text" class="form-control form-control-user" disabled name="project-address" placeholder="Project Address"  id="projectRequired3" value ="<?php echo $row['project_address'] ?>">
-                          </div>
+                          </div> -->
                           <div class="col-sm-6 mb-3">
                             <input type="number" class="form-control form-control-user"  disabled name="project-telephone" placeholder="Telephone*" id="projectRequired4" value="<?php echo $row['project_telephone'] ?>">
                           </div>
@@ -556,8 +556,11 @@ include('./connection.php');
                 <form id="add-worker-form" method="post">
                   <input type="hidden" name="function-type" value="add-worker">
                   <div class="form-group row">
-                    <div class="col-sm-12 mb-3">
+                    <div class="col-sm-6 mb-3">
                       <input type="text" class="form-control form-control-user"  name="worker-name" placeholder="Worker name" id="workerRequired1">
+                    </div>
+                    <div class="col-sm-6 mb-3">
+                      <input type="number" class="form-control form-control-user"  name="worker-phone" placeholder="Worker contact number" id="workerRequired2">
                     </div>
                   </div>
                   <div class="form-group row d-flex justify-content-center">
@@ -569,11 +572,12 @@ include('./connection.php');
                     </div>
                 </form>
                 <div class="table-responsive" id="workerTable">
-                  <table class="table table-bordered" id="workerDataTable" width="100%" cellspacing="0">
+                  <table data-order='[[ 0, "desc" ]]' class="table table-bordered" id="workerDataTable" width="100%" cellspacing="0">
                     <thead>
                       <tr>
                         <th>ID</th>
                         <th>Name</th>
+                        <th>Phone</th>
                         <?php if ( checkAuthAction( authActions($_SESSION['user_id'],"",$conn), "Delete Worker" ) ) {  ?>
                         <th>Options</th>
                         <?php } ?>
@@ -585,6 +589,7 @@ include('./connection.php');
                       <tr>
                         <th>ID</th>
                         <th>Name</th>
+                        <th>Phone</th>
                         <?php if ( checkAuthAction( authActions($_SESSION['user_id'],"",$conn), "Delete Worker" ) ) {  ?>
                         <th>Options</th>
                         <?php } ?>
@@ -771,13 +776,25 @@ include('./connection.php');
       ]);
 
    
+      var trackHeight = 30;
+   
       var options = {
-        height: 400,
-        width: 1020,
+        height: (data.getNumberOfRows() * trackHeight) + 60,
+        width: 1920,
+        hAxis: {
+            textStyle: {
+                fontName: ["RobotoCondensedRegular"]
+            }
+        },
         gantt: {
-          trackHeight: 60
+            labelStyle: {
+            fontName: ["RobotoCondensedRegular"],
+            fontSize: 12,
+            color: '#757575',
+            },
+            trackHeight: trackHeight
         }
-      };
+    };
 
       var chart = new google.visualization.Gantt(document.getElementById('chart_div'));
 

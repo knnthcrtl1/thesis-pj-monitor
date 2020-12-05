@@ -16,6 +16,7 @@ include('./header.php');
       include('./navigation.php');
       
       navigationList('view_dashboard', $conn);
+      checkAuthPage( authPages($_SESSION['user_id'],"",$conn), "Dashboard" );
     ?>
     <!-- End of Sidebar -->
 
@@ -286,7 +287,7 @@ include('./header.php');
 
       data.addRows([
           <?php
-            $sql = "SELECT * FROM tbl_projects";
+            $sql = "SELECT * FROM tbl_projects ORDER BY project_id DESC";
             $result = mysqli_query($conn, $sql);
             if (mysqli_num_rows($result) != 0){
                 while($row = mysqli_fetch_assoc($result)){
@@ -309,14 +310,25 @@ include('./header.php');
           ?>
       ]);
 
+      var trackHeight = 30;
    
       var options = {
-        height: 400,
+        height: (data.getNumberOfRows() * trackHeight) + 60,
         width: 1920,
+        hAxis: {
+            textStyle: {
+                fontName: ["RobotoCondensedRegular"]
+            }
+        },
         gantt: {
-          trackHeight: 60
+            labelStyle: {
+            fontName: ["RobotoCondensedRegular"],
+            fontSize: 12,
+            color: '#757575',
+            },
+            trackHeight: trackHeight
         }
-      };
+    };
 
       var chart = new google.visualization.Gantt(document.getElementById('chart_div'));
 

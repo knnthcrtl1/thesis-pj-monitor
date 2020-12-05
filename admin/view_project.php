@@ -93,9 +93,6 @@ include('./connection.php');
                         </div>
                       </div>
                       <div class="form-group row">
-                        <div class="col-sm-6 mb-3 mb-sm-0">
-                          <input type="text" class="form-control form-control-user"  name="project-address" placeholder="Project Address"  id="projectRequired3">
-                        </div>
                         <div class="col-sm-6 mb-3">
                           <input type="number" class="form-control form-control-user"  name="project-telephone" placeholder="Telephone*" id="projectRequired4">
                         </div>
@@ -173,7 +170,6 @@ include('./connection.php');
                       <th>ID</th>
                       <th>Project Name</th>
                       <th>Contractor Name</th>
-                      <th>Address</th>
                       <th>Telephone</th>
                       <th>Work Location</th>
                       <th>Start Date</th>
@@ -189,7 +185,6 @@ include('./connection.php');
                       <th>ID</th>
                       <th>Project Name</th>
                       <th>Contractor Name</th>
-                      <th>Address</th>
                       <th>Telephone</th>
                       <th>Work Location</th>
                       <th>Start Date</th>

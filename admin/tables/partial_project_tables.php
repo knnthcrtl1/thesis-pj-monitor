@@ -3,9 +3,11 @@
     include('../connection.php');
     include('../functions/functions.php');
     session_start();
-
-    // $sql = "SELECT * FROM tbl_projects";
-    // $result = mysqli_query($conn, $sql);
+  try {
+    //code...
+  } catch (\Throwable $th) {
+    //throw $th;
+  }
     if ( checkAuthAction( authActions($_SESSION['user_id'],"",$conn), "Display Project" ) ) {  
       $sql = "SELECT * FROM tbl_projects";
     }
@@ -29,7 +31,6 @@
                 $row3 = mysqli_fetch_array($result3);
             ?>
             <td><?php echo $row3['contractor_id'] . " - " . $row3['contractor_name'] ?></td>
-            <td><?php echo $row['project_address'] ?></td>
             <td><?php echo $row['project_telephone'] ?></td>
             <td><?php echo $row['project_work_location'] ?></td>
             <td><?php echo $row['project_start_date'] ?></td>
@@ -39,7 +40,8 @@
                 $result2 = mysqli_query($conn, $sql2);
                 $row2 = mysqli_fetch_array($result2);
             ?>
-            <td><?php echo $row2['client_id'] . " - " . $row2['client_name'] ?></td>
+            <td><?php echo ($row2) ? $row2['client_id'] . " - " . $row2['client_name'] : 'null' ?></td>
+         
             <td style="display:flex;flex-direction:row">
               <a class="btn btn-success" href="edit_project.php?id=<?php echo $row['project_id']; ?>"><i class="fas fa-fw fa-edit"></i> View</a>
               <?php if ( checkAuthAction( authActions($_SESSION['user_id'],"",$conn), "Delete Project" ) ) {  ?>
